@@ -275,6 +275,7 @@ void MainWindow::configureTopBar()
 
     layout->addStretch(1);
 
+#ifdef VETHIDA_LICENSING
     // The license badge, left of Help.
     m_titleLicenseBadge = new vth::widgets::LicenseBadge(m_topBar);
     m_titleLicenseBadge->setObjectName(QStringLiteral("titleLicenseBadge"));
@@ -284,6 +285,7 @@ void MainWindow::configureTopBar()
     layout->addWidget(m_titleLicenseBadge);
     layout->addSpacing(vth::theme::tokens::TightGap);
     refreshLicenseBadge();
+#endif
 
     configureHelpMenu();
     layout->addWidget(m_titleHelpButton);
@@ -679,7 +681,9 @@ void MainWindow::configureNavigation()
                        return new vth::ui::SystemRestoreView(p);
                    }, ui->contentStack));
 
+#ifdef VETHIDA_LICENSING
     configureAccountPage();
+#endif
 
     m_routeIndex.insert(QStringLiteral("settings"),
                         ui->contentStack->indexOf(ui->settingsPage));
@@ -1652,4 +1656,4 @@ void MainWindow::saveUiState()
 {
     m_settings.setWindowGeometry(saveGeometry());
 }
-
+

@@ -117,8 +117,12 @@ namespace vth::dialogs
 
         // On Ultimate and early access only. Pro is the floor, so a Pro pill would sit
         // on nearly every tweak.
+#ifdef VETHIDA_LICENSING
         const bool showEntitlementPill = t.earlyAccess
             || t.minTier == vth::models::ProductTier::Ultimate;
+#else
+        const bool showEntitlementPill = t.earlyAccess;
+#endif
         if (showEntitlementPill) {
             auto* pill = new QLabel(t.earlyAccess
                                         ? QObject::tr("Early access")

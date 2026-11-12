@@ -11,7 +11,8 @@ namespace vth
     void setDevUnlockSuppressed(bool suppressed);
 #endif
 
-    // Both false until the licensing API has confirmed a key.
+    // Always true without licensing (BuildConfig.h). With it, both false until the
+    // licensing API has confirmed a key.
     bool isPro();
     bool isUltimate();
 

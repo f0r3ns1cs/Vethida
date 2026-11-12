@@ -68,6 +68,16 @@
     </Link>
   </ItemDefinitionGroup>
 
+  <!-- false builds with every plan unlocked, true builds the licensed product (BuildConfig.h). -->
+  <PropertyGroup>
+    <VethidaLicensing Condition="'$(VethidaLicensing)' == ''">false</VethidaLicensing>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(VethidaLicensing)' == 'true'">
+    <ClCompile>
+      <PreprocessorDefinitions>VETHIDA_LICENSING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <Optimization>Disabled</Optimization>

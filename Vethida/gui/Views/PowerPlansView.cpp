@@ -90,12 +90,14 @@ namespace vth::ui
             rows_.insert(i, choice);
             titleRow->addWidget(choice, 0, Qt::AlignVCenter);
 
+#ifdef VETHIDA_LICENSING
             // The tier is stated on the row rather than enforced by disabling
             // the control; the click on a locked row reaches the upgrade prompt.
             auto* pill = new QLabel(vth::models::tierLabel(plan.tier), body);
             pill->setObjectName(QStringLiteral("tweakCardTierPill"));
             pill->setAttribute(Qt::WA_StyledBackground, true);
             titleRow->addWidget(pill, 0, Qt::AlignVCenter);
+#endif
             titleRow->addStretch(1);
             row->addLayout(titleRow);
 

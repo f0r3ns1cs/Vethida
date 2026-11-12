@@ -102,11 +102,14 @@ namespace vth::services
 
     void LicenseService::start()
     {
+        // an unlocked build never contacts the licensing API
+#ifdef VETHIDA_LICENSING
         load();
         applyEntitlement();
         m_timer->start();
         if (!m_info.key.isEmpty())
             validateAsync();
+#endif
     }
 
     void LicenseService::post(const char* endpoint,
@@ -313,12 +316,14 @@ namespace vth::services
 
     void LicenseService::validateIfStale()
     {
+#ifdef VETHIDA_LICENSING
         if (m_info.key.isEmpty() || m_info.instanceId.isEmpty() || m_checking)
             return;
         // Offline, every return to the window is a chance to get the plan back.
         if (!m_offline && nowMs() - m_info.lastVerifiedUtcMs < ls::kStaleAfterMs)
             return;
         validateAsync();
+#endif
     }
 
     void LicenseService::setOffline(bool offline)

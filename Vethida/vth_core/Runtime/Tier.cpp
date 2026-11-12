@@ -20,12 +20,20 @@ namespace vth
 
     bool isPro()
     {
+#ifdef VETHIDA_LICENSING
         return devUnlockAll() || vth::license::isPro();
+#else
+        return true;
+#endif
     }
 
     bool isUltimate()
     {
+#ifdef VETHIDA_LICENSING
         return devUnlockAll() || vth::license::isUltimate();
+#else
+        return true;
+#endif
     }
 
     vth::models::ProductTier currentTier()
