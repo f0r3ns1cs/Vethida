@@ -1307,6 +1307,681 @@ void appendActive(QVector<TweakSpec>& c) {
             t.commandOps = { op };
             c.push_back(t);
         }
+
+        // Taskbar and Start.
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("appear.hide-widgets-button");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Taskbar");
+            t.name = QStringLiteral("Hide the widgets button");
+            t.description = QStringLiteral(
+                "Removes the Widgets button from the taskbar. Widgets still open with Win+W.");
+            t.iconName = QStringLiteral("layout-grid");
+            t.impact = Impact::Low;
+            t.concern = QStringLiteral(
+                "Windows 11 only. Some 24H2 builds block writes to TaskbarDa; the apply "
+                "then fails and nothing changes.");
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("TaskbarDa"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("ui.taskbar-end-task");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Taskbar");
+            t.name = QStringLiteral("Add End task to the taskbar menu");
+            t.description = QStringLiteral(
+                "Adds End task to the right-click menu of taskbar buttons, so a frozen app "
+                "can be closed without opening Task Manager.");
+            t.iconName = QStringLiteral("layout-grid");
+            t.impact = Impact::Low;
+            t.concern = QStringLiteral("Windows 11 23H2 and later.");
+            t.registryOps = {
+                dwordOp(kAdvanced + QStringLiteral("\\TaskbarDeveloperSettings"),
+                        QStringLiteral("TaskbarEndTask"), 1, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.taskbar.disable_show_desktop");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Taskbar");
+            t.name = QStringLiteral("Turn off the show desktop corner");
+            t.description = QStringLiteral(
+                "Stops a click in the far right corner of the taskbar from minimizing "
+                "every window. Win+D still shows the desktop.");
+            t.iconName = QStringLiteral("layout-grid");
+            t.impact = Impact::Low;
+            t.concern = QStringLiteral("Windows 11 only.");
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("TaskbarSd"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.taskbar.disable_iris_recs");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Taskbar and Start");
+            t.name = QStringLiteral("Turn off Start recommendations");
+            t.description = QStringLiteral(
+                "Stops Start from showing tips, shortcuts and new apps in its "
+                "Recommended section.");
+            t.iconName = QStringLiteral("layout-grid");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("Start_IrisRecommendations"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.taskbar.disable_account_notifs");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Taskbar and Start");
+            t.name = QStringLiteral("Turn off account notifications in Start");
+            t.description = QStringLiteral(
+                "Stops Start from showing Microsoft account setup and backup reminders.");
+            t.iconName = QStringLiteral("layout-grid");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("Start_AccountNotifications"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        // File Explorer.
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("shell.classic-explorer-folders");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Explorer");
+            t.name = QStringLiteral("Show the full path in the title bar");
+            t.description = QStringLiteral(
+                "Shows the whole folder path in the File Explorer title bar and taskbar "
+                "tooltip, not just the folder name.");
+            t.iconName = QStringLiteral("folder-cog");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+                                       "\\Explorer\\CabinetState"),
+                        QStringLiteral("FullPath"), 1, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.explorer.show_empty_drives");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Explorer");
+            t.name = QStringLiteral("Show empty drives");
+            t.description = QStringLiteral(
+                "Keeps card readers and disc drives listed in This PC even when "
+                "nothing is inserted.");
+            t.iconName = QStringLiteral("folder-cog");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("HideDrivesWithNoMedia"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.explorer.folder_merge_conflicts");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Explorer");
+            t.name = QStringLiteral("Ask before merging folders");
+            t.description = QStringLiteral(
+                "Copying a folder onto one with the same name asks first, instead of "
+                "merging the two silently.");
+            t.iconName = QStringLiteral("folder-cog");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("HideMergeConflicts"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("sys.explorer.encrypted_colors");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Explorer");
+            t.name = QStringLiteral("Color encrypted and compressed files");
+            t.description = QStringLiteral(
+                "Shows encrypted files in green and compressed files in blue in File "
+                "Explorer.");
+            t.iconName = QStringLiteral("folder-cog");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("ShowEncryptCompressedColor"), 1, 0),
+            };
+            c.push_back(t);
+        }
+
+        // Windows and themes.
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.explorer.disable_snap_flyout");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Window switching");
+            t.name = QStringLiteral("Turn off the snap layouts popup");
+            t.description = QStringLiteral(
+                "Stops the snap layout picker from opening when the pointer rests on a "
+                "window's maximize button. Win+Z still opens it.");
+            t.iconName = QStringLiteral("layout-grid");
+            t.impact = Impact::Low;
+            t.concern = QStringLiteral("Windows 11 only.");
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("EnableSnapAssistFlyout"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("gpu.disable-aero-shake");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Window switching");
+            t.name = QStringLiteral("Turn off shake to minimize");
+            t.description = QStringLiteral(
+                "Stops shaking a window's title bar from minimizing every other window.");
+            t.iconName = QStringLiteral("monitor");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer"),
+                        QStringLiteral("NoWindowMinimizingShortcuts"), 1, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.theme.no_theme_cursor_change");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Theme");
+            t.name = QStringLiteral("Keep your pointers and icons when changing themes");
+            t.description = QStringLiteral(
+                "Applying a theme no longer replaces your mouse pointers or desktop icons.");
+            t.iconName = QStringLiteral("sparkles");
+            t.impact = Impact::Low;
+            const QString themes = QStringLiteral(
+                "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes");
+            t.registryOps = {
+                dwordOp(themes, QStringLiteral("ThemeChangesMousePointers"), 0, 1),
+                dwordOp(themes, QStringLiteral("ThemeChangesDesktopIcons"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("appear.wallpaper-quality");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Theme");
+            t.name = QStringLiteral("Full quality wallpaper");
+            t.description = QStringLiteral(
+                "Stops Windows recompressing a JPEG wallpaper at 85% quality, so it isn't "
+                "blurred or blocky. Applies the next time you set a wallpaper.");
+            t.iconName = QStringLiteral("monitor");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKCU\\Control Panel\\Desktop"),
+                        QStringLiteral("JPEGImportQuality"), 100, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("appear.numlock-on-boot");
+            t.category = QStringLiteral("general");
+            t.subCategory = QStringLiteral("Keyboard");
+            t.name = QStringLiteral("Turn on Num Lock at sign-in");
+            t.description = QStringLiteral(
+                "Num Lock is on every time you sign in, so the number pad works right away.");
+            t.iconName = QStringLiteral("keyboard");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                stringOp(QStringLiteral("HKCU\\Control Panel\\Keyboard"),
+                         QStringLiteral("InitialKeyboardIndicators"),
+                         QStringLiteral("2147483650"), QStringLiteral("2147483648")),
+            };
+            c.push_back(t);
+        }
+
+        // Privacy.
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.search.disable_cloud");
+            t.category = QStringLiteral("privacy");
+            t.subCategory = QStringLiteral("Online features");
+            t.name = QStringLiteral("Keep Windows Search local");
+            t.description = QStringLiteral(
+                "Stops Windows Search including results from your Microsoft account and "
+                "work or school account, such as OneDrive and Outlook.");
+            t.iconName = QStringLiteral("eye-off");
+            t.impact = Impact::Low;
+            const QString search = QStringLiteral(
+                "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SearchSettings");
+            t.registryOps = {
+                dwordOp(search, QStringLiteral("IsMSACloudSearchEnabled"), 0, 1),
+                dwordOp(search, QStringLiteral("IsAADCloudSearchEnabled"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("sys.privacy.disable_resume");
+            t.category = QStringLiteral("privacy");
+            t.subCategory = QStringLiteral("Sync");
+            t.name = QStringLiteral("Turn off resume from your phone");
+            t.description = QStringLiteral(
+                "Stops Windows offering to continue on this PC what you were doing on a "
+                "linked phone.");
+            t.iconName = QStringLiteral("eye-off");
+            t.impact = Impact::Low;
+            t.concern = QStringLiteral("Windows 11 24H2 and later.");
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+                                       "\\CrossDeviceResume\\Configuration"),
+                        QStringLiteral("IsResumeAllowed"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("deb.gamedvr.capture_channels_disable");
+            t.category = QStringLiteral("debloating");
+            t.subCategory = QStringLiteral("Game DVR");
+            t.name = QStringLiteral("Leave sound, cursor and mic out of game captures");
+            t.description = QStringLiteral(
+                "Game Bar recordings no longer capture game audio, the mouse cursor or "
+                "your microphone.");
+            t.iconName = QStringLiteral("gamepad-2");
+            t.impact = Impact::Low;
+            const QString dvr = QStringLiteral(
+                "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\GameDVR");
+            t.registryOps = {
+                dwordOp(dvr, QStringLiteral("AudioCaptureEnabled"), 0, std::nullopt),
+                dwordOp(dvr, QStringLiteral("CursorCaptureEnabled"), 0, std::nullopt),
+                dwordOp(dvr, QStringLiteral("MicrophoneCaptureEnabled"), 0, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        // Network.
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("net.disable-llmnr");
+            t.category = QStringLiteral("networking");
+            t.subCategory = QStringLiteral("Name resolution");
+            t.name = QStringLiteral("Turn off LLMNR");
+            t.description = QStringLiteral(
+                "Turns off link-local multicast name resolution, an old way of finding "
+                "PCs on the local network that attackers abuse to capture sign-in hashes.");
+            t.iconName = QStringLiteral("network");
+            t.impact = Impact::Low;
+            t.requiresAdmin = true;
+            t.effects = {
+                QStringLiteral("On a network with no DNS server, other PCs may have to be "
+                               "reached by IP address."),
+            };
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\DNSClient"),
+                        QStringLiteral("EnableMulticast"), 0, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        // Browsers.
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("browser.firefox-harden");
+            t.category = QStringLiteral("browseroffice");
+            t.subCategory = QStringLiteral("Firefox");
+            t.name = QStringLiteral("Quiet Firefox");
+            t.description = QStringLiteral(
+                "Turns off Firefox telemetry, Studies and the default browser agent, and "
+                "skips the welcome and what's new pages.");
+            t.iconName = QStringLiteral("globe");
+            t.impact = Impact::Low;
+            t.requiresAdmin = true;
+            t.effects = {
+                QStringLiteral("Firefox says it is managed by your organization while "
+                               "these policies are set."),
+            };
+            const QString ff = QStringLiteral("HKLM\\SOFTWARE\\Policies\\Mozilla\\Firefox");
+            t.registryOps = {
+                dwordOp(ff, QStringLiteral("DisableTelemetry"), 1, std::nullopt),
+                dwordOp(ff, QStringLiteral("DisableFirefoxStudies"), 1, std::nullopt),
+                dwordOp(ff, QStringLiteral("DisableDefaultBrowserAgent"), 1, std::nullopt),
+                dwordOp(ff, QStringLiteral("DontCheckDefaultBrowser"), 1, std::nullopt),
+                stringOp(ff, QStringLiteral("OverrideFirstRunPage"), QString(), std::nullopt),
+                stringOp(ff, QStringLiteral("OverridePostUpdatePage"), QString(), std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            const QString chrome = QStringLiteral("HKLM\\SOFTWARE\\Policies\\Google\\Chrome");
+            const QString managed = QStringLiteral(
+                "Chrome says it is managed by your organization while these policies are set.");
+            {
+                TweakSpec t;
+                t.id = QStringLiteral("bo.chrome.genai");
+                t.category = QStringLiteral("browseroffice");
+                t.subCategory = QStringLiteral("Chrome");
+                t.name = QStringLiteral("Turn off Chrome's AI features");
+                t.description = QStringLiteral(
+                    "Turns off Help me write, the tab organizer, AI history search, AI themes "
+                    "and AI in DevTools, and stops Chrome downloading its on-device model.");
+                t.iconName = QStringLiteral("globe");
+                t.impact = Impact::Low;
+                t.requiresAdmin = true;
+                t.effects = { managed };
+                t.registryOps = {
+                    dwordOp(chrome, QStringLiteral("HelpMeWriteSettings"), 2, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("TabOrganizerSettings"), 2, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("HistorySearchSettings"), 2, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("CreateThemesSettings"), 2, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("DevToolsGenAiSettings"), 2, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("GenAILocalFoundationalModelSettings"), 1,
+                            std::nullopt),
+                };
+                c.push_back(t);
+            }
+            {
+                TweakSpec t;
+                t.id = QStringLiteral("bo.chrome.privacy_sandbox");
+                t.category = QStringLiteral("browseroffice");
+                t.subCategory = QStringLiteral("Chrome");
+                t.name = QStringLiteral("Turn off Chrome's ad topics and promotions");
+                t.description = QStringLiteral(
+                    "Turns off ad topics, ad measurement and site-suggested ads, and stops "
+                    "Chrome showing its own promotions and shopping list.");
+                t.iconName = QStringLiteral("globe");
+                t.impact = Impact::Low;
+                t.requiresAdmin = true;
+                t.effects = { managed };
+                t.registryOps = {
+                    dwordOp(chrome, QStringLiteral("PrivacySandboxAdTopicsEnabled"), 0, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("PrivacySandboxAdMeasurementEnabled"), 0,
+                            std::nullopt),
+                    dwordOp(chrome, QStringLiteral("PrivacySandboxSiteEnabledAdsEnabled"), 0,
+                            std::nullopt),
+                    dwordOp(chrome, QStringLiteral("PrivacySandboxPromptEnabled"), 0, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("PromotionalTabsEnabled"), 0, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("PromotionsEnabled"), 0, std::nullopt),
+                    dwordOp(chrome, QStringLiteral("ShoppingListEnabled"), 0, std::nullopt),
+                };
+                c.push_back(t);
+            }
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.explorer.compact_mode");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Explorer");
+            t.name = QStringLiteral("Compact view in File Explorer");
+            t.description = QStringLiteral(
+                "Tightens the spacing between items in File Explorer, so more fit on screen.");
+            t.iconName = QStringLiteral("folder-cog");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("UseCompactMode"), 1, 0),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.explorer.disable_preview_handlers");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Explorer");
+            t.name = QStringLiteral("Turn off file previews in Explorer");
+            t.description = QStringLiteral(
+                "Stops the preview pane opening documents, PDFs and other files to render "
+                "them, which also closes a route malicious files have used.");
+            t.iconName = QStringLiteral("folder-cog");
+            t.impact = Impact::Low;
+            t.effects = {
+                QStringLiteral("The preview pane shows nothing for most files."),
+            };
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("ShowPreviewHandlers"), 0, 1),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.desktop.show_thispc_recyclebin");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Desktop");
+            t.name = QStringLiteral("Show This PC and Recycle Bin on the desktop");
+            t.description = QStringLiteral(
+                "Puts the This PC and Recycle Bin icons on the desktop.");
+            t.iconName = QStringLiteral("monitor");
+            t.impact = Impact::Low;
+            const QString icons = QStringLiteral(
+                "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer"
+                "\\HideDesktopIcons\\NewStartPanel");
+            t.registryOps = {
+                dwordOp(icons, QStringLiteral("{20D04FE0-3AEA-1069-A2D8-08002B30309D}"), 0,
+                        std::nullopt),
+                dwordOp(icons, QStringLiteral("{645FF040-5081-101B-9F08-00AA002F954E}"), 0,
+                        std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("app.taskbar.share_window");
+            t.category = QStringLiteral("appearance");
+            t.subCategory = QStringLiteral("Taskbar");
+            t.name = QStringLiteral("Share any window from the taskbar");
+            t.description = QStringLiteral(
+                "Lets you share a window in a Teams call from its taskbar button.");
+            t.iconName = QStringLiteral("layout-grid");
+            t.impact = Impact::Low;
+            t.concern = QStringLiteral("Windows 11 23H2 and later.");
+            t.registryOps = {
+                dwordOp(kAdvanced, QStringLiteral("TaskbarSn"), 1, 0),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("shell.explorer_icon_cache_size");
+            t.category = QStringLiteral("advanced");
+            t.subCategory = QStringLiteral("Explorer");
+            t.name = QStringLiteral("Bigger icon cache");
+            t.description = QStringLiteral(
+                "Lets File Explorer keep up to 4096 icons in memory, so large folders don't "
+                "load their icons again every time.");
+            t.iconName = QStringLiteral("folder-cog");
+            t.impact = Impact::Low;
+            t.requiresAdmin = true;
+            t.registryOps = {
+                stringOp(QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer"),
+                         QStringLiteral("Max Cached Icons"), QStringLiteral("4096"), std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("sys.kernel.console_vt");
+            t.category = QStringLiteral("advanced");
+            t.subCategory = QStringLiteral("Console");
+            t.name = QStringLiteral("Colors in the console");
+            t.description = QStringLiteral(
+                "Makes console windows understand color and cursor codes, so command-line "
+                "tools that use them show colors instead of stray characters.");
+            t.iconName = QStringLiteral("settings");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKCU\\Console"), QStringLiteral("VirtualTerminalLevel"),
+                        1, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("priv.recall.snapshots_off");
+            t.category = QStringLiteral("privacy");
+            t.subCategory = QStringLiteral("Recall");
+            t.name = QStringLiteral("Stop Recall saving snapshots");
+            t.description = QStringLiteral(
+                "Stops Recall taking and analyzing snapshots of your screen.");
+            t.iconName = QStringLiteral("eye-off");
+            t.impact = Impact::Low;
+            t.concern = QStringLiteral(
+                "Copilot+ PCs only. The policy that removes Recall entirely "
+                "(AllowRecallEnablement) is left out, since undoing it means reinstalling it.");
+            const QString ai = QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsAI");
+            t.registryOps = {
+                dwordOp(ai, QStringLiteral("DisableAIDataAnalysis"), 1, std::nullopt),
+                dwordOp(ai, QStringLiteral("TurnOffSavingSnapshots"), 1, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("priv.activity.vs_telemetry");
+            t.category = QStringLiteral("privacy");
+            t.subCategory = QStringLiteral("Telemetry");
+            t.name = QStringLiteral("Turn off Visual Studio telemetry");
+            t.description = QStringLiteral(
+                "Stops Visual Studio 2015 to 2022 sending usage data to Microsoft. Does "
+                "nothing if Visual Studio isn't installed.");
+            t.iconName = QStringLiteral("eye-off");
+            t.impact = Impact::Low;
+            t.requiresAdmin = true;
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Microsoft\\VisualStudio\\Telemetry"),
+                        QStringLiteral("TurnOffSwitch"), 1, std::nullopt),
+                dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Policies\\Microsoft\\VisualStudio\\SQM"),
+                        QStringLiteral("OptIn"), 0, std::nullopt),
+            };
+            for (const char* ver : { "14.0", "15.0", "16.0", "17.0" }) {
+                const QString v = QString::fromLatin1(ver);
+                t.registryOps.append(dwordOp(
+                    QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\VSCommon\\") + v
+                        + QStringLiteral("\\SQM"),
+                    QStringLiteral("OptIn"), 0, std::nullopt));
+                t.registryOps.append(dwordOp(
+                    QStringLiteral("HKLM\\SOFTWARE\\WOW6432Node\\Microsoft\\VSCommon\\") + v
+                        + QStringLiteral("\\SQM"),
+                    QStringLiteral("OptIn"), 0, std::nullopt));
+            }
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("net.dns-over-https");
+            t.category = QStringLiteral("networking");
+            t.subCategory = QStringLiteral("Name resolution");
+            t.name = QStringLiteral("Allow DNS over HTTPS");
+            t.description = QStringLiteral(
+                "Lets Windows encrypt DNS lookups when your DNS server supports it, so "
+                "others on the network can't read which sites you look up.");
+            t.iconName = QStringLiteral("network");
+            t.impact = Impact::Medium;
+            t.requiresAdmin = true;
+            t.concern = QStringLiteral(
+                "Windows 11. Policy value 2 allows DoH; it doesn't force it, so lookups "
+                "fall back to plain DNS where the server has no DoH template.");
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\DNSClient"),
+                        QStringLiteral("DoHPolicy"), 2, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("storage.disable-autorun");
+            t.category = QStringLiteral("security");
+            t.subCategory = QStringLiteral("Attack surface");
+            t.name = QStringLiteral("Turn off AutoRun");
+            t.description = QStringLiteral(
+                "Stops USB drives, discs and network drives running anything on their own "
+                "when connected.");
+            t.iconName = QStringLiteral("usb");
+            t.impact = Impact::Low;
+            t.requiresAdmin = true;
+            t.effects = {
+                QStringLiteral("Nothing pops up when you plug in a drive; open it from File "
+                               "Explorer instead."),
+            };
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+                                       "\\Policies\\Explorer"),
+                        QStringLiteral("NoDriveTypeAutoRun"), 0xFF, std::nullopt),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("sec.disable-coinstallers");
+            t.category = QStringLiteral("debloating");
+            t.subCategory = QStringLiteral("Driver installation");
+            t.name = QStringLiteral("Stop device apps installing themselves");
+            t.description = QStringLiteral(
+                "Stops Windows installing a vendor's app, such as a mouse or headset "
+                "suite, when you plug the device in. The driver still installs.");
+            t.iconName = QStringLiteral("usb");
+            t.impact = Impact::Low;
+            t.requiresAdmin = true;
+            t.effects = {
+                QStringLiteral("Install a device's own app by hand if you want it."),
+            };
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
+                                       "\\Device Installer"),
+                        QStringLiteral("DisableCoInstallers"), 1, 0),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("gpu.nvidia.coproc_tray_disable");
+            t.category = QStringLiteral("gpu");
+            t.subCategory = QStringLiteral("NVIDIA");
+            t.name = QStringLiteral("Hide the NVIDIA GPU activity icon");
+            t.description = QStringLiteral(
+                "Removes the NVIDIA icon that laptops with switchable graphics show in the "
+                "notification area.");
+            t.iconName = QStringLiteral("gpu");
+            t.impact = Impact::Low;
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKCU\\SOFTWARE\\NVIDIA Corporation\\Global\\CoProcManager"),
+                        QStringLiteral("ShowTrayIcon"), 0, 1),
+            };
+            c.push_back(t);
+        }
     }
 }
 

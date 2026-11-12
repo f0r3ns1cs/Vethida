@@ -1,0 +1,112 @@
+#include "TweakEngine.h"
+
+namespace vth::tweaks::detail
+{
+    void appendStarter(QVector<TweakSpec>& c);
+    void appendMemory(QVector<TweakSpec>& c);
+    void appendMultimedia(QVector<TweakSpec>& c);
+    void appendScheduling(QVector<TweakSpec>& c);
+    void appendNetwork(QVector<TweakSpec>& c);
+    void appendStorage(QVector<TweakSpec>& c);
+    void appendInput(QVector<TweakSpec>& c);
+    void appendGpu(QVector<TweakSpec>& c);
+    void appendKernel(QVector<TweakSpec>& c);
+    void appendServices(QVector<TweakSpec>& c);
+    void appendEtw(QVector<TweakSpec>& c);
+    void appendPower(QVector<TweakSpec>& c);
+    void appendBoot(QVector<TweakSpec>& c);
+    void appendPrivacy(QVector<TweakSpec>& c);
+    void appendSecurity(QVector<TweakSpec>& c);
+    void appendDebloat(QVector<TweakSpec>& c);
+    void appendAppearance(QVector<TweakSpec>& c);
+    void appendBrowserOffice(QVector<TweakSpec>& c);
+    void appendOverclock(QVector<TweakSpec>& c);
+    void appendPerformance(QVector<TweakSpec>& c);
+    void appendDevices(QVector<TweakSpec>& c);
+    void appendGraphics2(QVector<TweakSpec>& c);
+    void appendSystem2(QVector<TweakSpec>& c);
+    void appendDocsExtras(QVector<TweakSpec>& c);
+    void appendDefsAppearance(QVector<TweakSpec>& c);
+    void appendDefsBios(QVector<TweakSpec>& c);
+    void appendDefsBrowserOffice(QVector<TweakSpec>& c);
+    void appendDefsDebloat(QVector<TweakSpec>& c);
+    void appendDefsEtw(QVector<TweakSpec>& c);
+    void appendDefsGpu(QVector<TweakSpec>& c);
+    void appendDefsNetwork(QVector<TweakSpec>& c);
+    void appendDefsPerformance(QVector<TweakSpec>& c);
+    void appendDefsPower(QVector<TweakSpec>& c);
+    void appendDefsPrivacy(QVector<TweakSpec>& c);
+    void appendDefsSecurity(QVector<TweakSpec>& c);
+    void appendDefsServices(QVector<TweakSpec>& c);
+    void appendDefsShell(QVector<TweakSpec>& c);
+    void appendDefsSystem(QVector<TweakSpec>& c);
+    void appendDefsExtra(QVector<TweakSpec>& c);
+    void appendDefsGpuDeepTuning(QVector<TweakSpec>& c);
+    void appendDefsRecovered(QVector<TweakSpec>& c);
+    void appendDefsGaps(QVector<TweakSpec>& c);
+    void appendDefsNvidiaPort(QVector<TweakSpec>& c);
+    void appendDefsNetworkPort(QVector<TweakSpec>& c);
+    void appendDefsSecurityPort(QVector<TweakSpec>& c);
+    void appendDefsAppearancePort(QVector<TweakSpec>& c);
+    void appendDefsKernelPort(QVector<TweakSpec>& c);
+    void appendDefsStoragePort(QVector<TweakSpec>& c);
+    void appendDefsPowerPort(QVector<TweakSpec>& c);
+    void appendDefsServicesPort(QVector<TweakSpec>& c);
+    void appendDefsBrowserOfficePort(QVector<TweakSpec>& c);
+
+    // Called after the main builders. catalog() skips any id they already define.
+    void appendExtended(QVector<TweakSpec>& c)
+    {
+        appendStarter(c);
+        appendMemory(c);
+        appendMultimedia(c);
+        appendScheduling(c);
+        appendNetwork(c);
+        appendStorage(c);
+        appendInput(c);
+        appendGpu(c);
+        appendKernel(c);
+        appendServices(c);
+        appendEtw(c);
+        appendPower(c);
+        appendBoot(c);
+        appendPrivacy(c);
+        appendSecurity(c);
+        appendDebloat(c);
+        appendAppearance(c);
+        appendBrowserOffice(c);
+        appendOverclock(c);
+        appendPerformance(c);
+        appendDevices(c);
+        appendGraphics2(c);
+        appendSystem2(c);
+        appendDocsExtras(c);
+        appendDefsAppearance(c);
+        appendDefsBios(c);
+        appendDefsBrowserOffice(c);
+        appendDefsDebloat(c);
+        appendDefsEtw(c);
+        appendDefsGpu(c);
+        appendDefsNetwork(c);
+        appendDefsPerformance(c);
+        appendDefsPower(c);
+        appendDefsPrivacy(c);
+        appendDefsSecurity(c);
+        appendDefsServices(c);
+        appendDefsShell(c);
+        appendDefsSystem(c);
+        appendDefsExtra(c);
+        appendDefsGpuDeepTuning(c);
+        appendDefsRecovered(c);
+        appendDefsGaps(c);
+        appendDefsNvidiaPort(c);
+        appendDefsNetworkPort(c);
+        appendDefsSecurityPort(c);
+        appendDefsAppearancePort(c);
+        appendDefsKernelPort(c);
+        appendDefsStoragePort(c);
+        appendDefsPowerPort(c);
+        appendDefsServicesPort(c);
+        appendDefsBrowserOfficePort(c);
+    }
+}

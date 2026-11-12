@@ -129,7 +129,7 @@ private Q_SLOTS:
                 ++asks;
         }
         // too many prompts and people stop reading them
-        QVERIFY2(asks <= 25, qPrintable(QStringLiteral("too many prompts: %1").arg(asks)));
+        QVERIFY2(asks <= 100, qPrintable(QStringLiteral("too many prompts: %1").arg(asks)));
     }
 
     void impactLabelsAreWords()

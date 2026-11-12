@@ -13,6 +13,7 @@
 #include <QtCore/QJsonObject>
 #include <QtCore/QMutex>
 #include <QtCore/QProcess>
+#include <QtCore/QSet>
 
 #include <windows.h>
 #include "../Windows/BcdBackup.h"
@@ -404,6 +405,21 @@ namespace vth::tweaks {
             detail::appendOperatorGpuPower(v);
             detail::appendOperatorAdvanced(v);
             detail::appendOperatorDebloat(v);
+
+            // the extended set never replaces a spec above with the same id
+            QSet<QString> ids;
+            for (const TweakSpec& t : v)
+                ids.insert(t.id);
+            QVector<TweakSpec> extended;
+            detail::appendExtended(extended);
+            for (TweakSpec& t : extended) {
+                if (ids.contains(t.id))
+                    continue;
+                ids.insert(t.id);
+                v.push_back(std::move(t));
+            }
+            detail::applyRelations(v);
+
             for (TweakSpec& t : v)
                 classifyEntitlement(t);
 
@@ -859,4 +875,4 @@ namespace
         }
 }
 }
-
+

@@ -170,6 +170,10 @@ namespace vth::tweaks {
         void appendOperatorGpuPower(QVector<TweakSpec>& c);
         void appendOperatorAdvanced(QVector<TweakSpec>& c);
         void appendOperatorDebloat(QVector<TweakSpec>& c);
+        void appendExtended(QVector<TweakSpec>& c);
+
+        // Fills excludes from the mutually exclusive pairs in TweakCatalogRelations.cpp.
+        void applyRelations(QVector<TweakSpec>& c);
     }
 }
-
+
