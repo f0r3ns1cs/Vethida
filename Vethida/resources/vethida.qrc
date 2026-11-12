@@ -124,8 +124,8 @@
         <file>icons/tabler/player-play.svg</file>
         <file>icons/tabler/layout-dashboard.svg</file>
         <file alias="legal/THIRD_PARTY_NOTICES.txt">../../THIRD_PARTY_NOTICES.txt</file>
-        <file alias="legal/LGPL-3.0.txt">../../legal/LGPL-3.0.txt</file>
-        <file alias="legal/GPL-3.0.txt">../../legal/GPL-3.0.txt</file>
+        <file alias="legal/LGPL-3.0.txt">licenses/LGPL-3.0.txt</file>
+        <file alias="legal/GPL-3.0.txt">licenses/GPL-3.0.txt</file>
         <file alias="powerplans/pro-laptop.pow">powerplans/vth pro laptop.pow</file>
         <file alias="powerplans/pro-desktop.pow">powerplans/vth pro PC.pow</file>
         <file alias="powerplans/ultimate-desktop.pow">powerplans/vth ultimate PC.pow</file>
