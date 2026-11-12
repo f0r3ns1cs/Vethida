@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.8.12021.73 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vethida", "vethida.vcxproj", "{B4E9AB7A-705E-44AD-A84A-421E323042A9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vth_core", "vth_core\vth_core.vcxproj", "{830E17FF-2C39-4051-A52D-A99E641854B5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vth_tests", "tests\vth_tests.vcxproj", "{104497BD-282A-4B66-BD01-0C41D0BF2AAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4E9AB7A-705E-44AD-A84A-421E323042A9}.Debug|x64.ActiveCfg = Debug|x64
+		{B4E9AB7A-705E-44AD-A84A-421E323042A9}.Debug|x64.Build.0 = Debug|x64
+		{B4E9AB7A-705E-44AD-A84A-421E323042A9}.Release|x64.ActiveCfg = Release|x64
+		{B4E9AB7A-705E-44AD-A84A-421E323042A9}.Release|x64.Build.0 = Release|x64
+		{830E17FF-2C39-4051-A52D-A99E641854B5}.Debug|x64.ActiveCfg = Debug|x64
+		{830E17FF-2C39-4051-A52D-A99E641854B5}.Debug|x64.Build.0 = Debug|x64
+		{830E17FF-2C39-4051-A52D-A99E641854B5}.Release|x64.ActiveCfg = Release|x64
+		{830E17FF-2C39-4051-A52D-A99E641854B5}.Release|x64.Build.0 = Release|x64
+		{104497BD-282A-4B66-BD01-0C41D0BF2AAC}.Debug|x64.ActiveCfg = Debug|x64
+		{104497BD-282A-4B66-BD01-0C41D0BF2AAC}.Debug|x64.Build.0 = Debug|x64
+		{104497BD-282A-4B66-BD01-0C41D0BF2AAC}.Release|x64.ActiveCfg = Release|x64
+		{104497BD-282A-4B66-BD01-0C41D0BF2AAC}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C438C11-6ED7-40D3-8455-C89EB261E806}
+	EndGlobalSection
+EndGlobal

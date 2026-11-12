@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <VethidaProductName>Vethida</VethidaProductName>
+    <VethidaCompanyName>Rens Engineering</VethidaCompanyName>
+    <VethidaVersionMajor>1</VethidaVersionMajor>
+    <VethidaVersionMinor>0</VethidaVersionMinor>
+    <VethidaVersionPatch>0</VethidaVersionPatch>
+    <VethidaVersionBuild>0</VethidaVersionBuild>
+    <VethidaVersion>$(VethidaVersionMajor).$(VethidaVersionMinor).$(VethidaVersionPatch).$(VethidaVersionBuild)</VethidaVersion>
+    <VethidaCopyright>Copyright (c) 2026 $(VethidaCompanyName). All rights reserved.</VethidaCopyright>
+    <VethidaBuildRoot>$(SolutionDir)build\</VethidaBuildRoot>
+    <VethidaIntDir>$(VethidaBuildRoot)intermediate\$(ProjectName)\$(Platform)_$(Configuration)\</VethidaIntDir>
+    <VethidaOutDir>$(VethidaBuildRoot)$(Platform)_$(Configuration)\</VethidaOutDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutDir>$(VethidaOutDir)</OutDir>
+    <IntDir>$(VethidaIntDir)</IntDir>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <SpectreMitigation>Spectre</SpectreMitigation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <DiagnosticsFormat>Caret</DiagnosticsFormat>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/guard:ehcont /FS %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4127;4251;4996</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>BuildConfig.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PreprocessorDefinitions>
+        WIN32_LEAN_AND_MEAN;
+        NOMINMAX;
+        UNICODE;
+        _UNICODE;
+        QT_DISABLE_DEPRECATED_BEFORE=0x060000;
+        QT_NO_CAST_FROM_ASCII;
+        QT_NO_CAST_TO_ASCII;
+        QT_NO_KEYWORDS;
+        QT_USE_QSTRINGBUILDER;
+        QT_MESSAGELOGCONTEXT;
+        %(PreprocessorDefinitions)
+      </PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <HighEntropyVA>true</HighEntropyVA>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <CETCompat>true</CETCompat>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalOptions>/guard:ehcont %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <PreprocessorDefinitions>_DEBUG;QT_DEBUG;VETHIDA_DEV_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <LinkIncremental>true</LinkIncremental>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <StringPooling>true</StringPooling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <PreprocessorDefinitions>NDEBUG;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkIncremental>false</LinkIncremental>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>

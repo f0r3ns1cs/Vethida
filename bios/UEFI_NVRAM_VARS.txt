@@ -1,0 +1,232 @@
+INTEL
+Native ASPM - Disabled
+Wake System from S5 - Disabled
+ACPI Debug - Disabled
+Low Power S0 Idle Capability - Disabled
+PUIS Enable - Disabled
+EC Notification - Disabled
+EC CS Debug Light - Disabled
+EC Low Power Mode - Disabled
+Sensor Standby - Disabled
+CS PL1 Limit - Disabled
+Intel Ready Mode Technology - Disabled
+Intel RMT State - Disabled
+PCI Delay Optimization - Enabled
+MSI enabled - Enabled
+C6DRAM - Disabled
+SW Guard Extensions (SGX) - Software Controlled
+Intel Virtualization Tech - Disabled
+PECI - Disabled
+BIST - Disabled
+AP threads Idle Manner - RUN Loop
+Intel(R) Speed Shift Technology Interrupt Control - Disabled
+Boot performance mode - Turbo Performance
+EIST - Disabled
+Race To Halt (RTH) - Disabled
+Intel Speed Shift Technology - Disabled
+Intel(R) Adaptive Boost Technology - Disabled
+Intel C-State - Disabled
+C1E Support - Disabled
+C-State Auto Demotion - Disabled
+C-State Un-demotion - Disabled
+Package C-State Demotion - Disabled
+Package C-State Un-demotion - Disabled
+CState Pre-Wake - Disabled
+Package C State Limit - C0
+CPU C States Support - Disabled
+Package C States support - Disabled
+Interrupt Redirection Mode Selection - Round robin
+Energy Efficient P-state - Disabled
+Energy Efficient Turbo - Disabled
+Bi-directional PROCHOT# - Disabled
+Disable PROCHOT# Output - Enabled
+PROCHOT Response - Disabled
+PROCHOT Lock - Disabled
+ACPI T-States - 0
+Power Loss Notification Feature - Disabled
+P-state Capping - Disabled
+ZPODD - Disabled
+BCLK Aware Adaptive Voltage - Disabled
+TVB Ratio Clipping - Disabled
+Ring Down Bin - Disabled
+Enable ASPM - Disabled
+Enable LTR - Disabled
+LTR - Disabled
+Enable TBT ASPM - Disabled
+JTAG C10 Power Gate - Disabled
+ACPI Standby State - Suspend Disabled
+Re-Size BAR Support - Enabled
+ASPM - Disabled
+LTR Mechanism Enable - Disabled
+Clock Power Management - Disabled
+USB 2.0 Controller Mode - HiSpeed
+USB S5 Wakeup Support - Disabled
+DMI Link ASPM Control - Disabled
+Power Down Unused Lanes - Disabled
+Tcc Activation Offset - 0
+EPG DIMM Idd3N - 0
+EPG DIMM Idd3P - 0
+PEG 0 ASPM - Disabled
+PEG 1 ASPM - Disabled
+PEG0 - ASPM - Disabled
+PEG1 - ASPM - Disabled
+PEG2 - ASPM - Disabled
+RC6(Render Standby) - Disabled
+DDR PowerDown and idle counter - PCODE
+For LPDDR Only: DDR PowerDown and idle counter - PCODE
+PowerDown Energy Ch0Dimm0 - 0
+PowerDown Energy Ch0Dimm1 - 0
+PowerDown Energy Ch1Dimm0 - 0
+PowerDown Energy Ch1Dimm1 - 0
+PCI Express Clock Gating - Disabled
+PCI Express Power Gating - Disabled
+L1 Substates - Disabled
+LAN Wake From DeepSx - Disabled
+Wake on LAN Enable - Disabled
+Wake on WLAN and BT Enable - Disabled
+DeepSx Wake on WLAN and BT Enable - Disabled
+HPET - Enabled
+Legacy IO Low Latency - Enabled
+PCH Cross Throttling - Disabled
+Pcie Pll SSC - 0.0%
+Enable 8254 Clock Gate - Disabled
+USB2 PHY Sus Well Power Gating - Disabled
+Aggressive LPM Support - Disabled
+Disable Gen2 Pll Shutdown and L1 Controller Power gating - Enabled
+PCI Express Root Port 1 ASPM - Disabled
+PCI Express Root Port 2 ASPM - Disabled
+PCI Express Root Port 3 ASPM - Disabled
+PCI Express Root Port 4 ASPM - Disabled
+PCI Express Root Port 5 ASPM - Disabled
+PCI Express Root Port 6 ASPM - Disabled
+PCI Express Root Port 7 ASPM - Disabled
+PCI Express Root Port 8 ASPM - Disabled
+PCI Express Root Port 9 ASPM - Disabled
+PCI Express Root Port 10 ASPM - Disabled
+PCI Express Root Port 11 ASPM - Disabled
+PCI Express Root Port 12 ASPM - Disabled
+PCI Express Root Port 13 ASPM - Disabled
+PCI Express Root Port 14 ASPM - Disabled
+PCI Express Root Port 15 ASPM - Disabled
+PCI Express Root Port 16 ASPM - Disabled
+PCI Express Root Port 17 ASPM - Disabled
+PCI Express Root Port 18 ASPM - Disabled
+PCI Express Root Port 19 ASPM - Disabled
+PCI Express Root Port 20 ASPM - Disabled
+PCI Express Root Port 21 ASPM - Disabled
+PCI Express Root Port 22 ASPM - Disabled
+PCI Express Root Port 23 ASPM - Disabled
+PCI Express Root Port 24 ASPM - Disabled
+Modern StandBy - Disabled
+USB Standby Power at S4/S5 - Disabled
+PEG0 - ASPM - Disabled
+PEG1 - ASPM - Disabled
+PEG2 - ASPM - Disabled
+Intel Adaptive Boost Technology - Disabled
+Power Down Mode - Disabled
+Intel Virtualization Tech - Disabled
+Intel VT-D Tech - Disabled
+PCIE Spread Spectrum - Disabled
+Thermal Throttling Level - Manual
+T0 Level - 0
+T1 Level - 0
+T2 Level - 0
+Enable Hibernation - 0
+Extreme Memory Profile(XMP)
+Execute Disable Bit - Disabled
+
+
+AMD
+PX Dynamic Mode - 00 // Disabled
+Discrete GPU's Audio - 00 // Disabled
+Adaptive S4 - 00 // Disabled
+LAN Power Enable - 00 // Disabled
+PM L1 SS - 00 // Disabled
+Unused GPP Clocks Off - 00 // Disabled
+Clock Power Management(CLKREQ#) - 00 // Disabled
+Win7 USB Wake Support - 00 // Disabled
+ACP Power Gating - 00 // Disabled
+ACP CLock Gating - 00 // Disabled
+DRAM Latency Enhance - 01 // Enabled
+Power Down Enable - 00 // Disabled
+ECO Mode - 00 // Disabled
+LN2 Mode - 00 // Disabled
+SoC/Uncore OC Mode - 01 // Enabled
+LCLK DPM - 02 // Disabled
+LCLK DPM Enhanced PCIe Detection - 02 // Disabled
+SMEE - 00 // Disabled
+Global C-state Control - 00 // Disabled
+ACPI _CST C1 Declaration - 00 // Disabled
+Indirect Branch Prediction Speculation - 00 // Disabled
+Fast Short REP MOVSB - 01 // Enabled
+Enhanced REP MOVSB/STOSB - 01 // Enabled
+REP-MOV/STOS Streaming - 01 // Enabled
+Disable DF to external downstream IP SyncFloodPropagation - 01 // Sync flood disabled
+Disable DF sync flood propagation - 01 // Sync flood disabled
+Freeze DF module queues on error - 00 // Disabled
+CC6 memory region encryption - 00 // Disabled
+PSP error injection support - 00 // False
+DRAM scrub time - 00 // Disabled
+Poison scrubber control - 00 // Disabled
+Redirect scrubber control - 00 // Disabled
+GMI encryption control - 00 // Disabled
+xGMI encryption control - 00 // Disabled
+Data Poisoning - 00 // Disabled
+RCD Parity - 00 // Disabled
+DRAM Address Command Parity Retry - 00 // Disabled
+Write CRC Enable - 00 // Disabled
+DRAM Write CRC Enable and Retry Limit - 00 // Disabled
+DRAM ECC Enable - 00 // Disabled
+DRAM UECC Retry - 00 // Disabled
+BankGroupSwap - 00 // Disabled
+BankGroupSwapAlt - 00 // Disabled
+Address Hash Bank - 00 // Disabled
+Address Hash CS - 00 // Disabled
+Address Hash Rm - 00 // Disabled
+IOMMU - 00 // Disabled
+DMA Protection - 00 // Disabled
+DMAr Support - 00 // Disabled
+ACS Enable - 00 // Disabled
+Enable AER Cap - 00 // Disabled
+SRIS - 01 // Enable
+Determinism Control - 01 // Manual
+Determinism Slider - 00 // Power
+APBDIS - 01 // 1
+DF Cstates - 00 // Disabled
+Fixed SOC Pstate - 00 // P0
+CPPC - 00 // Disabled
+CPPC Preferred Cores - 00 // Disabled
+NBIO SyncFlood Generation - 00 // Disabled
+NBIO SyncFlood Reporting - 00 // Disabled
+Log Poison Data from SLINK - 00 // Disabled
+Edpc Control - 00 // Disabled
+ESPI Enable - 00 // Disabled
+ALink RAS Support - 00 // Disabled
+S3/Modern Standby Support - 00 // Disabled
+DRAM map inversion - 01 // Enabled
+SVM Mode - 00 // Disabled
+SB Clock Spread Spectrum - 00 // Disabled
+TSME - 00 // Disabled
+PPC Adjustment - 00 // PState 0
+SR-IOV Support - 00 // Disabled
+ASPM Support - 00 // Disabled
+PCIB Clock Run - 00 // Disabled
+Int. Clk Differential Spread - 00 // Disabled
+SATA Slumber State Capability - 00 // Disabled
+ACPI SLIT remote relative distance - 00 // Near
+SPD Read Optimization - 01 // Enabled
+PCIe Ten Bit Tag Support - 00 // Disable
+NBIO DPM Control - 01 // Manual
+NBIO Poison Consumption - 02 // Disabled
+NBIO RAS Global Control - 01 // Manual
+NBIO RAS Control - 00 // Disabled
+Sata RAS Support - 00 // Disabled
+Aggresive SATA Device Sleep Port 0 - 00 // Disabled
+Aggresive SATA Device Sleep Port 1 - 00 // Disabled
+Socket1 DevSlp0 Enable - 00 // Disabled
+Socket1 DevSlp1 Enable - 00 // Disabled
+Chipset Power Saving Features - 00 // Disabled
+ACPI SRAT L3 Cache As NUMA Domain - 01 // Enabled
+Periodic Directory Rinse - 00 // Disabled
+PSS Support - 00 // Disabled
+AB Clock Gating - 00 // Disabled

@@ -1,0 +1,94 @@
+THIRD-PARTY NOTICES
+
+Vethida's own code is under the MIT License, see LICENSE. The components below
+remain under their own licenses, which apply only to those components.
+
+
+1. QT FRAMEWORK                                                        LGPLv3
+
+Copyright (C) The Qt Company Ltd. and other contributors.
+Used under the GNU Lesser General Public License, version 3.
+Source: https://www.qt.io/
+
+The application's user-interface and platform toolkit, dynamically linked. Qt
+is not included in this repository. If you distribute builds, the LGPLv3
+obligations for the Qt libraries you ship are yours to meet.
+
+
+2. LZMA SDK                                                     Public Domain
+
+Author: Igor Pavlov.
+Source: https://www.7-zip.org/sdk.html
+
+Used for in-process extraction of 7z-format payloads (driver packages). The LZMA
+SDK is public domain; this acknowledgment is included as a courtesy.
+
+
+3. TABLER ICONS                                                           MIT
+
+Copyright (c) 2020-2025 Pawel Kuna.
+Licensed under the MIT License.
+Source: https://tabler.io/icons
+
+The application's interface icons. The SVG sources are recolored at runtime to
+match the active theme; the glyph paths are unmodified.
+
+    MIT License
+
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+
+
+4. NVIDIA NVAPI                                              Not redistributed
+
+Copyright (c) NVIDIA Corporation.
+Source: https://developer.nvidia.com/nvapi
+
+On NVIDIA hardware, Vethida reads GPU temperature and applies driver profile
+settings through nvapi64.dll, which is part of the installed NVIDIA display
+driver. Vethida does not link the NVAPI SDK and does not include any NVIDIA
+header, library or binary. It loads the system library at runtime and resolves
+the entry points it needs.
+
+
+5. SENTRY-NATIVE                                                          MIT
+
+Copyright (c) 2019 Sentry (https://sentry.io) and individual contributors.
+Licensed under the MIT License.
+Source: https://github.com/getsentry/sentry-native
+
+Crash reporting.
+
+
+6. WINSPARKLE                                                            MIT
+
+Copyright (c) 2009-2025 Vaclav Slavik.
+Licensed under the MIT License.
+Source: https://github.com/vslavik/winsparkle
+
+Checks for, verifies and installs updates.
+
+
+7. DISPLAY DRIVER UNINSTALLER                                             MIT
+
+Copyright (c) 2014 Wagnardsoft.
+Licensed under the MIT License, see legal/DisplayDriverUninstaller-MIT.txt.
+Source: https://github.com/Wagnard/display-drivers-uninstaller
+
+The NVIDIA driver cleanup follows its removal stages. Offered as a separate
+install from the Get apps page.

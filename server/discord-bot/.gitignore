@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+package-lock.json.bak
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Secrets / keys
+*.pem
+*.key
+*.crt
+
+# Data & logs
+data/
+*.sqlite
+*.sqlite-journal
+*.db
+*.db-journal
+logs/
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Coverage
+coverage/
+.nyc_output/

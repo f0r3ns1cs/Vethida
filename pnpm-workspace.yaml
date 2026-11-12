@@ -1,0 +1,50 @@
+packages:
+  - "my.vethida.com"
+  - "api.vethida.com"
+  - "packages/*"
+  - "server/discord-bot"
+
+allowBuilds:
+  "@sentry/cli": true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+
+# Forced versions of transitive dependencies carrying a high-severity advisory
+# that the direct dependency has not yet picked up. Every entry is a PATCH bump
+# inside the same major line, which is the only kind of override taken without a
+# way to test the result - `pnpm audit` reports the problem, it does not tell you
+# whether the fix breaks the parent, and there is no test here that would catch
+# it if it did.
+#
+# Remove an entry once the direct dependency's own range covers the patched
+# version; leaving it pins the tree for no reason.
+overrides:
+  # GHSA-6g55-p6wh-862q (arbitrary file read) and GHSA-r28c-9q8g-f849 (path
+  # traversal in source-map auto-loading). Build-time only, but both are
+  # file-read primitives in the thing that processes CSS.
+  postcss: "^8.5.25"
+  # GHSA-mh99-v99m-4gvg and GHSA-3jxr-9vmj-r5cp, ReDoS. Reached only through
+  # eslint and typescript-eslint, so this is a dev-tooling fix, not a runtime
+  # one. Two major lines are installed and each needs its own patch floor.
+  brace-expansion@1: "^1.1.17"
+  brace-expansion@5: "^5.0.8"
+
+# Advisories that have been read and consciously not acted on. An entry needs a
+# reason and something that would make it expire; an empty list is the goal.
+auditConfig:
+  ignoreGhsas:
+    # sharp / libvips (GHSA-f88m-g3jw-g9cj). Patched in sharp >= 0.35.0, but
+    # next 16.2.12 declares "sharp": "^0.34.5", so taking the patch means
+    # forcing a transitive dependency outside the range its parent asks for -
+    # on the library that does image optimization for vethida.com, which uses
+    # next/image, with no test here that would notice it breaking.
+    #
+    # Reachability: sharp decodes images at build time and on the image
+    # optimization route. Every image it is given is first-party and committed
+    # to this repository; nothing accepts an uploaded image anywhere in the
+    # product. The advisory needs attacker-supplied image bytes.
+    #
+    # Revisit when next's range moves to ^0.35, or immediately if anything ever
+    # accepts a user-supplied image.
+    - GHSA-f88m-g3jw-g9cj

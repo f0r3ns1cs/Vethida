@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4D7C2E91-3A8F-4B60-9E15-F2D6A0B87C31}</ProjectGuid>
+    <RootNamespace>setup</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseDebugLibraries Condition="'$(Configuration)'=='Debug'">true</UseDebugLibraries>
+    <UseDebugLibraries Condition="'$(Configuration)'=='Release'">false</UseDebugLibraries>
+    <WholeProgramOptimization Condition="'$(Configuration)'=='Release'">true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\common.props" />
+  </ImportGroup>
+  <PropertyGroup>
+    <TargetName>vethida-setup</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>installer.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\lzma\7zAlloc.c" />
+    <ClCompile Include="..\lib\lzma\7zArcIn.c" />
+    <ClCompile Include="..\lib\lzma\7zBuf.c" />
+    <ClCompile Include="..\lib\lzma\7zBuf2.c" />
+    <ClCompile Include="..\lib\lzma\7zCrc.c" />
+    <ClCompile Include="..\lib\lzma\7zCrcOpt.c" />
+    <ClCompile Include="..\lib\lzma\7zDec.c" />
+    <ClCompile Include="..\lib\lzma\7zFile.c" />
+    <ClCompile Include="..\lib\lzma\7zStream.c" />
+    <ClCompile Include="..\lib\lzma\Alloc.c" />
+    <ClCompile Include="..\lib\lzma\Bcj2.c" />
+    <ClCompile Include="..\lib\lzma\Bra.c" />
+    <ClCompile Include="..\lib\lzma\Bra86.c" />
+    <ClCompile Include="..\lib\lzma\BraIA64.c" />
+    <ClCompile Include="..\lib\lzma\CpuArch.c" />
+    <ClCompile Include="..\lib\lzma\Delta.c" />
+    <ClCompile Include="..\lib\lzma\Lzma2Dec.c" />
+    <ClCompile Include="..\lib\lzma\LzmaDec.c" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="InstallerCommon.cpp" />
+    <ClCompile Include="InstallEngine.cpp" />
+    <ClCompile Include="Extract7z.cpp" />
+    <ClCompile Include="Wizard.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InstallerCommon.h" />
+    <ClInclude Include="InstallEngine.h" />
+    <ClInclude Include="Extract7z.h" />
+    <ClInclude Include="Wizard.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="setup.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="installer.manifest" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

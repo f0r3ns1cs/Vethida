@@ -1,0 +1,94 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.12.0"
+          arch: win64_msvc2022_64
+          cache: true
+
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Fetch QtMsBuild
+        shell: pwsh
+        run: |
+          $zip = "$env:RUNNER_TEMP\qtmsbuild.zip"
+          $dest = "$env:RUNNER_TEMP\qtmsbuild"
+          Invoke-WebRequest "https://download.qt.io/official_releases/vsaddin/3.5.0/qt-vsaddin-msbuild-3.5.0.zip" -OutFile $zip
+          Expand-Archive $zip -DestinationPath $dest
+          $targets = Get-ChildItem $dest -Recurse -Filter qt.targets | Select-Object -First 1
+          "QTMSBUILD_DIR=$($targets.DirectoryName)" >> $env:GITHUB_ENV
+
+      # Release won't compile without an update key. Set the UPDATE_PUBLIC_KEY repo
+      # variable to the real one (appcast.mjs keys). Without it the build gets a
+      # throwaway key, so it builds but never accepts an update.
+      - name: Set update key
+        shell: pwsh
+        env:
+          UPDATE_PUBLIC_KEY: ${{ vars.UPDATE_PUBLIC_KEY }}
+        run: |
+          $key = $env:UPDATE_PUBLIC_KEY
+          if (-not $key) {
+            $key = node -e "const c=require('crypto');console.log(c.generateKeyPairSync('ed25519').publicKey.export({format:'der',type:'spki'}).subarray(-32).toString('base64'))"
+            Write-Host "::warning::UPDATE_PUBLIC_KEY isn't set, this build can't install updates."
+          }
+          $header = "Vethida\vth_core\Runtime\AutoUpdate.h"
+          $text = Get-Content $header -Raw
+          $patched = $text.Replace('kEdDsaPublicKey = "";', "kEdDsaPublicKey = `"$key`";")
+          if ($patched -eq $text) { throw "kEdDsaPublicKey not found in $header" }
+          Set-Content $header $patched -NoNewline
+
+      - name: Build
+        shell: pwsh
+        run: >
+          msbuild Vethida/vethida.sln /m
+          /p:Configuration=Release /p:Platform=x64
+          /p:PlatformToolset=v143
+          "/p:QtInstall=$env:QT_ROOT_DIR"
+          "/p:QtMsBuild=$env:QTMSBUILD_DIR"
+
+      - name: Test
+        shell: pwsh
+        run: .\Vethida\build\x64_Release\vth_tests.exe
+
+      # Unsigned and unprotected, for testing only. Real releases go through
+      # scripts/release.
+      - name: Package
+        shell: pwsh
+        run: |
+          $out = "dist\Vethida"
+          New-Item -ItemType Directory $out -Force | Out-Null
+          Copy-Item Vethida\build\x64_Release\vethida.exe "$out\Vethida.exe"
+
+          & "$env:QT_ROOT_DIR\bin\windeployqt.exe" --release --no-translations `
+            --no-system-d3d-compiler --no-opengl-sw --no-quick-import "$out\Vethida.exe"
+          if ($LASTEXITCODE -ne 0) { throw "windeployqt failed" }
+
+          # VC++ runtime next to the exe, so it runs without vc_redist installed
+          $vs = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
+          $crt = Get-ChildItem "$vs\VC\Redist\MSVC\*\x64\Microsoft.VC*.CRT" -Directory |
+            Sort-Object { [version]$_.Parent.Parent.Name } | Select-Object -Last 1
+          if (-not $crt) { throw "VC++ runtime not found under $vs" }
+          Copy-Item "$($crt.FullName)\*.dll" $out
+
+          Copy-Item LICENSE, THIRD_PARTY_NOTICES.txt $out
+
+          $version = (Get-Content VERSION -Raw).Trim()
+          "ARTIFACT_NAME=Vethida-$version-$($env:GITHUB_SHA.Substring(0, 7))" >> $env:GITHUB_ENV
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: dist/Vethida
+          if-no-files-found: error
+          retention-days: 30

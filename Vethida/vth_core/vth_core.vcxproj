@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{830E17FF-2C39-4051-A52D-A99E641854B5}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.12.0</QtInstall>
+    <QtModules>core;gui;network;concurrent</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.12.0</QtInstall>
+    <QtModules>core;gui;network;concurrent</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="$(SolutionDir)common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="$(SolutionDir)common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)src;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>VTH_CORE_LIB;BUILD_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\lzma\7zAlloc.c" />
+    <ClCompile Include="..\lib\lzma\7zArcIn.c" />
+    <ClCompile Include="..\lib\lzma\7zBuf.c" />
+    <ClCompile Include="..\lib\lzma\7zBuf2.c" />
+    <ClCompile Include="..\lib\lzma\7zCrc.c" />
+    <ClCompile Include="..\lib\lzma\7zCrcOpt.c" />
+    <ClCompile Include="..\lib\lzma\7zDec.c" />
+    <ClCompile Include="..\lib\lzma\7zFile.c" />
+    <ClCompile Include="..\lib\lzma\7zStream.c" />
+    <ClCompile Include="..\lib\lzma\Alloc.c" />
+    <ClCompile Include="..\lib\lzma\Bcj2.c" />
+    <ClCompile Include="..\lib\lzma\Bra.c" />
+    <ClCompile Include="..\lib\lzma\Bra86.c" />
+    <ClCompile Include="..\lib\lzma\BraIA64.c" />
+    <ClCompile Include="..\lib\lzma\CpuArch.c" />
+    <ClCompile Include="..\lib\lzma\Delta.c" />
+    <ClCompile Include="..\lib\lzma\Lzma2Dec.c" />
+    <ClCompile Include="..\lib\lzma\LzmaDec.c" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Runtime\Archive.cpp" />
+    <ClCompile Include="Runtime\SupportBundle.cpp" />
+    <ClCompile Include="Runtime\Preflight.cpp" />
+    <ClCompile Include="ProtectedServices.cpp" />
+    <ClCompile Include="ProtectedProcesses.cpp" />
+    <ClCompile Include="Runtime\Paths.cpp" />
+    <ClCompile Include="Runtime\ServiceRegistry.cpp" />
+    <ClCompile Include="Runtime\Consent.cpp" />
+    <ClCompile Include="Runtime\Settings.cpp" />
+    <ClCompile Include="Runtime\Dispatcher.cpp" />
+    <ClCompile Include="Runtime\LicenseCache.cpp" />
+    <ClCompile Include="Runtime\TweakStateTracker.cpp" />
+    <ClCompile Include="Runtime\Fetch.cpp" />
+    <ClCompile Include="Runtime\CrashRecoveryService.cpp" />
+    <ClCompile Include="Runtime\Sentry.cpp" />
+    <ClCompile Include="Tweaks\TweakEngine.cpp" />
+    <ClCompile Include="Tweaks\TweakCatalogActive.cpp" />
+    <ClCompile Include="Tweaks\TweakCatalogOperatorBatch.cpp" />
+    <ClCompile Include="Tweaks\TweakCatalogOperatorGpuPower.cpp" />
+    <ClCompile Include="Tweaks\TweakCatalogOperatorAdvanced.cpp" />
+    <ClCompile Include="Tweaks\TweakCatalogOperatorDebloat.cpp" />
+    <ClCompile Include="Tweaks\DeviceOps.cpp" />
+    <ClCompile Include="Services\RegistryEditor.cpp" />
+    <ClCompile Include="Services\SecurityConfig.cpp" />
+    <ClCompile Include="Services\SecureStorage.cpp" />
+    <ClCompile Include="Services\CpuSampler.cpp" />
+    <ClCompile Include="Services\MemorySampler.cpp" />
+    <ClCompile Include="Services\GpuSampler.cpp" />
+    <ClCompile Include="Services\LicenseService.cpp" />
+    <ClCompile Include="Services\SentryBridge.cpp" />
+    <ClCompile Include="Services\SessionProjection.cpp" />
+    <ClCompile Include="Runtime\Tier.cpp" />
+    <ClCompile Include="Runtime\AutoUpdate.cpp" />
+    <ClCompile Include="Runtime\WithdrawnTweaks.cpp" />
+    <ClCompile Include="OsVersionHelper.cpp" />
+    <ClCompile Include="Services.cpp" />
+    <ClCompile Include="Http.cpp" />
+    <ClCompile Include="SystemInfo.cpp" />
+    <ClCompile Include="Speedtest.cpp" />
+    <ClCompile Include="SystemRestore.cpp" />
+    <ClCompile Include="Windows\DarkMode.cpp" />
+    <ClCompile Include="Windows\Registry.cpp" />
+    <ClCompile Include="Windows\Privileges.cpp" />
+    <ClCompile Include="Windows\Storage.cpp" />
+    <ClCompile Include="Windows\HealthScore.cpp" />
+    <ClCompile Include="Windows\MachineProfile.cpp" />
+    <ClCompile Include="Tweaks\Recommend.cpp" />
+    <ClCompile Include="Windows\Cleanup.cpp" />
+    <ClCompile Include="Windows\Network.cpp" />
+    <ClCompile Include="Windows\Qos.cpp" />
+    <ClCompile Include="Windows\Bloatware.cpp" />
+    <ClCompile Include="Windows\Apps.cpp" />
+    <ClCompile Include="Windows\AppInstaller.cpp" />
+    <ClCompile Include="Windows\CrashHandler.cpp" />
+    <ClCompile Include="Windows\SingleInstance.cpp" />
+    <ClCompile Include="Windows\Startup.cpp" />
+    <ClCompile Include="Windows\Fixes.cpp" />
+    <ClCompile Include="Windows\ManagedSettings.cpp" />
+    <ClCompile Include="Windows\NvApi.cpp" />
+    <ClCompile Include="Windows\NvidiaAnsel.cpp" />
+    <ClCompile Include="Windows\NvidiaReinstall.cpp" />
+    <ClCompile Include="Windows\NvidiaDriver.cpp" />
+    <ClCompile Include="Windows\NvidiaCleanTables.cpp" />
+    <ClCompile Include="Windows\Authenticode.cpp" />
+    <ClCompile Include="Windows\BiosParser.cpp" />
+    <ClCompile Include="Windows\Nvram.cpp" />
+    <ClCompile Include="Windows\NvramPresets.cpp" />
+    <ClCompile Include="Windows\Genesis.cpp" />
+    <ClCompile Include="Windows\GenesisMonitor.cpp" />
+    <ClCompile Include="Windows\Gpu.cpp" />
+    <ClCompile Include="Windows\BcdBackup.cpp" />
+    <ClCompile Include="Windows\Power.cpp" />
+    <ClCompile Include="Devices.cpp" />
+    <ClCompile Include="Models\LicenseModels.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Logger.h" />
+    <QtMoc Include="Runtime\TweakStateTracker.h" />
+    <QtMoc Include="Runtime\CrashRecoveryService.h" />
+    <QtMoc Include="Runtime\Sentry.h" />
+    <QtMoc Include="Services\LicenseService.h" />
+    <QtMoc Include="Windows\GenesisMonitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\BuildConfig.h" />
+    <ClInclude Include="Runtime\Archive.h" />
+    <ClInclude Include="Runtime\SupportBundle.h" />
+    <ClInclude Include="Runtime\Preflight.h" />
+    <ClInclude Include="ProtectedServices.h" />
+    <ClInclude Include="ProtectedProcesses.h" />
+    <ClInclude Include="Runtime\Paths.h" />
+    <ClInclude Include="Runtime\Threading.h" />
+    <ClInclude Include="Runtime\Fetch.h" />
+    <ClInclude Include="Runtime\ServiceRegistry.h" />
+    <ClInclude Include="Runtime\Consent.h" />
+    <ClInclude Include="Runtime\Settings.h" />
+    <ClInclude Include="Runtime\Dispatcher.h" />
+    <ClInclude Include="Runtime\LicenseCache.h" />
+    <ClInclude Include="OsVersionHelper.h" />
+    <ClInclude Include="Services.h" />
+    <ClInclude Include="SiteUrls.h" />
+    <ClInclude Include="Http.h" />
+    <ClInclude Include="SystemInfo.h" />
+    <ClInclude Include="Speedtest.h" />
+    <ClInclude Include="SystemRestore.h" />
+    <ClInclude Include="Windows\DarkMode.h" />
+    <ClInclude Include="Windows\Registry.h" />
+    <ClInclude Include="Windows\Privileges.h" />
+    <ClInclude Include="Windows\Storage.h" />
+    <ClInclude Include="Windows\HealthScore.h" />
+    <ClInclude Include="Windows\MachineProfile.h" />
+    <ClInclude Include="Tweaks\Recommend.h" />
+    <ClInclude Include="Windows\Cleanup.h" />
+    <ClInclude Include="Windows\Network.h" />
+    <ClInclude Include="Windows\Qos.h" />
+    <ClInclude Include="Windows\Bloatware.h" />
+    <ClInclude Include="Windows\Apps.h" />
+    <ClInclude Include="Windows\AppInstaller.h" />
+    <ClInclude Include="Windows\CrashHandler.h" />
+    <ClInclude Include="Windows\SingleInstance.h" />
+    <ClInclude Include="Windows\Startup.h" />
+    <ClInclude Include="Windows\Fixes.h" />
+    <ClInclude Include="Windows\ManagedSettings.h" />
+    <ClInclude Include="Windows\NvApi.h" />
+    <ClInclude Include="Windows\NvidiaAnsel.h" />
+    <ClInclude Include="Windows\NvidiaReinstall.h" />
+    <ClInclude Include="Windows\NvidiaDriver.h" />
+    <ClInclude Include="Windows\NvidiaCleanTables.h" />
+    <ClInclude Include="Windows\Authenticode.h" />
+    <ClInclude Include="Windows\BiosParser.h" />
+    <ClInclude Include="Windows\Nvram.h" />
+    <ClInclude Include="Windows\NvramPresets.h" />
+    <ClInclude Include="Windows\Genesis.h" />
+    <ClInclude Include="Windows\Gpu.h" />
+    <ClInclude Include="Windows\BcdBackup.h" />
+    <ClInclude Include="Windows\Power.h" />
+    <ClInclude Include="Devices.h" />
+    <ClInclude Include="Models\ProductTier.h" />
+    <ClInclude Include="Models\LicenseModels.h" />
+    <ClInclude Include="Services\IRegistryEditor.h" />
+    <ClInclude Include="Services\RegistryEditor.h" />
+    <ClInclude Include="Services\SecurityConfig.h" />
+    <ClInclude Include="Services\SecureStorage.h" />
+    <ClInclude Include="Services\CpuSampler.h" />
+    <ClInclude Include="Services\MemorySampler.h" />
+    <ClInclude Include="Services\GpuSampler.h" />
+    <ClInclude Include="Services\SentryBridge.h" />
+    <ClInclude Include="Services\SessionProjection.h" />
+    <ClInclude Include="Services\LicenseApi.h" />
+    <ClInclude Include="Runtime\Tier.h" />
+    <ClInclude Include="Runtime\AutoUpdate.h" />
+    <ClInclude Include="Runtime\WithdrawnTweaks.h" />
+    <ClInclude Include="Tweaks\TweakEngine.h" />
+    <ClInclude Include="Tweaks\DeviceOps.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

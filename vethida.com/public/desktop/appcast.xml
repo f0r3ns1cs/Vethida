@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:vethida="https://vethida.com/xmlns/appcast">
+  <channel>
+    <title>Vethida</title>
+    <link>https://vethida.com/desktop/appcast.xml</link>
+    <description>Vethida updates</description>
+    <language>en</language>
+  </channel>
+</rss>

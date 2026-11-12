@@ -1,0 +1,10 @@
+{
+  "name": "@vethida/http",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./rate-limit": "./rate-limit.ts",
+    "./bearer": "./bearer.ts"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "vethida-discord-bot",
+  "version": "0.0.0",
+  "description": "Discord bot for the Vethida community server.",
+  "private": true,
+  "license": "MIT",
+  "main": "bot.ts",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch bot.ts",
+    "start": "tsx bot.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --max-warnings 0",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write \"**/*.{ts,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,json,md}\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@vethida/db": "workspace:*",
+    "discord.js": "^14.26.3",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.45.2",
+    "pino": "^9.5.0",
+    "pino-pretty": "^11.3.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^20.14.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
+    "tsx": "^4.22.4",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.62.1"
+  }
+}

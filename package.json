@@ -1,0 +1,14 @@
+{
+  "name": "vethida-monorepo",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "check": "node scripts/bump-version.mjs --check && node vethida.com/scripts/appcast.mjs --check && node scripts/make-eula.mjs --check",
+    "site:dev": "pnpm --dir vethida.com dev",
+    "site:build": "pnpm --dir vethida.com build",
+    "release:ready": "node scripts/release-ready.mjs",
+    "release:bump": "node scripts/bump-version.mjs",
+    "release:build": "powershell -ExecutionPolicy Bypass -File scripts/build-release.ps1",
+    "release:appcast": "node vethida.com/scripts/appcast.mjs"
+  }
+}

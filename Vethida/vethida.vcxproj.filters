@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="gui">
+      <UniqueIdentifier>{f8b572fd-0380-4bf6-8c9a-f1cdd7bfb2ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\App">
+      <UniqueIdentifier>{2e9d5c71-8a4f-4b36-9c02-d17e6f3a5b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Dialogs">
+      <UniqueIdentifier>{f5c969d0-6d89-4985-982d-ebd5faf869e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Models">
+      <UniqueIdentifier>{6d4a92c8-1f37-4b58-a0e6-8c25b9f3d417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Pages">
+      <UniqueIdentifier>{52888349-5df4-4d50-94e6-a6f7f71e5466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Settings">
+      <UniqueIdentifier>{b631659b-d725-4db8-8b42-83a0f7bda2a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Theme">
+      <UniqueIdentifier>{a9183a41-16fc-4ff4-b4c9-38402ee84b25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Utils">
+      <UniqueIdentifier>{275c93cf-de1c-4d69-b83a-4d43505a8bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Views">
+      <UniqueIdentifier>{1efeb4ca-7c77-44af-b800-6c956e73999d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Widgets">
+      <UniqueIdentifier>{b74898c5-8eff-44ce-92ac-a048c0c09895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gui\Windows">
+      <UniqueIdentifier>{e5869780-b3a6-44cd-9f21-763f61efea14}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="gui\App\App.cpp">
+      <Filter>gui\App</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Dialogs\Activation.cpp">
+      <Filter>gui\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Dialogs\AppDetailsDialog.cpp">
+      <Filter>gui\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Dialogs\CrashRecoveryDialog.cpp">
+      <Filter>gui\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Dialogs\LicensesDialog.cpp">
+      <Filter>gui\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Dialogs\PrivacyConsentDialog.cpp">
+      <Filter>gui\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Dialogs\TweakDetailsDialog.cpp">
+      <Filter>gui\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Models\AppListModel.cpp">
+      <Filter>gui\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Models\BloatwareModel.cpp">
+      <Filter>gui\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Models\FixCatalog.cpp">
+      <Filter>gui\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Models\NvramEntryModel.cpp">
+      <Filter>gui\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Models\StartupListModel.cpp">
+      <Filter>gui\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Models\TweakCategories.cpp">
+      <Filter>gui\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\BiosPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\DashboardPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\DebloatPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\GpuPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\HubPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\NetworkPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\SystemPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\SystemTools.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\TweakCategoryPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\TweakController.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Pages\TweaksPage.cpp">
+      <Filter>gui\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Settings\SettingsStore.cpp">
+      <Filter>gui\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Theme\Theme.cpp">
+      <Filter>gui\Theme</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Utils\TablerIcon.cpp">
+      <Filter>gui\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Utils\UiShots.cpp">
+      <Filter>gui\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\AppInstallerView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\AppsView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\BloatwareView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\CleanupView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\DnsView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\FixesView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\GenesisView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\GpuDriverView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\NvramView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\PowerPlansView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\QosView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\StartupAppsView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\SystemRestoreView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\TweakLedgerView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Views\TweakSectionView.cpp">
+      <Filter>gui\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\CaptionButtons.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\CommandButton.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\Dropdown.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\EmptyState.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\FlowLayout.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\GlyphLabel.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\StatusMark.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\LicenseBadge.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\ListGroup.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\HealthScoreGauge.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\NameListEditor.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\NavigationSidebar.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\PageHeader.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\PageScaffold.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\PanelDialog.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\PowerToggle.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\ScrimDialog.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\SectionNav.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\SettingsList.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\SidebarNavItem.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\SidebarUtilityButton.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\Sparkline.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\SpeedTestView.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\RainbowButton.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\Spinner.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\StatusStrip.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\StorageHeatmap.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\SwitchButton.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\TabStrip.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\TierLockOverlay.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Widgets\ToastManager.cpp">
+      <Filter>gui\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Windows\MainWindow.cpp">
+      <Filter>gui\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\Windows\NativeWindowChrome.cpp">
+      <Filter>gui\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\main.cpp">
+      <Filter>gui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="gui\App\App.h">
+      <Filter>gui\App</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Dialogs\LicensesDialog.h">
+      <Filter>gui\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Models\AppListModel.h">
+      <Filter>gui\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Models\BloatwareModel.h">
+      <Filter>gui\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Models\NvramEntryModel.h">
+      <Filter>gui\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Models\StartupListModel.h">
+      <Filter>gui\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\BiosPage.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\DashboardPage.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\DebloatPage.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\GpuPage.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\NetworkPage.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\SystemPage.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\TweakCategoryPage.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\TweakController.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Pages\TweaksPage.h">
+      <Filter>gui\Pages</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\AppInstallerView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\AppsView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\BloatwareView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\CleanupView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\DnsView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\FixesView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\GenesisView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\GpuDriverView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\NvramView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\PowerPlansView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\QosView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\StartupAppsView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\SystemRestoreView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\TweakLedgerView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Views\TweakSectionView.h">
+      <Filter>gui\Views</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\CommandButton.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\Dropdown.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\EmptyState.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\GlyphLabel.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\HealthScoreGauge.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\NameListEditor.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\NavigationSidebar.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\PowerToggle.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\SectionNav.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\SettingsList.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\Sparkline.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\SpeedTestView.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\StatusStrip.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\StorageHeatmap.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\TabStrip.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Widgets\ToastManager.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="gui\Windows\MainWindow.h">
+      <Filter>gui\Windows</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="version.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="BuildConfig.h" />
+    <ClInclude Include="gui\Dialogs\Activation.h">
+      <Filter>gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Dialogs\AppDetailsDialog.h">
+      <Filter>gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Dialogs\Confirm.h">
+      <Filter>gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Dialogs\CrashRecoveryDialog.h">
+      <Filter>gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Dialogs\PrivacyConsentDialog.h">
+      <Filter>gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Dialogs\StartupEntryDetails.h">
+      <Filter>gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Dialogs\ToolModal.h">
+      <Filter>gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Dialogs\TweakDetailsDialog.h">
+      <Filter>gui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Models\FixCatalog.h">
+      <Filter>gui\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Models\TweakCategories.h">
+      <Filter>gui\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Pages\HubPage.h">
+      <Filter>gui\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Pages\SystemTools.h">
+      <Filter>gui\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Settings\Preferences.h">
+      <Filter>gui\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Settings\SettingsStore.h">
+      <Filter>gui\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Theme\DesignTokens.h">
+      <Filter>gui\Theme</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Theme\Theme.h">
+      <Filter>gui\Theme</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Utils\TablerIcon.h">
+      <Filter>gui\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Utils\UiShots.h">
+      <Filter>gui\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\FlowLayout.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\StatusMark.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\AccentPill.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <QtMoc Include="gui\Widgets\LicenseBadge.h">
+      <Filter>gui\Widgets</Filter>
+    </QtMoc>
+    <ClInclude Include="gui\Widgets\ListGroup.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\Callout.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\CaptionButtons.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\DashboardCard.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\DisabledReason.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\FeatureCard.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\FieldValue.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\ListContextMenu.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\ListView.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\PageHeader.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\PageScaffold.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\PanelDialog.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\ScrimDialog.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\SidebarNavItem.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\SidebarUtilityButton.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\RainbowButton.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\Spinner.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\SwitchButton.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\TierLockOverlay.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Widgets\Wordmark.h">
+      <Filter>gui\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\Windows\NativeWindowChrome.h">
+      <Filter>gui\Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="gui\Windows\MainWindow.ui">
+      <Filter>gui\Windows</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="resources\vethida.qrc" />
+    <ResourceCompile Include="resources\vethida.rc" />
+  </ItemGroup>
+</Project>

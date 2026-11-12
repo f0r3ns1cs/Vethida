@@ -1,0 +1,27 @@
+{
+  "name": "@vethida/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "push": "drizzle-kit push",
+    "studio": "drizzle-kit studio"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./schema": "./schema.ts",
+    "./tiers": "./tiers.ts"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.20.0",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.22.4"
+  }
+}

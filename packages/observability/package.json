@@ -1,0 +1,12 @@
+{
+  "name": "@vethida/observability",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./sentry-scrub": "./sentry-scrub.ts"
+  },
+  "peerDependencies": {
+    "@sentry/nextjs": "*"
+  }
+}

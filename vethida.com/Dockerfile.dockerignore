@@ -1,0 +1,10 @@
+# for `docker build -f vethida.com/Dockerfile .` (context is the repo root)
+*
+!vethida.com
+!legal
+vethida.com/node_modules
+vethida.com/.next
+vethida.com/.env*
+vethida.com/tsconfig.tsbuildinfo
+vethida.com/next-env.d.ts
+**/.git

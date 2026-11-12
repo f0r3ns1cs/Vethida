@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B4E9AB7A-705E-44AD-A84A-421E323042A9}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.12.0</QtInstall>
+    <QtModules>core;gui;widgets;network;svg;concurrent</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.12.0</QtInstall>
+    <QtModules>core;gui;widgets;network;svg;concurrent</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Manifest>
+      <AdditionalManifestFiles>app.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ForcedIncludeFiles>pch.h;version.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ForcedIncludeFiles>pch.h;version.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <AdditionalDependencies>Dwmapi.lib;Advapi32.lib;Setupapi.lib;Cfgmgr32.lib;Iphlpapi.lib;Ws2_32.lib;Pdh.lib;%(AdditionalDependencies);dbghelp.lib;version.lib;wintrust.lib;taskschd.lib;psapi.lib;bcrypt.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <AdditionalDependencies>Dwmapi.lib;Advapi32.lib;Setupapi.lib;Cfgmgr32.lib;Iphlpapi.lib;Ws2_32.lib;Pdh.lib;%(AdditionalDependencies);dbghelp.lib;version.lib;wintrust.lib;taskschd.lib;psapi.lib;bcrypt.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="vth_core\vth_core.vcxproj">
+      <Project>{830E17FF-2C39-4051-A52D-A99E641854B5}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="resources\vethida.qrc" />
+    <QtUic Include="gui\Windows\MainWindow.ui" />
+    <ClCompile Include="gui\App\App.cpp" />
+    <ClCompile Include="gui\Dialogs\Activation.cpp" />
+    <ClCompile Include="gui\Dialogs\AppDetailsDialog.cpp" />
+    <ClCompile Include="gui\Dialogs\CrashRecoveryDialog.cpp" />
+    <ClCompile Include="gui\Dialogs\LicensesDialog.cpp" />
+    <ClCompile Include="gui\Dialogs\PrivacyConsentDialog.cpp" />
+    <ClCompile Include="gui\Dialogs\TweakDetailsDialog.cpp" />
+    <ClCompile Include="gui\Models\AppListModel.cpp" />
+    <ClCompile Include="gui\Models\BloatwareModel.cpp" />
+    <ClCompile Include="gui\Models\FixCatalog.cpp" />
+    <ClCompile Include="gui\Models\NvramEntryModel.cpp" />
+    <ClCompile Include="gui\Models\StartupListModel.cpp" />
+    <ClCompile Include="gui\Models\TweakCategories.cpp" />
+    <ClCompile Include="gui\Pages\BiosPage.cpp" />
+    <ClCompile Include="gui\Pages\DashboardPage.cpp" />
+    <ClCompile Include="gui\Pages\DebloatPage.cpp" />
+    <ClCompile Include="gui\Pages\GpuPage.cpp" />
+    <ClCompile Include="gui\Pages\HubPage.cpp" />
+    <ClCompile Include="gui\Pages\NetworkPage.cpp" />
+    <ClCompile Include="gui\Pages\SystemPage.cpp" />
+    <ClCompile Include="gui\Pages\SystemTools.cpp" />
+    <ClCompile Include="gui\Pages\TweakCategoryPage.cpp" />
+    <ClCompile Include="gui\Pages\TweakController.cpp" />
+    <ClCompile Include="gui\Pages\TweaksPage.cpp" />
+    <ClCompile Include="gui\Settings\SettingsStore.cpp" />
+    <ClCompile Include="gui\Theme\Theme.cpp" />
+    <ClCompile Include="gui\Utils\TablerIcon.cpp" />
+    <ClCompile Include="gui\Utils\UiShots.cpp" />
+    <ClCompile Include="gui\Views\AppInstallerView.cpp" />
+    <ClCompile Include="gui\Views\AppsView.cpp" />
+    <ClCompile Include="gui\Views\BloatwareView.cpp" />
+    <ClCompile Include="gui\Views\CleanupView.cpp" />
+    <ClCompile Include="gui\Views\DnsView.cpp" />
+    <ClCompile Include="gui\Views\FixesView.cpp" />
+    <ClCompile Include="gui\Views\GenesisView.cpp" />
+    <ClCompile Include="gui\Views\GpuDriverView.cpp" />
+    <ClCompile Include="gui\Views\NvramView.cpp" />
+    <ClCompile Include="gui\Views\PowerPlansView.cpp" />
+    <ClCompile Include="gui\Views\QosView.cpp" />
+    <ClCompile Include="gui\Views\StartupAppsView.cpp" />
+    <ClCompile Include="gui\Views\SystemRestoreView.cpp" />
+    <ClCompile Include="gui\Views\TweakLedgerView.cpp" />
+    <ClCompile Include="gui\Views\TweakSectionView.cpp" />
+    <ClCompile Include="gui\Widgets\CaptionButtons.cpp" />
+    <ClCompile Include="gui\Widgets\CommandButton.cpp" />
+    <ClCompile Include="gui\Widgets\Dropdown.cpp" />
+    <ClCompile Include="gui\Widgets\EmptyState.cpp" />
+    <ClCompile Include="gui\Widgets\FlowLayout.cpp" />
+    <ClCompile Include="gui\Widgets\GlyphLabel.cpp" />
+    <ClCompile Include="gui\Widgets\StatusMark.cpp" />
+    <ClCompile Include="gui\Widgets\LicenseBadge.cpp" />
+    <ClCompile Include="gui\Widgets\ListGroup.cpp" />
+    <ClCompile Include="gui\Widgets\HealthScoreGauge.cpp" />
+    <ClCompile Include="gui\Widgets\NameListEditor.cpp" />
+    <ClCompile Include="gui\Widgets\NavigationSidebar.cpp" />
+    <ClCompile Include="gui\Widgets\PageHeader.cpp" />
+    <ClCompile Include="gui\Widgets\PageScaffold.cpp" />
+    <ClCompile Include="gui\Widgets\PanelDialog.cpp" />
+    <ClCompile Include="gui\Widgets\PowerToggle.cpp" />
+    <ClCompile Include="gui\Widgets\ScrimDialog.cpp" />
+    <ClCompile Include="gui\Widgets\SectionNav.cpp" />
+    <ClCompile Include="gui\Widgets\SettingsList.cpp" />
+    <ClCompile Include="gui\Widgets\SidebarNavItem.cpp" />
+    <ClCompile Include="gui\Widgets\SidebarUtilityButton.cpp" />
+    <ClCompile Include="gui\Widgets\Sparkline.cpp" />
+    <ClCompile Include="gui\Widgets\SpeedTestView.cpp" />
+    <ClCompile Include="gui\Widgets\RainbowButton.cpp" />
+    <ClCompile Include="gui\Widgets\Spinner.cpp" />
+    <ClCompile Include="gui\Widgets\StatusStrip.cpp" />
+    <ClCompile Include="gui\Widgets\StorageHeatmap.cpp" />
+    <ClCompile Include="gui\Widgets\SwitchButton.cpp" />
+    <ClCompile Include="gui\Widgets\TabStrip.cpp" />
+    <ClCompile Include="gui\Widgets\TierLockOverlay.cpp" />
+    <ClCompile Include="gui\Widgets\ToastManager.cpp" />
+    <ClCompile Include="gui\Windows\MainWindow.cpp" />
+    <ClCompile Include="gui\Windows\NativeWindowChrome.cpp" />
+    <ClCompile Include="gui\main.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ResourceCompile Include="resources\vethida.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="gui\App\App.h" />
+    <QtMoc Include="gui\Dialogs\LicensesDialog.h" />
+    <QtMoc Include="gui\Models\AppListModel.h" />
+    <QtMoc Include="gui\Models\BloatwareModel.h" />
+    <QtMoc Include="gui\Models\NvramEntryModel.h" />
+    <QtMoc Include="gui\Models\StartupListModel.h" />
+    <QtMoc Include="gui\Pages\BiosPage.h" />
+    <QtMoc Include="gui\Pages\DashboardPage.h" />
+    <QtMoc Include="gui\Pages\DebloatPage.h" />
+    <QtMoc Include="gui\Pages\GpuPage.h" />
+    <QtMoc Include="gui\Pages\NetworkPage.h" />
+    <QtMoc Include="gui\Pages\SystemPage.h" />
+    <QtMoc Include="gui\Pages\TweakCategoryPage.h" />
+    <QtMoc Include="gui\Pages\TweakController.h" />
+    <QtMoc Include="gui\Pages\TweaksPage.h" />
+    <QtMoc Include="gui\Views\AppInstallerView.h" />
+    <QtMoc Include="gui\Views\AppsView.h" />
+    <QtMoc Include="gui\Views\BloatwareView.h" />
+    <QtMoc Include="gui\Views\CleanupView.h" />
+    <QtMoc Include="gui\Views\DnsView.h" />
+    <QtMoc Include="gui\Views\FixesView.h" />
+    <QtMoc Include="gui\Views\GenesisView.h" />
+    <QtMoc Include="gui\Views\GpuDriverView.h" />
+    <QtMoc Include="gui\Views\NvramView.h" />
+    <QtMoc Include="gui\Views\PowerPlansView.h" />
+    <QtMoc Include="gui\Views\QosView.h" />
+    <QtMoc Include="gui\Views\StartupAppsView.h" />
+    <QtMoc Include="gui\Views\SystemRestoreView.h" />
+    <QtMoc Include="gui\Views\TweakLedgerView.h" />
+    <QtMoc Include="gui\Views\TweakSectionView.h" />
+    <QtMoc Include="gui\Widgets\CommandButton.h" />
+    <QtMoc Include="gui\Widgets\Dropdown.h" />
+    <QtMoc Include="gui\Widgets\EmptyState.h" />
+    <QtMoc Include="gui\Widgets\GlyphLabel.h" />
+    <QtMoc Include="gui\Widgets\HealthScoreGauge.h" />
+    <QtMoc Include="gui\Widgets\NameListEditor.h" />
+    <QtMoc Include="gui\Widgets\NavigationSidebar.h" />
+    <QtMoc Include="gui\Widgets\PowerToggle.h" />
+    <QtMoc Include="gui\Widgets\SectionNav.h" />
+    <QtMoc Include="gui\Widgets\SettingsList.h" />
+    <QtMoc Include="gui\Widgets\Sparkline.h" />
+    <QtMoc Include="gui\Widgets\SpeedTestView.h" />
+    <QtMoc Include="gui\Widgets\StatusStrip.h" />
+    <QtMoc Include="gui\Widgets\StorageHeatmap.h" />
+    <QtMoc Include="gui\Widgets\TabStrip.h" />
+    <QtMoc Include="gui\Widgets\ToastManager.h" />
+    <QtMoc Include="gui\Windows\MainWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gui\Dialogs\Activation.h" />
+    <ClInclude Include="gui\Dialogs\AppDetailsDialog.h" />
+    <ClInclude Include="gui\Dialogs\Confirm.h" />
+    <ClInclude Include="gui\Dialogs\CrashRecoveryDialog.h" />
+    <ClInclude Include="gui\Dialogs\PrivacyConsentDialog.h" />
+    <ClInclude Include="gui\Dialogs\StartupEntryDetails.h" />
+    <ClInclude Include="gui\Dialogs\ToolModal.h" />
+    <ClInclude Include="gui\Dialogs\TweakDetailsDialog.h" />
+    <ClInclude Include="gui\Models\FixCatalog.h" />
+    <ClInclude Include="gui\Models\TweakCategories.h" />
+    <ClInclude Include="gui\Pages\HubPage.h" />
+    <ClInclude Include="gui\Pages\SystemTools.h" />
+    <ClInclude Include="gui\Settings\Preferences.h" />
+    <ClInclude Include="gui\Settings\SettingsStore.h" />
+    <ClInclude Include="gui\Theme\DesignTokens.h" />
+    <ClInclude Include="gui\Theme\Theme.h" />
+    <ClInclude Include="gui\Utils\TablerIcon.h" />
+    <ClInclude Include="gui\Utils\UiShots.h" />
+    <ClInclude Include="gui\Widgets\Callout.h" />
+    <ClInclude Include="gui\Widgets\StatusMark.h" />
+    <ClInclude Include="gui\Widgets\AccentPill.h" />
+    <QtMoc Include="gui\Widgets\LicenseBadge.h" />
+    <ClInclude Include="gui\Widgets\ListGroup.h" />
+    <ClInclude Include="gui\Widgets\CaptionButtons.h" />
+    <ClInclude Include="gui\Widgets\DashboardCard.h" />
+    <ClInclude Include="gui\Widgets\DisabledReason.h" />
+    <ClInclude Include="gui\Widgets\FeatureCard.h" />
+    <ClInclude Include="gui\Widgets\FieldValue.h" />
+    <ClInclude Include="gui\Widgets\ListContextMenu.h" />
+    <ClInclude Include="gui\Widgets\ListView.h" />
+    <ClInclude Include="gui\Widgets\PageHeader.h" />
+    <ClInclude Include="gui\Widgets\PageScaffold.h" />
+    <ClInclude Include="gui\Widgets\PanelDialog.h" />
+    <ClInclude Include="gui\Widgets\ScrimDialog.h" />
+    <ClInclude Include="gui\Widgets\SidebarNavItem.h" />
+    <ClInclude Include="gui\Widgets\SidebarUtilityButton.h" />
+    <ClInclude Include="gui\Widgets\RainbowButton.h" />
+    <ClInclude Include="gui\Widgets\FlowLayout.h" />
+    <ClInclude Include="gui\Widgets\Spinner.h" />
+    <ClInclude Include="gui\Widgets\SwitchButton.h" />
+    <ClInclude Include="gui\Widgets\TierLockOverlay.h" />
+    <ClInclude Include="gui\Widgets\Wordmark.h" />
+    <ClInclude Include="gui\Windows\NativeWindowChrome.h" />
+    <ClInclude Include="BuildConfig.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="version.h" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

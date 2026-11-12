@@ -1,0 +1,118 @@
+  .cookie-banner {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 60;
+    width: min(380px, calc(100vw - 32px));
+    padding: 16px 18px;
+    background: var(--background);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lifted);
+    color: var(--foreground);
+    animation: cookie-banner-in 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes cookie-banner-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cookie-banner__title {
+    margin: 0 0 6px;
+    font-size: var(--type-meta);
+    font-weight: 600;
+    color: var(--foreground);
+  }
+  .cookie-banner__text {
+    margin: 0 0 12px;
+    font-size: var(--type-meta);
+    line-height: var(--leading-meta);
+    color: var(--foreground-muted);
+  }
+
+  .cookie-banner__categories {
+    max-height: 40vh;
+    margin: 0 0 12px;
+    overflow-y: auto;
+    border-top: 1px solid var(--border);
+  }
+  .cookie-category {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cookie-category:last-child {
+    border-bottom: 0;
+  }
+  .cookie-category__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .cookie-category__name {
+    font-size: var(--type-meta);
+    font-weight: 600;
+    color: var(--foreground);
+    cursor: pointer;
+  }
+  .cookie-category__switch {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .cookie-category__switch:disabled {
+    cursor: default;
+    opacity: 0.55;
+  }
+  .cookie-category__body {
+    margin: 6px 0 0;
+    font-size: var(--type-micro);
+    line-height: var(--leading-meta);
+    color: var(--foreground-muted);
+  }
+  .cookie-banner__link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .cookie-banner__link:hover {
+    color: var(--accent-hover);
+  }
+
+  .cookie-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  /* has to come after .btn-sm (same specificity) */
+  .cookie-banner__quiet {
+    padding-inline: 4px;
+    background: transparent;
+    border: 0;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .cookie-banner__quiet:hover {
+    color: var(--accent-hover);
+  }
+  .cookie-banner__quiet:is(:hover, :focus-visible) {
+    box-shadow: none;
+  }
+  .cookie-banner__quiet:active {
+    transform: none;
+  }
+
+.btn-sm {
+  height: 2.125rem;
+  padding-inline: 0.875rem;
+  font-size: var(--type-meta);
+}

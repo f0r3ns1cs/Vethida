@@ -1,0 +1,219 @@
+VETHIDA END USER LICENSE AGREEMENT
+Effective September 30, 2026
+
+This End User License Agreement ("EULA") is a legal agreement between you and
+Rens Engineering ("Rens Engineering") for the Vethida desktop software, including the
+installer, updates, and accompanying files (the "Software"). By installing or
+using the Software, you accept this EULA. If you do not agree, do not install or
+use the Software.
+
+LICENSE GRANT
+
+Rens Engineering grants you a royalty-free, personal, non-exclusive,
+non-transferable, revocable license to install and use the Software at the Free
+tier on a machine you own or control, subject to your compliance with this EULA.
+This grant requires no account, no license key and no payment, and it does not
+expire. It is subject to the *Restrictions*, the *Disclaimer of warranties* and
+the *Limitation of liability* below in exactly the way a paid grant is.
+
+Subject to your compliance with this EULA and payment of any applicable fees,
+Rens Engineering grants you a personal, non-exclusive, non-transferable,
+revocable license to install and use the Software on a machine you own or
+control, at the tier you have activated.
+
+SUBSCRIPTIONS AND LIFETIME LICENSES
+
+Paid tiers are sold either as a subscription, billed monthly or yearly until you
+cancel, or as a lifetime license.
+
+A lifetime license is a single payment for the tier you bought. It does not
+renew, it does not expire, and there is nothing to cancel. A lifetime license
+covers every update to the tier you bought, including new major versions, at no
+further charge. "Lifetime" refers to the operational lifetime of the product
+rather than to the lifetime of the purchaser, and it does not oblige Rens
+Engineering to offer Vethida indefinitely; see *Termination and
+discontinuation* below.
+
+ACTIVATION AND DEVICE LIMITS
+
+Paid tiers require online activation with a valid license. A license is valid on
+one machine at a time and may be moved to new hardware a limited number of times
+through your account dashboard. To enforce this limit, the Software reads a set
+of stable hardware identifiers from the machine and binds the license to them;
+the Privacy Policy lists which identifiers and how they are
+stored.
+
+HEARTBEAT AND REDUCED MODE
+
+On Pro and Ultimate the Software periodically re-validates entitlement with our
+license server. If entitlement cannot be confirmed (for example, if a
+subscription ends, a license is revoked, or tamper is detected), the Software
+returns to the Free tier and continues to operate there, leaving any changes
+already applied in place. This behavior is a normal part of the licensing model.
+
+A Free install makes no licensing call, so nothing in this section applies to it.
+
+SYSTEM MODIFICATION AND NO GUARANTEE
+
+The Software modifies Windows configuration only as you direct, and is designed
+so that changes can be reviewed, snapshotted, and reverted. Some changes are
+marked Permanent in the Software and cannot be undone by it at all. The Software
+does not warrant that any change is reversible.
+
+Rens Engineering does not guarantee any specific performance result and is not
+responsible for system instability, data loss, or hardware issues arising from
+configuration changes you choose to apply. Maintain backups and restore points
+before applying high-risk changes.
+
+Some changes in the catalog disable Windows security components, including
+Microsoft Defender, SmartScreen, User Account Control and the Windows Update
+services. None of these is applied automatically or included in any one-click
+set; each states what protection it removes before it runs, and several are
+marked Permanent. Applying them is your decision and your risk.
+
+Some changes act on firmware, NVRAM or boot configuration, where an unsuccessful
+outcome can prevent a machine from starting. Changes may also affect thermal and
+electrical load, compatibility with anti-cheat and other third-party software,
+and warranty status with your hardware manufacturer.
+
+DISCLAIMER OF WARRANTIES
+
+The Software is provided "as is" and "as available", without warranty of any
+kind, express or implied, including any implied warranty of merchantability,
+fitness for a particular purpose, title, or non-infringement, to the maximum
+extent permitted by law.
+
+Rens Engineering does not warrant that the Software is free of defects, that any
+configuration change is appropriate for your hardware or your Windows build, that
+a change will behave identically across machines, that a change will produce any
+particular performance result, or that any change can be reversed.
+
+LIMITATION OF LIABILITY
+
+To the maximum extent permitted by law, Rens Engineering will not be liable for
+any indirect, incidental, special, consequential, exemplary or punitive damages,
+or for lost profits, lost or corrupted data, loss of use, business interruption,
+or goodwill, arising from or relating to the Software.
+
+This exclusion applies expressly to damage to or failure of an operating system,
+an installation of Windows, stored data, drivers, firmware, or hardware resulting
+from configuration changes you chose to apply, and to the cost of reinstalling,
+repairing or replacing any of them. It applies regardless of the theory of
+liability and even if Rens Engineering has been advised of the possibility of
+those damages.
+
+To the maximum extent permitted by law, total aggregate liability for all claims
+relating to the Software will not exceed the greater of the amount you paid for
+the Software in the twelve months before the claim, or fifty United States
+dollars. Where you paid nothing because you use the Software at the Free tier,
+that cap is fifty United States dollars.
+
+Some jurisdictions do not allow the exclusion of implied warranties or the
+limitation of certain damages, so parts of these two sections may not apply to
+you. Nothing here excludes or limits liability that cannot lawfully be excluded,
+including liability for death or personal injury caused by negligence, for fraud,
+or under mandatory consumer-protection law in your country of residence.
+
+RESTRICTIONS
+
+You may not:
+
+- copy, redistribute, resell, rent, or sublicense the Software except as
+  expressly permitted;
+- circumvent, disable, or tamper with license validation, activation, or
+  integrity checks;
+- reverse engineer, decompile, or disassemble the Software, except to the extent
+  that applicable law expressly permits despite this restriction, and except for
+  the third-party components licensed to allow it (below);
+- use the Software for any unlawful purpose.
+
+SHARING, TRANSFER, AND RESALE
+
+A license is issued to you. You may not share your license key or your account
+access with anyone else, and you may not sell, transfer, or otherwise pass either
+to a third party. Keys offered for resale outside an official channel are revoked
+when found.
+
+We operate automated checks for the patterns that indicate a shared license,
+described in the Privacy Policy. Those checks can refuse an
+activation on their own. They cannot revoke a license or close an account on
+their own: a person reviews the case first, and you can ask for that decision to
+be looked at again by writing to <support@vethida.com>. The thresholds are set to
+tolerate normal hardware changes, and are documented on our
+support page.
+
+Reversing a payment after the refund window in the
+Refund Policy has closed, rather than asking us for a refund
+inside it, is a breach of this agreement and the license may be revoked.
+
+COMMUNITY
+
+Taking part in the Vethida Discord is optional and is not part of what your
+license buys. Being removed from the Discord does not affect your license or your
+account, and losing your license does not remove you from the Discord. The one
+exception is evading a removal by rejoining on another account, which we treat as
+a breach of these terms in its own right.
+
+UPDATES
+
+The Software never installs an update on its own; installation always follows an
+action you take. If you turn on automatic downloads (off by default), the
+installer for an available update is fetched in advance so it is ready when you
+choose to install it.
+
+Updates are delivered as signed installers whose Authenticode signature,
+publisher, and SHA-256 are verified before installation. This EULA governs
+updates unless an update is accompanied by different terms.
+
+THIRD-PARTY COMPONENTS AND QT (LGPLV3)
+
+The Software includes third-party open-source components listed in the bundled
+THIRD_PARTY_NOTICES.txt and viewable in-app under Help, then About Vethida,
+then Open-source licenses. In particular, the Software uses the Qt framework under the GNU Lesser
+General Public License v3 (LGPLv3) via dynamic linking. Nothing in this EULA
+restricts your rights under LGPLv3 with respect to those Qt components: you may
+replace the shipped Qt libraries with compatible versions, and we provide or link
+the corresponding Qt source for the shipped version. The proprietary restrictions
+in this EULA do not apply to the LGPL-covered components.
+
+OWNERSHIP
+
+The Software is licensed, not sold. Rens Engineering and its licensors retain all
+rights, title, and interest in the Software except for the open-source components
+under their own licenses.
+
+SUPPORT
+
+The Free tier carries no support obligation. Support is offered on Pro and
+Ultimate, as described on the Support page.
+
+TERMINATION AND DISCONTINUATION
+
+This EULA terminates automatically if you breach it. On termination you must stop
+using and uninstall the Software. Refunds, where applicable, are governed by the
+Refund Policy. Support is governed by *Support* above.
+
+Rens Engineering may also discontinue Vethida itself. If it does, it will give at
+least 90 days' notice by email to the address on your account and stop selling
+new licenses immediately. Subscriptions will be canceled so that no further
+renewal is charged. Holders of a lifetime license who bought within the 12 months
+before that notice may request a refund; beyond that, a lifetime license entitles
+you to the tier for as long as Vethida is offered, which is what it was sold as.
+Nothing here limits rights you have under mandatory consumer-protection law.
+
+GOVERNING LAW, DISPUTES, AND GENERAL TERMS
+
+Written once, in the Terms of Service, and incorporated here
+rather than restated: governing law and venue, the informal-resolution step
+before a claim, indemnification, export control, severability, waiver,
+assignment, notices, force majeure, and entire agreement. They apply to this
+EULA as they do to the Terms.
+
+Two documents saying the same thing in slightly different words is how a
+contradiction gets into a contract. Where this EULA and the Terms conflict about
+the Software itself, this EULA governs; everything above is not in conflict, it
+is the same clause.
+
+CONTACT
+
+Rens Engineering, Pennsylvania, United States. <legal@vethida.com>
