@@ -145,6 +145,7 @@ namespace vth::theme
 
         QString rawStyleSheet()
         {
+            // Split in pieces, MSVC refuses a single string literal over 16 KB.
             QString sheet = QStringLiteral(R"qss(
 QMainWindow, QWidget#centralWidget { background: @{appChrome}; color: @{textPrimary}; }
 QMenuBar, QFrame#accountRibbon { background: @{appChrome}; color: @{textPrimary}; border: 0; }
@@ -263,7 +264,7 @@ QLabel[uiRole="calloutBody"] { color: @{textSecondary}; padding: 0; }
 /* A warning line in the tweak warnings modal: primary ink, because it is the
    thing the reader opened the modal for. */
 QLabel[uiRole="warnLine"] { color: @{textPrimary}; font-size: @{fontBody}; padding: 0; }
-
+)qss") + QStringLiteral(R"qss(
 /* The one reason a control on this pane cannot act. */
 QLabel#disabledReasonText { color: @{textPrimary}; font-size: @{fontBody}; font-weight: @{weightMedium}; padding: 0; }
 
@@ -397,7 +398,7 @@ QFrame#vethDropdownContainer { background: transparent; border: 0; }
 /* rest of the popup style is with QMenu above */
 QPushButton#vethDropdownItem { background: transparent; color: @{textPrimary}; border: 0; text-align: left; }
 QPushButton#vethDropdownItem[selected="true"] { background: @{accentFill}; color: @{accentText}; }
-
+)qss") + QStringLiteral(R"qss(
 /* The feature card: a pane's headline capability. A default panel. */
 QFrame[uiRole="featureCard"] { background: @{cardSurface}; border: 1px solid @{cardBorder}; border-radius: @{radiusCard}; }
 QLabel[uiRole="featureTitle"] { color: @{textPrimary}; background: transparent; font-size: @{fontTitle}; font-weight: @{weightStrong}; padding: 0; }
@@ -508,7 +509,7 @@ QCheckBox::indicator:indeterminate, QTreeView::indicator:indeterminate { backgro
 /* focus border is thicker, padding is reduced to match (FocusBorderWidth) */
 QLineEdit { background: @{cardSurface}; color: @{textPrimary}; border: @{ruleThickness} solid @{controlBorder}; border-radius: @{radiusControl}; padding: @{fieldPadV} @{fieldPadH}; min-height: @{fieldContentHeight}; }
 QLineEdit:focus { border: @{focusBorder} solid @{accentOnSurface}; padding: @{fieldPadVFocus} @{fieldPadHFocus}; }
-
+)qss") + QStringLiteral(R"qss(
 QComboBox, QSpinBox { background: @{cardSurface}; color: @{textPrimary}; border: @{ruleThickness} solid @{controlBorder}; border-radius: @{radiusControl}; padding: @{fieldPadV} @{fieldPadH}; min-height: @{comboContentHeight}; }
 QComboBox:hover, QSpinBox:hover { border-color: @{cardBorderEmphasis}; }
 QComboBox:focus, QSpinBox:focus { border: @{focusBorder} solid @{accentOnSurface}; padding: @{fieldPadVFocus} @{fieldPadHFocus}; }
