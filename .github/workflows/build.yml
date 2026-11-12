@@ -11,11 +11,49 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: jurplel/install-qt-action@v4
+      - name: Cache Qt
+        id: qt-cache
+        uses: actions/cache@v4
         with:
-          version: "6.12.0"
-          arch: win64_msvc2022_64
-          cache: true
+          path: C:\Qt
+          key: qt-6.12.0-win64_msvc2022_64
+
+      # aqtinstall can't read the per-compiler repo layout Qt uses since 6.11,
+      # so the archives come straight from download.qt.io.
+      - name: Install Qt
+        if: steps.qt-cache.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
+          $ProgressPreference = "SilentlyContinue"
+          $repo = "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_6120/qt6_6120_msvc2022_64"
+          $pkg = "qt.qt6.6120.win64_msvc2022_64"
+          $xml = Join-Path $env:RUNNER_TEMP "Updates.xml"
+          Invoke-WebRequest "$repo/Updates.xml" -OutFile $xml
+          $entry = ([xml](Get-Content $xml -Raw)).Updates.PackageUpdate | Where-Object { $_.Name -eq $pkg }
+          if (-not $entry) { throw "$pkg isn't in Updates.xml" }
+          $archives = @($entry.DownloadableArchives -split ",\s*" | Where-Object { $_ -match "^(qtbase|qtsvg)-" })
+          if ($archives.Count -ne 2) { throw "expected qtbase and qtsvg, got: $archives" }
+          foreach ($a in $archives) {
+            $url = "$repo/$pkg/$($entry.Version)$a"
+            $file = Join-Path $env:RUNNER_TEMP $a
+            Invoke-WebRequest $url -OutFile $file
+            Invoke-WebRequest "$url.sha1" -OutFile "$file.sha1"
+            $want = (Get-Content "$file.sha1" -Raw).Trim().ToLower()
+            $got = (Get-FileHash $file -Algorithm SHA1).Hash.ToLower()
+            if ($got -ne $want) { throw "checksum mismatch for $a" }
+            7z x $file -oC:\Qt -y | Out-Null
+            if ($LASTEXITCODE -ne 0) { throw "7z failed on $a" }
+          }
+
+      - name: Set Qt paths
+        shell: pwsh
+        run: |
+          $qmake = Get-ChildItem C:\Qt -Recurse -Filter qmake.exe |
+            Where-Object { $_.Directory.Name -eq "bin" } | Select-Object -First 1
+          if (-not $qmake) { throw "qmake.exe not found under C:\Qt" }
+          $root = $qmake.Directory.Parent.FullName
+          "QT_ROOT_DIR=$root" >> $env:GITHUB_ENV
+          "$root\bin" >> $env:GITHUB_PATH
 
       - uses: microsoft/setup-msbuild@v2
 
