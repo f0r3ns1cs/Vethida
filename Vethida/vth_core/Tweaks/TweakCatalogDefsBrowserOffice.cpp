@@ -1067,6 +1067,107 @@ void appendDefsBrowserOffice(QVector<TweakSpec>& c) {
         };
         c.push_back(t);
     }
+
+    {
+        TweakSpec t;
+        t.id = QStringLiteral("bo.edge.enterprise_policy_harden");
+        t.category = QStringLiteral("browseroffice");
+        t.name = QStringLiteral("Edge enterprise policy hardening (full)");
+        t.description = QStringLiteral("Applies a broad set of Microsoft Edge policies: turns off work and school sign-in, Bing, Copilot and other AI features, autofill, address bar suggestions, telemetry, sync prompts, first-run import, shopping and games, and sets Google as the search engine. Turns on HTTPS-only mode, third-party cookie blocking and WebRTC local address masking.");
+        t.iconName = QStringLiteral("app-window");
+        t.impact = Impact::Medium;
+        t.warnings = {
+            QStringLiteral("Disables Edge sign-in/sync, autofill, and AI features; managed environments relying on these will break"),
+            QStringLiteral("HTTPS-only mode can stop some captive portals and internal sites loading"),
+        };
+        t.registryOps = {
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AADWebSSOAllowed"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AADWebSiteSSOUsingThisProfileEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AIGenThemesEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AccessCodeCastEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AccessibilityImageLabelsEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AddressBarMicrosoftSearchInBingProviderEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AddressBarTrendingSuggestEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AddressBarWorkSearchResultsEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AdsTransparencyEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AllowGamesMenu"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AlternateErrorPagesEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ApplicationGuardFavoritesSyncEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ApplicationGuardTrafficIdentificationEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AskBeforeCloseEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AutoImportAtFirstRun"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AutofillAddressEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AutofillCreditCardEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("AutofillMembershipsEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("BingAdsSuppressionc"), 1u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("BlockThirdPartyCookies"), 1u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("BuiltInDnsClientEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ConfigureOnPremisesAccountAutoSignIn"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ConfigureOnlineTextToSpeech"), 1u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ConfigureShare"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("CopilotPageContextEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("DefaultBrowserSettingsCampaignEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("DefaultShareAdditionalOSRegionSetting"), 2u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("DesktopSharingHubEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("EdgeAdminCenterEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("EdgeAutofillMlEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("EdgeEntraCopilotPageContext"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("EdgeHistoryAISearchEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("EnhanceSecurityMode"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ExperimentationAndConfigurationServiceControl"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ExtensionManifestV2Availability"), 2u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ExtensionsPerformanceDetectorEnabled"), 0u, std::nullopt),
+            stringOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("HttpsOnlyMode"), QStringLiteral("force_enabled"), std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("HttpsUpgradesEnabled"), 1u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("InAppSupportEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("LiveCaptionsAllowed"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("LocalBrowserDataShareEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("MAMEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("MSAWebSiteSSOUsingThisProfileAllowed"), 0u, std::nullopt),
+            stringOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ManagedSearchEngines"), QStringLiteral("[{\"is_default\":true,\"keyword\":\"google.com\",\"name\":\"Google\",\"search_url\":\"https://www.google.com/search?q={searchTerms}\",\"suggest_url\":\"https://www.google.com/complete/search?output=chrome&q={searchTerms}\"}]"), std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("Microsoft365CopilotChatIconEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("MicrosoftEdgeInsiderPromotionEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("NetworkPredictionOptions"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("NewTabPageContentEnabled"), 0u, std::nullopt),
+            stringOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("NewTabPageSearchBox"), QStringLiteral("redirect"), std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("PasswordDismissCompromisedAlertEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("PaymentMethodQueryEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("PinningWizardAllowed"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ProactiveAuthWorkflowEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("QRCodeGeneratorEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("QuickViewOfficeFilesEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("RelatedWebsiteSetsEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("RemoteDebuggingAllowed"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ResolveNavigationErrorsUseWebService"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("RoamingProfileSupportEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SafeBrowsingDeepScanningEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ScarewareBlockerProtectionEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SeamlessWebToBrowserSignInEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SearchFiltersEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SearchForImageEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SearchInSidebarEnabled"), 2u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SearchbarAllowed"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SearchbarIsEnabledOnStartup"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SharedLinksEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ShowAcrobatSubscriptionButton"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ShowDownloadsToolbarButton"), 1u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ShowHomeButton"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("ShowPDFDefaultRecommendationsEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SigninInterceptionEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SleepingTabsTimeout"), 1u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("SleepingTabsTimeout"), 1u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("TabServicesEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("TextPredictionEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("TrackingPrevention"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("TyposquattingCheckerEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("UploadFromPhoneEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("VisualSearchEnabled"), 0u, std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("WebCaptureEnabled"), 0u, std::nullopt),
+            stringOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("WebRtcLocalhostIpHandling"), QStringLiteral("disable_non_proxied_udp"), std::nullopt),
+            dwordOp(QStringLiteral("HKCU\\SOFTWARE\\Policies\\Microsoft\\Edge"), QStringLiteral("WebWidgetAllowed"), 0u, std::nullopt),
+        };
+        c.push_back(t);
+    }
 }
 
 } // namespace vth::tweaks::detail

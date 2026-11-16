@@ -1,0 +1,39 @@
+[Unit]
+Description=Vethida Discord community and support bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=vethida
+WorkingDirectory=/opt/vethida-discord-bot
+Environment=NODE_ENV=production
+# Local /health and /metrics for this unit only. Loopback: see HEALTH_HOST in
+# lib/config.ts for why it is not 0.0.0.0.
+Environment=HEALTH_PORT=8080
+Environment=HEALTH_HOST=127.0.0.1
+# DISCORD_BOT_TOKEN, DATABASE_URL, ANTHROPIC_API_KEY and the role ids.
+EnvironmentFile=/etc/vethida/bot.env
+# `pnpm start` is `tsx bot.ts`: the bot runs TypeScript directly rather than
+# building. Invoking tsx through its own binary rather than through pnpm keeps
+# systemd's process tree one level deep, so Restart= acts on the bot and not on
+# a package-manager wrapper that has already exited.
+ExecStart=/opt/vethida-discord-bot/node_modules/.bin/tsx bot.ts
+# Slash commands are re-registered on every boot (bot.ts main()), so a restart
+# is also how a command change reaches Discord. There is no separate deploy step.
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/vethida-discord-bot
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,30 @@
+[Unit]
+Description=vethida.com Next.js marketing site
+After=network.target
+
+[Service]
+Type=simple
+User=vethida
+WorkingDirectory=/opt/vethida.com
+Environment=NODE_ENV=production
+# Ports match each app's `dev` script, so there is one mapping to remember
+# rather than one per environment: portal 3000, api 3001, site 3002.
+Environment=PORT=3002
+Environment=HOSTNAME=127.0.0.1
+ExecStart=/usr/bin/node /opt/vethida.com/node_modules/next/dist/bin/next start
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/vethida.com
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

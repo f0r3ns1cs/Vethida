@@ -364,6 +364,12 @@ namespace vth::tweaks::detail
             { "sys.perf.reduce_delays",                     "sys.show-detail-on-shutdown" },
             { "sys.wu.driver_search_target",                "update.stop-driver-updates" },
             { "sys.wu.ux_settings",                         "update.block-windows-update" },
+            { "gpu.perf.resource_policy",                   "op.net.throttling-index-max" },
+            { "net.throttling-index-off",                   "op.net.throttling-index-max" },
+            { "op.svc.windows-update-full-disable",         "priv.update.extended_controls" },
+            { "op.svc.windows-update-full-disable",         "sys.kernel.update_policy" },
+            { "op.svc.windows-update-full-disable",         "sys.wu.extended_policy" },
+            { "op.svc.windows-update-full-disable",         "update.block-windows-update" },
         };
     }
 

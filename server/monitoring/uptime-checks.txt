@@ -1,0 +1,54 @@
+# Vethida uptime checks
+#
+# Configure these in whichever uptime provider you use. Kept as a plain list
+# rather than provider-specific config because the provider is not chosen yet and
+# a config file for a service nobody has an account with is a file nobody reads.
+#
+# Format:  METHOD  URL  EXPECT  INTERVAL  ALERT-AFTER  NOTES
+#
+# ALERT-AFTER is consecutive failures, not minutes. A single failed probe is
+# usually the probe's network, not ours; alerting on one trains you to ignore
+# the alert, which is worse than not having it.
+
+# --- Money path. Page immediately. -----------------------------------------
+# If these are down, someone is trying to pay and cannot.
+
+GET   https://api.vethida.com/health              200        60s   2   Liveness. No database touch.
+GET   https://api.vethida.com/ready               200        60s   3   Readiness. Answers 503 when the database is unreachable, which is the only external signal that Postgres is down.
+GET   https://my.vethida.com/sign-in              200        60s   2   Portal renders. First step of every purchase.
+POST  https://api.vethida.com/webhooks/polar      401        300s  3   Reachable and rejecting unsigned bodies. A 200 here is an incident: it would mean signature verification is off.
+
+# --- Customer-visible. Alert, do not page. ---------------------------------
+
+GET   https://vethida.com/                        200        300s  3   Marketing site.
+GET   https://vethida.com/pricing                 200        300s  3   Pricing renders.
+GET   https://vethida.com/features                200        300s  3   Features renders.
+GET   https://my.vethida.com/dashboard            302        300s  3   Redirects to sign-in when unauthenticated. A 200 would mean the auth guard is not running.
+
+# --- Content integrity. Daily is enough. -----------------------------------
+
+GET   https://vethida.com/desktop/updates.json    200        1h    2   The update feed every install polls. A 404 breaks auto-update silently.
+GET   https://vethida.com/.well-known/security.txt 200       24h   2   RFC 9116 contact.
+GET   https://vethida.com/sitemap.xml             200        24h   2   -
+
+# --- Certificate expiry ----------------------------------------------------
+# Alert at 21 days, not 7. A domain-validated renewal that fails needs time to
+# diagnose, and an expired certificate takes down every surface at once
+# including the desktop client's ability to check its license.
+
+TLS   vethida.com                                 21d   -   -   -
+TLS   my.vethida.com                              21d   -   -   -
+TLS   api.vethida.com                             21d   -   -   -
+
+# --- Not monitored, deliberately -------------------------------------------
+#
+# /v1/desktop/activate and the other license endpoints are NOT probed. They are
+# authenticated and signature-bound, so a synthetic probe would either need a
+# real license (which then shows up in activation records as a machine that does
+# not exist) or would only ever assert that they reject unsigned requests, which
+# the webhook check above already covers.
+#
+# /health deliberately does not touch the database: a health check that queries
+# turns a slow database into a restart loop, which is how a recoverable incident
+# becomes an outage. /ready is the one that queries, and it is probed above with
+# a higher ALERT-AFTER precisely because a single slow query must not page.

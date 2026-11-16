@@ -107,6 +107,9 @@
     <ClCompile Include="Windows\Genesis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Windows\GameProfiles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Windows\GenesisMonitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -568,6 +571,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Windows\Genesis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\GameProfiles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Windows\Gpu.h">

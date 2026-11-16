@@ -1,0 +1,10 @@
+[Unit]
+Description=Vethida retention cleanup (expired sessions, verifications, webhook dedup)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=vethida
+EnvironmentFile=/etc/vethida/cron.env
+ExecStart=/bin/sh -c 'curl -fsS --max-time 120 -X POST -H "Authorization: Bearer $CRON_SECRET" "$CLEANUP_URL"'

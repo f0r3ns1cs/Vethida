@@ -211,6 +211,7 @@
     <ClCompile Include="Windows\Nvram.cpp" />
     <ClCompile Include="Windows\NvramPresets.cpp" />
     <ClCompile Include="Windows\Genesis.cpp" />
+    <ClCompile Include="Windows\GameProfiles.cpp" />
     <ClCompile Include="Windows\GenesisMonitor.cpp" />
     <ClCompile Include="Windows\Gpu.cpp" />
     <ClCompile Include="Windows\BcdBackup.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="Windows\Nvram.h" />
     <ClInclude Include="Windows\NvramPresets.h" />
     <ClInclude Include="Windows\Genesis.h" />
+    <ClInclude Include="Windows\GameProfiles.h" />
     <ClInclude Include="Windows\Gpu.h" />
     <ClInclude Include="Windows\BcdBackup.h" />
     <ClInclude Include="Windows\Power.h" />

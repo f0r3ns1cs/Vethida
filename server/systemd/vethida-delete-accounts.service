@@ -1,0 +1,10 @@
+[Unit]
+Description=Vethida account hard-delete (GDPR Art. 17)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=vethida
+EnvironmentFile=/etc/vethida/cron.env
+ExecStart=/bin/sh -c 'curl -fsS --max-time 600 -H "Authorization: Bearer $CRON_SECRET" "$DELETE_ACCOUNTS_URL"'

@@ -163,6 +163,7 @@
     <ClCompile Include="gui\Views\DnsView.cpp" />
     <ClCompile Include="gui\Views\FixesView.cpp" />
     <ClCompile Include="gui\Views\GenesisView.cpp" />
+    <ClCompile Include="gui\Views\GameProfilesView.cpp" />
     <ClCompile Include="gui\Views\GpuDriverView.cpp" />
     <ClCompile Include="gui\Views\NvramView.cpp" />
     <ClCompile Include="gui\Views\PowerPlansView.cpp" />
@@ -235,6 +236,7 @@
     <QtMoc Include="gui\Views\DnsView.h" />
     <QtMoc Include="gui\Views\FixesView.h" />
     <QtMoc Include="gui\Views\GenesisView.h" />
+    <QtMoc Include="gui\Views\GameProfilesView.h" />
     <QtMoc Include="gui\Views\GpuDriverView.h" />
     <QtMoc Include="gui\Views\NvramView.h" />
     <QtMoc Include="gui\Views\PowerPlansView.h" />

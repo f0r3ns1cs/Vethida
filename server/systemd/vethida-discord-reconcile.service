@@ -1,0 +1,10 @@
+[Unit]
+Description=Vethida Discord role reconcile (entitlement vs guild roles)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=vethida
+EnvironmentFile=/etc/vethida/cron.env
+ExecStart=/bin/sh -c 'curl -fsS --max-time 300 -H "Authorization: Bearer $CRON_SECRET" "$DISCORD_RECONCILE_URL"'

@@ -9,6 +9,7 @@
 #include "../Pages/SystemPage.h"
 #include "../Pages/TweakController.h"
 #include "../Pages/TweaksPage.h"
+#include "../Views/GameProfilesView.h"
 #include "../Views/SystemRestoreView.h"
 #include "../Settings/Preferences.h"
 #include "../Settings/SettingsStore.h"
@@ -668,6 +669,13 @@ void MainWindow::configureNavigation()
                               QStringLiteral("wrench"));
 
     // Genesis has no tab: it lives on the Dashboard card.
+
+    // Built lazily: finding game configs walks install folders.
+    addRuntimePage(QStringLiteral("gameprofiles"), tr("Games"), QStringLiteral("gamepad-2"),
+                   new LazyPage([](QWidget* p) -> QWidget* {
+                       return new vth::ui::GameProfilesView(p);
+                   }, ui->contentStack),
+                   vth::models::ProductTier::Pro);
 
     // Built lazily: the firmware pane does IO on first show.
     addRuntimePage(QStringLiteral("bios"), tr("BIOS"), QStringLiteral("cpu"),

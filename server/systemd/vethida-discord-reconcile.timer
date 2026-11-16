@@ -1,0 +1,13 @@
+[Unit]
+Description=Run the Vethida Discord role reconcile daily
+
+[Timer]
+# 05:00, after the 04:00 retention cleanup. Entitlement lapses on a clock rather
+# than an event, so once a day is the resolution of "how long can a lapsed
+# customer keep the paid channels" - which is acceptable, and running it more
+# often mostly spends Discord rate limit on members whose roles are already right.
+OnCalendar=*-*-* 05:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

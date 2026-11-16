@@ -1,0 +1,69 @@
+<!doctype html>
+<!--
+  /etc/nginx/html/offline.html
+
+  What a customer gets when the Next process behind vethida.com or
+  my.vethida.com is not answering: a deploy, a crash inside the RestartSec
+  window, or an OOM kill. Without it nginx serves its own 502, which names
+  nginx and its version and reads as a broken server rather than a product.
+
+  It lives with the nginx config rather than in either app's public/ on
+  purpose. It has to render at the moment an app is unreachable or mid-swap,
+  which is the one moment that app's own files cannot be relied on.
+
+  Self-contained by necessity: no stylesheet, no font, no script, no image.
+  Every one of those would be a request to the origin that is already failing.
+  Colors are the site's --background, --foreground and --foreground-muted,
+  written out because there is no token file to read here.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Vethida is temporarily offline</title>
+    <style>
+      html {
+        background: #ffffff;
+        color: #0c1424;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 1.5rem;
+        max-width: 40rem;
+      }
+      h1 {
+        margin: 0;
+        font-size: 2rem;
+        line-height: 1.15;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      p {
+        margin: 1rem 0 0;
+        color: #5b6472;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      a {
+        color: #003cce;
+        text-underline-offset: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vethida is temporarily offline</h1>
+    <p>
+      The site is not responding right now. Try again in a minute, or write to
+      <a href="mailto:support@vethida.com">support@vethida.com</a> if it stays
+      down.
+    </p>
+  </body>
+</html>

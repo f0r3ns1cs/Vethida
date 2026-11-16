@@ -1,0 +1,46 @@
+# Vethida database backups.
+#
+# Install:  sudo install -m 755 -o root -g root vethida-backup.sh \
+#                        /usr/local/bin/vethida-backup.sh
+#           sudo cp pg_dump.cron /etc/cron.d/vethida-backup
+#           sudo chown root:root /etc/cron.d/vethida-backup
+#           sudo chmod 644 /etc/cron.d/vethida-backup
+#
+# /etc/cron.d entries need a user field (the 6th column) and a PATH, because cron
+# runs with almost none of the environment a login shell has. A crontab that works
+# when pasted into `crontab -e` and fails here is usually missing exactly that.
+#
+# Secrets are NOT in this file. DATABASE_URL, and the R2 variables when an
+# offsite copy is wanted, live in /etc/vethida/backup.env, root-owned and chmod
+# 600, which vethida-backup.sh sources. A cron file is world-readable by design.
+#
+# One script in three modes, not three scripts. These lines named
+# vethida-backup.sh, vethida-verify-restore.sh and vethida-backup-age-check.sh,
+# none of which existed anywhere, so installing this file bought three failures a
+# month written to a log nobody opens.
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MAILTO=""
+
+# Nightly dump at 03:17 UTC.
+#
+# Not 03:00. Every cron on every box fires on the hour, and a managed database
+# doing its own maintenance at the same moment turns a backup into contention.
+# An odd minute costs nothing and avoids the crowd.
+17 3 * * * vethida /usr/local/bin/vethida-backup.sh dump >> /var/log/vethida/backup.log 2>&1
+
+# Weekly restore verification, Sunday 04:40 UTC.
+#
+# This is the half people skip. A dump nobody has restored is a file, not a
+# backup, and the first restore attempt should not be during an incident. The
+# script restores into a scratch database, checks the row counts are plausible,
+# and drops it.
+40 4 * * 0 vethida /usr/local/bin/vethida-backup.sh verify >> /var/log/vethida/backup.log 2>&1
+
+# Monthly alarm if the newest dump is stale.
+#
+# Backups fail silently far more often than they fail loudly: a full disk, a
+# rotated credential, a renamed database. Without this the first sign is an empty
+# backups directory on the day it matters.
+0 9 1 * * vethida /usr/local/bin/vethida-backup.sh age-check >> /var/log/vethida/backup.log 2>&1

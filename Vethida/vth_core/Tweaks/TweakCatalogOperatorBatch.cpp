@@ -2487,6 +2487,106 @@ namespace vth::tweaks::detail
                 "GraphicsPerfSvc" });
             c.push_back(t);
         }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("op.svc.windows-update-full-disable");
+            t.category = QStringLiteral("debloating");
+            t.subCategory = QStringLiteral("Windows Update");
+            t.name = QStringLiteral("Disable Windows Update (services and policy)");
+            t.description = QStringLiteral(
+                "Turns Windows Update off at the service level as well as by policy: the update, "
+                "background-transfer, delivery-optimization, self-repair and orchestrator "
+                "services, no automatic download or install, and driver updates held back.");
+            t.iconName = QStringLiteral("refresh-cw");
+            t.impact = Impact::Critical;
+            t.requiresAdmin = true;
+            t.requiresReboot = true;
+            t.warnings = {
+                QStringLiteral("Security patches stop arriving while this is on, and it disables "
+                               "the update services outright (a harder block than the policy-only "
+                               "tweak). Use only on a machine you patch by hand."),
+            };
+            t.concern = QStringLiteral(
+                "disables the update services too, where update.block-windows-update only sets "
+                "policy. Mutually exclusive with it.");
+            QVector<RegistryOp> o = svcOff({ "wuauserv", "bits", "dosvc", "WaaSMedicSvc", "UsoSvc" });
+            const QString au = QStringLiteral("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU");
+            o.push_back(dwordOp(au, QStringLiteral("AUOptions"), 2, std::nullopt));
+            o.push_back(dwordOp(au, QStringLiteral("AutoInstallMinorUpdates"), 0, std::nullopt));
+            o.push_back(dwordOp(au, QStringLiteral("NoAutoUpdate"), 1, std::nullopt));
+            o.push_back(dwordOp(au, QStringLiteral("NoAutoRebootWithLoggedOnUsers"), 1, std::nullopt));
+            const QString wu = QStringLiteral("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate");
+            o.push_back(dwordOp(wu, QStringLiteral("DoNotConnectToWindowsUpdateInternetLocations"), 1, std::nullopt));
+            o.push_back(dwordOp(wu, QStringLiteral("SetDisableUXWUAccess"), 1, std::nullopt));
+            o.push_back(dwordOp(wu, QStringLiteral("ExcludeWUDriversInQualityUpdate"), 1, std::nullopt));
+            o.push_back(dwordOp(wu, QStringLiteral("DeferUpgrade"), 1, std::nullopt));
+            o.push_back(dwordOp(wu, QStringLiteral("DeferUpdatePeriod"), 0, std::nullopt));
+            o.push_back(dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsStore\\WindowsUpdate"),
+                                QStringLiteral("AutoDownload"), 2, std::nullopt));
+            t.registryOps = o;
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("op.net.throttling-index-max");
+            t.category = QStringLiteral("networking");
+            t.subCategory = QStringLiteral("Network throttling");
+            t.name = QStringLiteral("Remove the network throttle");
+            t.description = QStringLiteral(
+                "Removes the multimedia network-throttle cap entirely, so inbound packet "
+                "handling is never rate-limited.");
+            t.iconName = QStringLiteral("network");
+            t.impact = Impact::Medium;
+            t.requiresAdmin = true;
+            t.warnings = {
+                QStringLiteral("Removing the cap entirely is known to raise audio DPC latency "
+                               "and can starve the audio path under heavy network load. The "
+                               "gentler tweak raises the cap without removing it."),
+            };
+            t.concern = QStringLiteral(
+                "writes the maximum, which net.throttling-index-off avoids (it uses 20). "
+                "Mutually exclusive with it.");
+            t.registryOps = {
+                dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile"),
+                        QStringLiteral("NetworkThrottlingIndex"), 0xFFFFFFFFu, 0xAu),
+            };
+            c.push_back(t);
+        }
+
+        {
+            TweakSpec t;
+            t.id = QStringLiteral("op.net.tcp-parameters");
+            t.category = QStringLiteral("networking");
+            t.subCategory = QStringLiteral("TCP/IP");
+            t.name = QStringLiteral("Widen the TCP/IP stack");
+            t.description = QStringLiteral(
+                "Enlarges the TCP window and the range of outgoing ports, turns on window scaling "
+                "and timestamps, and removes the limit on incoming connection attempts. Also "
+                "changes the default packet lifetime, the fast UDP send threshold, the number of "
+                "RSS cores, NBL owner tracking and Nagle on Message Queuing.");
+            t.iconName = QStringLiteral("network");
+            t.impact = Impact::Medium;
+            t.requiresAdmin = true;
+            t.concern = QStringLiteral(
+                "MaxUserPort, MaxFreeTcbs and GlobalMaxTcpWindowSize are decimal 65534 / 65536 / "
+                "65535. Broad stack change; the effect depends on the workload and the adapter.");
+            QVector<RegistryOp> o;
+            const QString tp = QStringLiteral("HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters");
+            addD(o, QStringLiteral("HKLM\\SYSTEM\\CurrentControlSet\\Services\\AFD\\Parameters"), QStringLiteral("FastSendDatagramThreshold"), 0x64000);
+            addD(o, tp, QStringLiteral("MaxNumRssCpus"), 4);
+            addD(o, tp, QStringLiteral("EnableConnectionRateLimiting"), 0);
+            addD(o, tp, QStringLiteral("DefaultTTL"), 0x62);
+            addD(o, tp, QStringLiteral("TCP1323Opts"), 1);
+            addD(o, tp, QStringLiteral("MaxFreeTcbs"), 65536);
+            addD(o, tp, QStringLiteral("MaxUserPort"), 65534);
+            addD(o, tp, QStringLiteral("GlobalMaxTcpWindowSize"), 65535);
+            addD(o, QStringLiteral("HKLM\\SYSTEM\\CurrentControlSet\\Services\\NDIS\\Parameters"), QStringLiteral("TrackNblOwner"), 0);
+            addD(o, QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\MSMQ\\Parameters"), QStringLiteral("TCPNoDelay"), 1);
+            t.registryOps = o;
+            c.push_back(t);
+        }
     }
 }
 
@@ -2496,4 +2596,4 @@ namespace
 {
 }
 }
-
+

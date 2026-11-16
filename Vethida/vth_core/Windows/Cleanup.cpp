@@ -516,6 +516,21 @@ namespace vth::win::cleanup
                 },
             },
             {
+                QStringLiteral("appcache.slack"),
+                QStringLiteral("Slack cache"),
+                Category::AppCaches, reg::Severity::Low,
+                QStringLiteral(
+                    "Slack's downloaded media and service-worker caches."),
+                QStringLiteral(
+                    "You stay signed in. Images and files download again as you "
+                    "scroll back through conversations."),
+                Mechanism::DirectoryWalk,
+                {
+                    { QStringLiteral("%APPDATA%\\Slack\\Cache"), true, 0 },
+                    { QStringLiteral("%APPDATA%\\Slack\\Service Worker\\CacheStorage"), true, 0 },
+                },
+            },
+            {
                 QStringLiteral("appcache.vscode"),
                 QStringLiteral("Visual Studio Code cache"),
                 Category::AppCaches, reg::Severity::Low,
@@ -1020,4 +1035,4 @@ namespace
         }
 }
 }
-
+

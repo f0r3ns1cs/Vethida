@@ -1,0 +1,36 @@
+[Unit]
+Description=my.vethida.com Next.js customer portal
+After=network.target
+
+[Service]
+Type=simple
+User=vethida
+WorkingDirectory=/opt/my.vethida.com
+Environment=NODE_ENV=production
+# Ports match each app's `dev` script, so there is one mapping to remember
+# rather than one per environment: portal 3000, api 3001, site 3002.
+Environment=PORT=3000
+# Loopback only. Nginx terminates TLS and is the sole ingress; a Next process
+# bound to 0.0.0.0 on a VPS with a public IP is reachable directly, which skips
+# the Cloudflare origin-pull client certificate the nginx config enforces.
+Environment=HOSTNAME=127.0.0.1
+# Secrets, DATABASE_URL and DATABASE_CA_CERT. Not Environment= lines: those are
+# world-readable through `systemctl show`.
+EnvironmentFile=/etc/vethida/portal.env
+ExecStart=/usr/bin/node /opt/my.vethida.com/node_modules/next/dist/bin/next start
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/my.vethida.com
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

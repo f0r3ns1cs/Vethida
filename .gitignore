@@ -82,12 +82,6 @@ docs/
 moc_*.cpp
 node_modules/
 qrc_*.cpp
-runbooks/
-server/backup/
-server/firewall/
-server/monitoring/
-server/nginx/
-server/systemd/
 staging/
 ui_*.h
 vendors/

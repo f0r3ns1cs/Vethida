@@ -1,0 +1,10 @@
+[Unit]
+Description=Vethida license renewal reminders
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=vethida
+EnvironmentFile=/etc/vethida/cron.env
+ExecStart=/bin/sh -c 'curl -fsS --max-time 120 -H "Authorization: Bearer $CRON_SECRET" "$LICENSE_REMINDERS_URL"'
