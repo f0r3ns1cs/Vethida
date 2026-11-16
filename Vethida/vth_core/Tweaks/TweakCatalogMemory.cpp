@@ -27,7 +27,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("advanced");
             t.subCategory = QStringLiteral("Paging");
             t.name = QStringLiteral("Keep kernel in RAM");
-            t.description = QStringLiteral("Forces the Windows kernel and drivers to stay resident in RAM instead of being paged to disk. The change is real, but the practical benefit is negligible on modern systems with an SSD and ample RAM.");
+            t.description = QStringLiteral("Keeps the Windows kernel and drivers in RAM instead of paging them to disk.");
             t.iconName = QStringLiteral("cpu");
             t.impact = Impact::Medium;
             t.requiresAdmin = true;

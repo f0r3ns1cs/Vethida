@@ -653,7 +653,7 @@ void appendDefsBrowserOffice(QVector<TweakSpec>& c) {
         t.impact = Impact::Low;
         t.warnings = {
             QStringLiteral("Office connected services will be limited"),
-            QStringLiteral("AI-powered features disabled"),
+            QStringLiteral("Office's AI features are turned off"),
         };
         t.registryOps = {
             dwordOp(QStringLiteral("HKCU\\Software\\Policies\\Microsoft\\Office\\16.0\\Common\\privacy"), QStringLiteral("disconnectedstate"), 2u, 0u),

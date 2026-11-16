@@ -126,11 +126,7 @@ namespace vth::tweaks::detail
             t.category = QStringLiteral("gpu");
             t.subCategory = QStringLiteral("Desktop composition");
             t.name = QStringLiteral("Desktop compositor overrides");
-            t.description = QStringLiteral(
-                "Shortens the desktop compositor's frame queue, raises the priority of the "
-                "compositor and the core system process, turns off projected shadows, "
-                "holograms and desktop overlays, and sets a long list of internal rendering"
-                " switches. Many of them are undocumented.");
+            t.description = QStringLiteral("Shortens the desktop compositor's frame queue, raises the priority of the compositor and the core system process, turns off projected shadows, holograms and desktop overlays, and sets a long list of internal rendering switches.");
             t.iconName = QStringLiteral("monitor");
             t.impact = Impact::High;
             t.requiresAdmin = true;
@@ -189,11 +185,7 @@ namespace vth::tweaks::detail
             t.category = QStringLiteral("gpu");
             t.subCategory = QStringLiteral("Graphics runtime");
             t.name = QStringLiteral("Graphics runtime overrides");
-            t.description = QStringLiteral(
-                "Across the older and current Direct3D layers and the graphics kernel: "
-                "prefers flip-based presentation, turns on multi-threaded and deferred "
-                "rendering, and sets a long list of runtime and swap-chain flags. Many of "
-                "them are undocumented.");
+            t.description = QStringLiteral("Across the older and current Direct3D layers and the graphics kernel: prefers flip-based presentation, turns on multi-threaded and deferred rendering, and sets a long list of runtime and swap-chain flags.");
             t.iconName = QStringLiteral("gpu");
             t.impact = Impact::High;
             t.requiresAdmin = true;

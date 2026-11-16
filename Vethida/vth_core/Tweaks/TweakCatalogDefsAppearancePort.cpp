@@ -15,7 +15,6 @@ void appendDefsAppearancePort(QVector<TweakSpec>& c) {
         t.requiresAdmin = true;
         t.requiresReboot = true;
         t.reversible = true;
-        t.warnings = { QStringLiteral("These are undocumented DWM values; effect can vary by GPU driver and Windows build.") };
         t.registryOps = {
             dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\Windows\\DWM"), QStringLiteral("FrameLatency"), 2u, std::nullopt),
             dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\Windows\\DWM"), QStringLiteral("ForceDirectDrawSync"), 0u, std::nullopt),
@@ -54,7 +53,6 @@ void appendDefsAppearancePort(QVector<TweakSpec>& c) {
         t.requiresAdmin = true;
         t.requiresReboot = true;
         t.reversible = true;
-        t.warnings = { QStringLiteral("This is an undocumented DWM value; effect can vary by GPU driver and Windows build.") };
         t.registryOps = {
             dwordOp(QStringLiteral("HKLM\\SOFTWARE\\Microsoft\\Windows\\DWM"), QStringLiteral("DisableAdvancedDirectFlip"), 1u, std::nullopt),
         };

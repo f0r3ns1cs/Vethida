@@ -83,7 +83,7 @@ void appendDefsGaps(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Shutdown");
         t.name = QStringLiteral("Show shutdown reason / app names");
-        t.description = QStringLiteral("Enables the Shutdown Event Tracker (ShutdownReasonOn=1): Windows prompts for a reason each time you shut down or restart, and after an unexpected shutdown, recording it in the event log for troubleshooting. Note this adds a prompt to shutdowns; it does not reveal the names of apps blocking shutdown. Reverts to disabled (0).");
+        t.description = QStringLiteral("Turns on the Shutdown Event Tracker: Windows asks for a reason every time you shut down or restart, and after an unexpected shutdown, and records it in the event log. It doesn't show which apps are blocking shutdown.");
         t.iconName = QStringLiteral("info");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -115,7 +115,7 @@ void appendDefsGaps(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Windows Update");
         t.name = QStringLiteral("Disable driver auto-install and lock Windows version");
-        t.description = QStringLiteral("Sets SearchOrderConfig=3 so Windows Update never automatically installs drivers (useful for keeping stable GPU drivers), and TargetReleaseVersion=1. Note: TargetReleaseVersion=1 alone does not pin your Windows version - it only takes effect when the companion TargetReleaseVersionInfo value (the specific version, e.g. '23H2') is also set, which this tweak does not write. Both revert to 0.");
+        t.description = QStringLiteral("Stops Windows Update installing drivers by itself, which keeps a GPU driver you chose in place.");
         t.iconName = QStringLiteral("shield");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -170,7 +170,7 @@ void appendDefsGaps(QVector<TweakSpec>& c) {
         t.subCategory = QStringLiteral("VBS");
         t.declaredTier = vth::models::ProductTier::Pro;
         t.name = QStringLiteral("Disable Kernel DMA Protection");
-        t.description = QStringLiteral("Disables Kernel DMA Protection (DeviceGuard DmaGuard scenario Enable=0 and FVE DisableExternalDMAUnderLock=0). Reduces DMA-related latency at the cost of Thunderbolt/PCIe DMA attack protection.");
+        t.description = QStringLiteral("Turns off Kernel DMA Protection, which guards against attacks through Thunderbolt and PCIe devices, to reduce DMA latency.");
         t.iconName = QStringLiteral("shield");
         t.impact = Impact::High;
         t.requiresAdmin = true;

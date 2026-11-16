@@ -418,7 +418,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("debloating");
             t.subCategory = QStringLiteral("Background apps");
             t.name = QStringLiteral("Disable OneDrive background app and Edge shortcut default");
-            t.description = QStringLiteral("Disables background activity for the OneDrive/immersive control panel, Edge, Windows Security UI and Store apps, and sets DisableSmartNameResolution=1 - a system-wide DNS change that turns off LLMNR/NetBIOS smart multi-homed fallback (a mild security hardening), not an Edge-only setting as the name implies.");
+            t.description = QStringLiteral("Stops OneDrive, Settings, Edge, Windows Security and the Store running in the background, and turns off smart multi-homed name resolution for the whole PC, a mild security hardening.");
             t.iconName = QStringLiteral("cloud-off");
             t.impact = Impact::Low;
             t.requiresAdmin = false;

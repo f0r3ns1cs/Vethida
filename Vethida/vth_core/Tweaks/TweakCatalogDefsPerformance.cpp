@@ -196,7 +196,7 @@ void appendDefsPerformance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Game DVR / Game Bar");
         t.name = QStringLiteral("GameDVR extended policy disable");
-        t.description = QStringLiteral("Disables Game DVR via group policy, PolicyManager, and HKLM policy paths. Complements the per-user GameDVR disable by enforcing the setting system-wide including for the DEFAULT user.");
+        t.description = QStringLiteral("Turns Game DVR off by policy for every user, including the default profile, on top of the per-user setting.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -245,7 +245,7 @@ void appendDefsPerformance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Xbox / Game monitoring");
         t.name = QStringLiteral("Disable Xbox game monitoring (XBGM)");
-        t.description = QStringLiteral("Writes an EnableXBGM=0 value for the current and default user, intended to stop Xbox background game monitoring. Note the Xbox Game Monitor is a service (xbgm) normally disabled via its service Start value, so this per-user key may have limited or no effect.");
+        t.description = QStringLiteral("Sets a per-user flag to stop Xbox background game monitoring, for you and the default user.");
         t.iconName = QStringLiteral("monitor");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -265,7 +265,7 @@ void appendDefsPerformance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("CPU timers / Latency");
         t.name = QStringLiteral("Optimize hybrid CPU timer distribution");
-        t.description = QStringLiteral("Enables cross-core timer distribution (DistributeTimers=1) and removes the CPU reserved for background tasks (SystemResponsiveness=0), both real low-latency knobs. It also writes an undocumented HeterogeneousPolicy value and a ConvertibleSlateMode flag that concerns tablet-mode detection rather than timers. SystemResponsiveness=0 can cause audio or background-service glitches under load.");
+        t.description = QStringLiteral("Spreads timers across cores and removes the processor share reserved for background tasks. Also sets a scheduling value and a tablet-mode flag. Removing the background reserve can cause audio or background glitches under load.");
         t.iconName = QStringLiteral("cpu");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -289,7 +289,7 @@ void appendDefsPerformance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Kernel worker threads");
         t.name = QStringLiteral("Kernel executive worker threads");
-        t.description = QStringLiteral("Adds a small number of extra critical and delayed kernel worker threads via the documented AdditionalCriticalWorkerThreads / AdditionalDelayedWorkerThreads values. On a typical desktop the throughput benefit is negligible; the main cost is slightly more kernel memory. (The included MaxTimeSeparationBeforeCorrect value is unrelated, concerning time-sync tolerance.)");
+        t.description = QStringLiteral("Adds a few extra critical and delayed kernel worker threads, at the cost of slightly more kernel memory. Also sets how far the clock may drift before time sync corrects it.");
         t.iconName = QStringLiteral("eye-off");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -311,7 +311,7 @@ void appendDefsPerformance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Interrupts");
         t.name = QStringLiteral("Disable interrupt steering");
-        t.description = QStringLiteral("Writes InterruptSteeringDisabled=1 to the Control root to stop Windows dynamically reassigning interrupts across cores. It is unclear whether Windows consumes this value at this path, so the latency benefit is unverified.");
+        t.description = QStringLiteral("Stops Windows moving interrupts between processor cores.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -395,7 +395,7 @@ void appendDefsPerformance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("MMCSS");
         t.name = QStringLiteral("MMCSS gaming latency");
-        t.description = QStringLiteral("Most of the Games-task values it writes already match Windows defaults, so the real effect comes from SystemResponsiveness=0 (removes the CPU reserved for background tasks) and NoLazyMode=1 (keeps MMCSS scheduling active). Those two can lower game latency but may cause microphone, voice-chat or recording glitches under load.");
+        t.description = QStringLiteral("Most of what it writes already matches the Windows defaults. The real effect is removing the processor share reserved for background tasks and keeping MMCSS scheduling active, which can lower game latency but may cause microphone, voice chat or recording glitches under load.");
         t.iconName = QStringLiteral("activity");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -807,7 +807,7 @@ void appendDefsPerformance(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("perf.kernel.coalescing_extended");
         t.category = QStringLiteral("advanced");
         t.name = QStringLiteral("Extended coalescing timer disable");
-        t.description = QStringLiteral("Disables coalescing timer intervals across additional registry paths not covered by the base DPC latency tweak: Session Manager Power, Control root, ControlSet001 Control, and Power root.");
+        t.description = QStringLiteral("Turns off timer coalescing in the extra places the base DPC latency tweak doesn't cover.");
         t.iconName = QStringLiteral("clock");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -890,7 +890,7 @@ void appendDefsPerformance(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("perf.mem.processor_power_gating");
         t.category = QStringLiteral("power");
         t.name = QStringLiteral("Disable processor power gating");
-        t.description = QStringLiteral("Prevents CPU cores from entering low-power states by setting FeatureSettingsOverride=0x400 and an effectively infinite power state timeout on the Processor service.");
+        t.description = QStringLiteral("Stops processor cores entering low-power states, with a feature override and an effectively infinite power state timeout.");
         t.iconName = QStringLiteral("cpu");
         t.impact = Impact::High;
         t.requiresAdmin = true;

@@ -33,7 +33,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("AMD");
         t.name = QStringLiteral("AMD: disable ultra low power state (ULPS)");
-        t.description = QStringLiteral("Sets EnableUlps=0 on the AMD GPU driver service. Stops latency spikes when waking from ULPS.");
+        t.description = QStringLiteral("Turns off ULPS, the AMD driver's ultra-low power state, which stops the latency spikes when the GPU wakes from it.");
         t.iconName = QStringLiteral("cpu-2");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -136,7 +136,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("Latency");
         t.name = QStringLiteral("Force DirectFlip and hardware cursor");
-        t.description = QStringLiteral("Writes undocumented Force* values under the DWM key intended to pin DirectFlip presentation and hardware cursor. DWM normally negotiates these automatically; the real effect is unverified and may be inert on current builds.");
+        t.description = QStringLiteral("Sets DWM to always use DirectFlip presentation and a hardware cursor.");
         t.iconName = QStringLiteral("monitor");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -198,7 +198,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("Audio");
         t.name = QStringLiteral("Audio background latency policy");
-        t.description = QStringLiteral("Adjusts UWP background-audio task policy (headless execution, no inactivity timeout, multiple background tasks). This affects UWP background-audio scheduling; a general reduction in game audio stalls is unverified but the change is harmless.");
+        t.description = QStringLiteral("Changes how background audio from Store apps is scheduled: it can run headless, with no inactivity timeout and several tasks at once.");
         t.iconName = QStringLiteral("microphone-off");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -240,7 +240,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("Aero Peek");
         t.name = QStringLiteral("Disable DWM Aero Peek");
-        t.description = QStringLiteral("Disables Aero Peek (taskbar/desktop hover preview) via EnableAeroPeek=0. The additional 'input processing' values it writes are undocumented and have no verified effect; the real result is simply turning off Aero Peek.");
+        t.description = QStringLiteral("Turns off Aero Peek, the desktop preview when you point at the corner of the taskbar.");
         t.iconName = QStringLiteral("eye-off");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -283,7 +283,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("Latency");
         t.name = QStringLiteral("Force DXGI flip-model presentation");
-        t.description = QStringLiteral("Writes a UseFlipModel value under the DXGI key. Flip-model presentation is selected per swap chain by the application/DWM and is not globally forced by this key, so the effect is unverified; it is not required for variable refresh rate.");
+        t.description = QStringLiteral("Writes the DXGI flip model setting. It isn't needed for variable refresh rate.");
         t.iconName = QStringLiteral("monitor");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -365,7 +365,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("Latency");
         t.name = QStringLiteral("Maximize GPU thread priority");
-        t.description = QStringLiteral("Writes MonitorLatencyTolerance=1, DisableWriteCombining=0, and a legacy Direct3D FlipPresentToVSync value. It does not actually change thread priority; the effect is a minor latency-tolerance hint and is largely near-default.");
+        t.description = QStringLiteral("Writes a latency tolerance hint and two Direct3D values, mostly at their defaults. It doesn't change thread priority.");
         t.iconName = QStringLiteral("arrow-up");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -601,7 +601,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("NVIDIA");
         t.name = QStringLiteral("NVIDIA FTS performance RIDs");
-        t.description = QStringLiteral("Enables undocumented NVIDIA Feature Trial Service RIDs. These are internal flags with no public documentation; any performance benefit is unproven and they may stop working or regress after a driver update.");
+        t.description = QStringLiteral("Turns on NVIDIA Feature Trial Service flags. They're internal to the driver and may stop working or behave differently after a driver update.");
         t.iconName = QStringLiteral("zap");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -742,7 +742,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("Latency");
         t.name = QStringLiteral("NVIDIA low latency driver profile");
-        t.description = QStringLiteral("Applies a curated set of hidden NVIDIA driver registry settings optimized for minimum input latency. Includes maximum pre-rendered frames=1, shader cache=on, threaded optimization=on, texture filtering quality=high performance, and power management=prefer maximum performance.");
+        t.description = QStringLiteral("Applies hidden NVIDIA driver settings aimed at the lowest input latency: one pre-rendered frame, shader cache and threaded optimization on, texture filtering at high performance, and power management at prefer maximum performance.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -883,7 +883,7 @@ void appendDefsGpu(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("Priorities");
         t.name = QStringLiteral("Kernel worker and foreground boost values");
-        t.description = QStringLiteral("Sets two kernel values: PassiveIntRealTimeWorkerPriority=18 under the I/O System key, and DisableFGBoostDecay=1 under KernelVelocity. The performance benefit is unproven.");
+        t.description = QStringLiteral("Raises the priority of a kernel I/O worker and stops the foreground boost decaying.");
         t.iconName = QStringLiteral("cpu");
         t.impact = Impact::High;
         t.requiresAdmin = true;

@@ -884,10 +884,7 @@ void appendActive(QVector<TweakSpec>& c) {
             t.id = QStringLiteral("kernel.scheduler-quantum-tuning");
             t.category = QStringLiteral("advanced");
             t.name = QStringLiteral("Scheduler and interrupt priority");
-            t.description = QStringLiteral(
-                "Sets interrupt priority hints, tells Windows this is a desktop rather than"
-                " a tablet, and changes how the program you are using gets boosted. The "
-                "interrupt settings are undocumented.");
+            t.description = QStringLiteral("Sets interrupt priority hints, tells Windows this is a desktop rather than a tablet, and changes how the program you are using gets boosted.");
             t.iconName = QStringLiteral("cpu");
             t.impact = Impact::Low;
             t.requiresAdmin = true;
@@ -1032,10 +1029,7 @@ void appendActive(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Boot");
         t.name = QStringLiteral("Disable processor x2APIC");
-        t.description = QStringLiteral(
-            "Forces the processor's interrupt controller into legacy mode instead of "
-            "x2APIC. This is a niche compatibility change with no measured benefit, and "
-            "it can stop the machine booting on hardware that requires x2APIC.");
+        t.description = QStringLiteral("Forces the processor's interrupt controller into legacy mode instead of x2APIC. It can stop the PC booting on hardware that needs x2APIC.");
         t.iconName = QStringLiteral("cpu");
         t.impact = Impact::High;
         t.askFirst = true;

@@ -619,7 +619,7 @@ void appendDefsServicesPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("privacy");
         t.subCategory = QStringLiteral("Telemetry");
         t.name = QStringLiteral("Disable legacy AllowTelemetry mirror values");
-        t.description = QStringLiteral("Writes AllowTelemetry=0 into two secondary registry locations (the AppCompat policy key and the legacy pre-1607 DataCollection policy path) that some older diagnostics components still consult, on top of the primary DataCollection telemetry policy Vethida already manages elsewhere.");
+        t.description = QStringLiteral("Turns telemetry off in two older policy locations some diagnostics components still read, alongside the main telemetry policy.");
         t.iconName = QStringLiteral("eye-off");
         t.impact = Impact::Low;
         t.requiresAdmin = true;

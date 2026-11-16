@@ -27,12 +27,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("general");
             t.subCategory = QStringLiteral("Timer resolution");
             t.name = QStringLiteral("Global timer resolution requests");
-            t.description = QStringLiteral(
-                "Windows 11+ opt-in that makes the highest timer-resolution request apply "
-                "system-wide rather than per-process. It does nothing on its own - only if "
-                "some app is already requesting a high-resolution timer - and forcing a low "
-                "global timer can raise DPC/idle power with no latency benefit. No effect on "
-                "Windows 10.");
+            t.description = QStringLiteral("Windows 11 and later: makes the highest timer resolution any app requests apply to the whole system instead of per process. A low global timer can raise DPC and idle power.");
             t.iconName = QStringLiteral("clock");
             t.impact = Impact::Medium;
             t.requiresAdmin = true;
@@ -279,7 +274,6 @@ namespace vth::tweaks::detail {
             // off an exploit mitigation, and concern is maintainer-only.
             t.warnings = {
                 QStringLiteral("Weakens Control Flow Guard, a mitigation that makes memory-corruption bugs harder to exploit"),
-                QStringLiteral("Several of these values are undocumented and have no published measurement behind them"),
             };
             t.registryOps = {
                 dwordOp(kKern, QStringLiteral("DynamicDpcProtocol"), 1, std::nullopt),

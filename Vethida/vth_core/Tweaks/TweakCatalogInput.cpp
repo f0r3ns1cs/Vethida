@@ -32,7 +32,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("general");
             t.subCategory = QStringLiteral("Touch");
             t.name = QStringLiteral("Minimum touch latency");
-            t.description = QStringLiteral("Lowers Windows touch-prediction look-ahead and sample time to 2 ms, which can make touchscreen input feel more responsive. Affects touchscreens only and has no effect on a mouse/keyboard desktop.");
+            t.description = QStringLiteral("Lowers touch prediction look-ahead and sample time to 2 ms, which can make a touchscreen feel more responsive.");
             t.iconName = QStringLiteral("hand");
             t.impact = Impact::Low;
             t.requiresAdmin = true;

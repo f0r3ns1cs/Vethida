@@ -305,7 +305,7 @@ void appendDefsSecurityPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("security");
         t.subCategory = QStringLiteral("UAC");
         t.name = QStringLiteral("Disable user account control (UAC)");
-        t.description = QStringLiteral("Turns off User Account Control entirely (EnableLUA=0) so no application - including malware - is prompted for elevation before making system-wide changes.");
+        t.description = QStringLiteral("Turns off User Account Control entirely, so no program, malware included, is asked for permission before changing the system.");
         t.iconName = QStringLiteral("shield-off");
         t.impact = Impact::Critical;
         t.requiresAdmin = true;

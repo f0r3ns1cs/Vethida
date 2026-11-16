@@ -213,7 +213,7 @@ void appendDefsAppearance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("appearance");
         t.subCategory = QStringLiteral("Visual effects");
         t.name = QStringLiteral("Set custom visual effects mode");
-        t.description = QStringLiteral("Sets VisualFXSetting=3 (Custom) so individual visual effect settings take precedence over the system preset.");
+        t.description = QStringLiteral("Switches visual effects to Custom, so the individual effect settings are used instead of a preset.");
         t.iconName = QStringLiteral("palette");
         t.impact = Impact::Low;
         t.warnings = {
@@ -286,7 +286,7 @@ void appendDefsAppearance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("general");
         t.subCategory = QStringLiteral("Startup");
         t.name = QStringLiteral("Optimize delayed app launch priority");
-        t.description = QStringLiteral("Configures Explorer delayed app launch to minimum IO/page/priority class and zero delay, cutting post-logon overhead.");
+        t.description = QStringLiteral("Starts the apps Windows delays after sign-in straight away, at the lowest disk, memory and processor priority, so they stay out of the way of what you open first.");
         t.iconName = QStringLiteral("zap");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -494,7 +494,7 @@ void appendDefsAppearance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("appearance");
         t.subCategory = QStringLiteral("Logon");
         t.name = QStringLiteral("Disable first logon animation");
-        t.description = QStringLiteral("Skips the first-sign-in animation for new user profiles (EnableFirstLogonAnimation=0) so new accounts reach the desktop faster.");
+        t.description = QStringLiteral("Skips the first sign-in animation for new user accounts, so a new account reaches the desktop sooner.");
         t.iconName = QStringLiteral("monitor");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -649,7 +649,7 @@ void appendDefsAppearance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("general");
         t.subCategory = QStringLiteral("Network");
         t.name = QStringLiteral("Disable network device search");
-        t.description = QStringLiteral("Sets AutoSearch=0 so File Explorer stops automatically searching for network devices and printers.");
+        t.description = QStringLiteral("Stops File Explorer automatically searching the network for devices and printers.");
         t.iconName = QStringLiteral("folder-open");
         t.impact = Impact::Low;
         t.warnings = {
@@ -766,7 +766,7 @@ void appendDefsAppearance(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("appearance");
         t.subCategory = QStringLiteral("Context menu");
         t.name = QStringLiteral("Disable shell additions");
-        t.description = QStringLiteral("Adds 'Open command window here' and 'Open PowerShell here' entries (with icons) to the folder-background right-click menu.");
+        t.description = QStringLiteral("Adds 'Open command window here' entries, for the classic and the newer Windows shell, to the right-click menu of a folder's background.");
         t.iconName = QStringLiteral("folder");
         t.impact = Impact::Low;
         t.warnings = {

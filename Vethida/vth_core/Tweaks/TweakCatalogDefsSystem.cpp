@@ -462,7 +462,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Windows Update");
         t.name = QStringLiteral("Disable automatic Windows updates");
-        t.description = QStringLiteral("Stops automatic Windows Update downloads/installs (NoAutoUpdate=1) and defers feature updates up to a year. This is a strong change: security patches will not install on their own, so you must check for and install updates manually.");
+        t.description = QStringLiteral("Stops Windows Update downloading and installing by itself and defers feature updates by up to a year. Security patches won't install on their own, so you have to check for updates yourself.");
         t.iconName = QStringLiteral("download");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -696,7 +696,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("general");
         t.subCategory = QStringLiteral("Touch keyboard");
         t.name = QStringLiteral("TabletPC touch keyboard optimization");
-        t.description = QStringLiteral("Optimizes the Windows touch keyboard (TabletTip 1.7): hides IPTIP targets, disables autocorrect/spellcheck/text prediction, disables AC integration, enables shift lock, disables edge target and audio feedback. Applies to both HKCU and HKLM. Also disables TIPC tracking.");
+        t.description = QStringLiteral("Adjusts the touch keyboard: hides its targets, turns off autocorrect, spell check, text prediction and sounds, turns on shift lock and turns off its tracking. Applies to every user.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -790,7 +790,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("general");
         t.subCategory = QStringLiteral("Input privacy");
         t.name = QStringLiteral("Disable Windows input personalization and autocorrect");
-        t.description = QStringLiteral("Comprehensive Windows Input settings: disables autocorrect, autocapitalize, spellcheck, text prediction, personalization, emoji suggestions, hardware keyboard mode, and touch keyboard audio feedback across HKLM, HKCU, and HKU\\\\.DEFAULT.");
+        t.description = QStringLiteral("Turns off autocorrect, auto capitalization, spell check, text prediction, input personalization, emoji suggestions, hardware keyboard suggestions and touch keyboard sounds, for every user.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -894,7 +894,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Group Policy");
         t.name = QStringLiteral("System policy performance optimization");
-        t.description = QStringLiteral("A grab-bag of Group Policy values (disable HTML-Help DEP, delete roaming cache at logoff, suppress lock-screen app notifications, disable RSoP logging). Note it enables online font providers rather than disabling them, and the overall performance benefit is unproven.");
+        t.description = QStringLiteral("A set of Group Policy values: turns off DEP for HTML Help, deletes the roaming profile cache at sign-out, hides app notifications on the lock screen, turns off RSoP logging, and turns online font providers on.");
         t.iconName = QStringLiteral("shield");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -920,7 +920,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Windows Update");
         t.name = QStringLiteral("Control Windows Update behavior");
-        t.description = QStringLiteral("Sets updates to notify-before-download (AUOptions=2) and prevents forced reboots while a user is logged in.");
+        t.description = QStringLiteral("Makes Windows Update ask before downloading, and stops it forcing a restart while someone is signed in.");
         t.iconName = QStringLiteral("rotate");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -1774,7 +1774,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("Windows Update");
         t.name = QStringLiteral("Windows Update UX: smart active hours and notify-only");
-        t.description = QStringLiteral("Sets SmartActiveHoursState=2 (manual active hours), UxOption=1 (notify to schedule restart), ActiveHoursStart=13 (1 PM), ActiveHoursEnd=7 (7 AM).");
+        t.description = QStringLiteral("Sets active hours by hand, from 1 PM to 7 AM, and has Windows Update ask you to schedule restarts.");
         t.iconName = QStringLiteral("rotate");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -1797,7 +1797,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.subCategory = QStringLiteral("Boot");
         t.declaredTier = vth::models::ProductTier::Ultimate;
         t.name = QStringLiteral("Skip the boot OS-selection menu");
-        t.description = QStringLiteral("Sets bcdedit timeout 0. The OS-selection menu doesn't wait for a user choice.");
+        t.description = QStringLiteral("Sets the boot menu timeout to 0, so the PC doesn't wait at the operating system choice.");
         t.iconName = QStringLiteral("stopwatch");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -1817,7 +1817,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.subCategory = QStringLiteral("Timers");
         t.declaredTier = vth::models::ProductTier::Ultimate;
         t.name = QStringLiteral("BCD TSC and timer optimization");
-        t.description = QStringLiteral("Uses bcdedit to set tscsyncpolicy Enhanced and useplatformtick yes. Note the description's 'drops HPET' framing is misleading: useplatformtick yes forces a platform tick source, and the latency effect is hardware-dependent and unproven.");
+        t.description = QStringLiteral("Sets the enhanced TSC sync policy and forces the platform tick. It doesn't remove HPET.");
         t.iconName = QStringLiteral("cpu");
         t.impact = Impact::High;
         t.requiresAdmin = true;
@@ -1973,8 +1973,8 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         TweakSpec t;
         t.id = QStringLiteral("sys.dev.powershell_policy");
         t.category = QStringLiteral("advanced");
-        t.name = QStringLiteral("PowerShell unrestricted execution policy");
-        t.description = QStringLiteral("Sets PowerShell to unrestricted, enables scripts, disables module/script block logging and transcription.");
+        t.name = QStringLiteral("Allow all scripts to run");
+        t.description = QStringLiteral("Lets every script run, unsigned ones included, and turns off script logging and transcription.");
         t.iconName = QStringLiteral("code");
         t.impact = Impact::High;
         t.requiresAdmin = true;
@@ -1998,7 +1998,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("sys.diag.crash_logging");
         t.category = QStringLiteral("advanced");
         t.name = QStringLiteral("Crash control logging and no overwrite");
-        t.description = QStringLiteral("Enables crash event logging (LogEvent=1), keeps existing minidumps instead of overwriting them (Overwrite=0), and sets CrashDumpEnabled=3 (small memory dump).");
+        t.description = QStringLiteral("Logs crashes to the event log, keeps old minidumps instead of overwriting them, and saves a small memory dump on a crash.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Low;
         // HKLM\SYSTEM is not writable by a standard user. Without this the tweak
@@ -2051,7 +2051,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("sys.gpu.extended_optimize");
         t.category = QStringLiteral("gpu");
         t.name = QStringLiteral("Extended GPU driver optimization");
-        t.description = QStringLiteral("Enables GPU timer, disables power-saving, enables DPI IOMMU contiguous mapping, enables HW GPU scheduling, disables runtime power management, and sets zero latency for FlTransition/D3PC.");
+        t.description = QStringLiteral("Turns on the GPU timer, IOMMU contiguous mapping and hardware-accelerated GPU scheduling, and turns off GPU power saving and runtime power management, with no delay on power state transitions.");
         t.iconName = QStringLiteral("monitor");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -2499,7 +2499,7 @@ void appendDefsSystem(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.declaredTier = vth::models::ProductTier::Ultimate;
         t.name = QStringLiteral("Disable boot logging");
-        t.description = QStringLiteral("Sets bcdedit bootlog No. Stops the boot loader from writing Ntbtlog.txt.");
+        t.description = QStringLiteral("Stops the boot loader writing a boot log (Ntbtlog.txt).");
         t.iconName = QStringLiteral("file-text");
         t.impact = Impact::Low;
         t.requiresAdmin = true;

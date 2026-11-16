@@ -84,7 +84,7 @@ void appendDefsSecurity(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("security");
         t.subCategory = QStringLiteral("Defender");
         t.name = QStringLiteral("Enable Defender Tamper Protection");
-        t.description = QStringLiteral("Attempts to turn on Microsoft Defender Tamper Protection by writing TamperProtection=5. Note: on current Windows this key is protected and usually can only be changed reliably through the Windows Security app, so a registry write may not take effect. Tamper Protection is not required for SmartScreen.");
+        t.description = QStringLiteral("Turns on Microsoft Defender Tamper Protection. If it doesn't stay on, turn it on in the Windows Security app.");
         t.iconName = QStringLiteral("shield");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -283,7 +283,7 @@ void appendDefsSecurity(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("sec.uac.disable");
         t.category = QStringLiteral("security");
         t.name = QStringLiteral("Disable user account control");
-        t.description = QStringLiteral("Completely disables UAC (EnableLUA=0), suppresses all consent prompts for admins and standard users, enables admin token filter bypass, and disables secure desktop.");
+        t.description = QStringLiteral("Turns off User Account Control completely: no consent prompts for anyone, remote admin token filtering off and no secure desktop.");
         t.iconName = QStringLiteral("shield-off");
         t.impact = Impact::Critical;
         t.requiresAdmin = true;

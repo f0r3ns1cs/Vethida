@@ -50,7 +50,7 @@ void appendDefsNetworkPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("networking");
         t.subCategory = QStringLiteral("MSMQ");
         t.name = QStringLiteral("Disable Nagle for message queuing (MSMQ)");
-        t.description = QStringLiteral("Sets TCPNoDelay=1 for the Message Queuing (MSMQ) service, disabling Nagle's algorithm on MSMQ's TCP connections for lower-latency delivery.");
+        t.description = QStringLiteral("Turns off Nagle's algorithm on Message Queuing (MSMQ) connections for lower-latency delivery.");
         t.iconName = QStringLiteral("network");
         t.impact = Impact::Low;
         t.requiresAdmin = true;

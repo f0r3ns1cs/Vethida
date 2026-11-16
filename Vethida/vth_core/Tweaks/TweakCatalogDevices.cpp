@@ -194,7 +194,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("networking");
             t.subCategory = QStringLiteral("TCP/IP");
             t.name = QStringLiteral("Disable Nagle (per adapter)");
-            t.description = QStringLiteral("Sets TcpAckFrequency=1, TCPNoDelay=1 and TcpDelAckTicks=0 on every physical adapter's TCP/IP interface, disabling Nagle coalescing and delayed ACK. This only affects TCP traffic - it measurably lowers latency for TCP-based games and remote-desktop sessions but does nothing for the many titles that use UDP.");
+            t.description = QStringLiteral("Turns off Nagle's algorithm and delayed ACK on every physical adapter. Lowers latency for TCP traffic such as some games and remote desktop, but does nothing for the many games that use UDP.");
             t.iconName = QStringLiteral("gauge");
             t.impact = Impact::Medium;
             t.requiresAdmin = true;
@@ -301,7 +301,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("gpu");
             t.subCategory = QStringLiteral("NVIDIA");
             t.name = QStringLiteral("NVIDIA: maximum performance (registry)");
-            t.description = QStringLiteral("On every NVIDIA adapter this writes registry keys intended to force P-state 0 / PowerMizer maximum, plus MSI mode and per-core DPC distribution. Note that the P-state and PowerMizer keys are largely ignored by driver branch 525 and newer - the reliable way to lock 'Prefer Maximum Performance' is the NVIDIA Control Panel power-management setting. The MSI-mode and per-core-DPC portions do still apply.");
+            t.description = QStringLiteral("On every NVIDIA card, writes settings that hold the highest performance state, turns on MSI mode and spreads DPCs across cores. On driver 525 and newer, also set Prefer maximum performance in the NVIDIA Control Panel.");
             t.iconName = QStringLiteral("monitor");
             t.impact = Impact::Medium;
             t.requiresAdmin = true;
@@ -592,7 +592,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("advanced");
             t.subCategory = QStringLiteral("Memory compression");
             t.name = QStringLiteral("Disable memory compression");
-            t.description = QStringLiteral("Disables the Memory Manager's RAM compression (Disable-MMAgent). Evidence is mixed: on 32 GB+ systems memory pressure is rarely reached so this is essentially a placebo, and on low-RAM systems it can make things worse by forcing more disk paging. Any real benefit is confined to specific mid-RAM, memory-heavy workloads.");
+            t.description = QStringLiteral("Turns off memory compression. On PCs with little RAM this means more paging to disk.");
             t.iconName = QStringLiteral("layers");
             t.impact = Impact::Low;
             t.requiresAdmin = true;
@@ -652,12 +652,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("advanced");
             t.subCategory = QStringLiteral("Boot / BCD");
             t.name = QStringLiteral("Disable dynamic tick (BCD)");
-            t.description = QStringLiteral(
-                "Sets the boot-loader element disabledynamictick=yes and removes any "
-                "useplatformclock override so the system uses the modern tickless timer instead "
-                "of being pinned to the HPET. Some latency-focused guides recommend this; the "
-                "measured benefit is hardware-dependent and often within noise. Applied through "
-                "bcdedit on the running OS entry.");
+            t.description = QStringLiteral("Turns on the tickless timer at boot and removes any setting that pins the system to HPET, on the running Windows boot entry.");
             t.iconName = QStringLiteral("clock-cog");
             t.impact = Impact::Low;
             t.requiresAdmin = true;
@@ -833,9 +828,8 @@ namespace vth::tweaks::detail {
             t.subCategory = QStringLiteral("Boot / BCD");
             t.name = QStringLiteral("Force platform tick (BCD)");
             t.description = QStringLiteral(
-                "Sets useplatformtick=yes, forcing the kernel to take its periodic tick from the "
-                "platform timer rather than a per-CPU source. Usually paired with disabling the "
-                "dynamic tick in latency setups. Effect varies by chipset and is often within noise.");
+                "Forces the kernel to take its periodic tick from the platform timer rather than a "
+                "per-processor source. Usually paired with turning off the dynamic tick.");
             t.iconName = QStringLiteral("clock-cog");
             t.impact = Impact::Low;
             t.requiresAdmin = true;

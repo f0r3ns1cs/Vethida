@@ -149,10 +149,7 @@ namespace vth::tweaks::detail {
             t.id = QStringLiteral("gpu.dwm-internal-flags");
             t.category = QStringLiteral("gpu");
             t.name = QStringLiteral("DWM internal rendering flags");
-            t.description = QStringLiteral(
-                "Writes a large set of DWM's internal (undocumented) rendering flags: "
-                "resize/effect caching, draw-list handling, front-buffer checks, watchdog "
-                "timeouts and render-path test switches.");
+            t.description = QStringLiteral("Sets DWM's internal rendering flags: resize and effect caching, draw list handling, front buffer checks, watchdog timeouts and render path test switches.");
             t.iconName = QStringLiteral("monitor");
             t.impact = Impact::Low;
             t.requiresAdmin = true;

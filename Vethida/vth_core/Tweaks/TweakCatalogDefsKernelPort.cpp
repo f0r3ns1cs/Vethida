@@ -127,7 +127,7 @@ void appendDefsKernelPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("CPU scheduling");
         t.name = QStringLiteral("Foreground boost and DPC scheduling (PriorityControl)");
-        t.description = QStringLiteral("Writes a bundle of undocumented scheduler and DPC-coalescing values under Control\\PriorityControl: ForegroundBoost, ThreadBoostType, ThreadSchedulingModel, AdjustDpcThreshold, DeepIoCoalescingEnabled, IdealDpcRate, and SchedulerAssistThreadFlagOverride.");
+        t.description = QStringLiteral("Sets scheduler and DPC coalescing values: foreground boost, thread boost type, thread scheduling model, DPC threshold, deep I/O coalescing, ideal DPC rate and scheduler assist flags.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -173,7 +173,7 @@ void appendDefsKernelPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("CPU scheduling");
         t.name = QStringLiteral("Miscellaneous kernel scheduler and DPC values");
-        t.description = QStringLiteral("Writes a bundle of undocumented scheduler/DPC values under the kernel Session Manager key: timer serialization, a DPC soft timeout, foreground-boost decay, a shared ready-queue size, and thread priority/quantum-shaped values that reuse names used elsewhere in Windows for unrelated, real settings.");
+        t.description = QStringLiteral("Sets kernel scheduler and DPC values: timer serialization, a DPC soft timeout, foreground boost decay, a shared ready queue size, and thread priority and quantum values.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -199,7 +199,7 @@ void appendDefsKernelPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("advanced");
         t.subCategory = QStringLiteral("I/O Manager");
         t.name = QStringLiteral("Miscellaneous kernel worker and stack sizes");
-        t.description = QStringLiteral("Writes a bundle of undocumented cache-splitting, SIMD-zeroing, worker-thread-idle, and stack-size values under the kernel Session Manager key.");
+        t.description = QStringLiteral("Sets kernel cache splitting, SIMD zeroing, worker thread idle and stack size values.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -272,8 +272,6 @@ void appendDefsKernelPort(QVector<TweakSpec>& c) {
         t.requiresReboot = true;
         t.reversible = true;
         t.warnings = {
-            QStringLiteral("These variable names are not documented Windows, driver, or CPU-vendor environment variables recognized by any known Microsoft component"),
-            QStringLiteral("No verified mechanism by which Windows, storage/network/GPU drivers, or the scheduler read these names"),
             QStringLiteral("Environment variables only propagate to new processes after a fresh logon or reboot"),
         };
         t.concern = QStringLiteral("None of these roughly 57 names (CPU_MAX_PENDING_INTERRUPTS, MKL_DEBUG_CPU_TYPE, DISK_MAX_PENDING_IO, GPU_MAX_PENDING_RENDER, etc.) appear in Microsoft's documented environment-variable or registry-tunable references, and none correspond to a known driver or kernel interrupt/IO/power-throttling control. This strongly resembles a placebo/pseudo-tuning tweak rather than a real performance lever. Recommend the curator independently verify any of these before shipping, or drop the tweak entirely rather than present it to users as a proven latency reduction.");
@@ -353,7 +351,6 @@ void appendDefsKernelPort(QVector<TweakSpec>& c) {
         t.requiresReboot = true;
         t.reversible = true;
         t.warnings = {
-            QStringLiteral("Effect is undocumented and driver-specific - most drivers never read these values"),
             QStringLiteral("Touches around 100 registry device-class keys system-wide"),
         };
         t.concern = QStringLiteral("This is a long-circulated 'gaming' registry hack that writes BasePriority/OverTargetPriority under every built-in device-class GUID key. These value names are not part of the documented Windows Driver Model class-registration schema, most drivers never read them, and the real-world performance effect could not be verified - this may be a placebo tweak. A curator should decide whether to ship it, and if so mark it clearly as experimental/unverified.");
@@ -486,7 +483,6 @@ void appendDefsKernelPort(QVector<TweakSpec>& c) {
         t.reversible = true;
         t.warnings = {
             QStringLiteral("A very small queue size can drop mouse input reports during brief system stalls"),
-            QStringLiteral("Latency benefit is anecdotal and has not been independently benchmarked"),
         };
         t.concern = QStringLiteral("Reducing this below the driver's built-in default is a popular but unverified input-latency tweak; benefit is anecdotal, not independently benchmarked.");
         t.registryOps = {

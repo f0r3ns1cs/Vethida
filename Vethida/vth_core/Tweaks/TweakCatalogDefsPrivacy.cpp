@@ -470,7 +470,7 @@ void appendDefsPrivacy(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("privacy");
         t.subCategory = QStringLiteral("Copilot & AI");
         t.name = QStringLiteral("Disable Windows Copilot");
-        t.description = QStringLiteral("Disables Windows Copilot, hides its taskbar button, and blocks it via both HKCU and HKLM policies.");
+        t.description = QStringLiteral("Turns off Windows Copilot and hides its taskbar button, by policy for you and for the whole PC.");
         t.iconName = QStringLiteral("bot");
         t.impact = Impact::Low;
         t.requiresAdmin = true;

@@ -12,6 +12,8 @@ This is an archive, not a maintained project.
 
 Builds from this repo have everything unlocked, every Pro and Ultimate feature, with no license key and no account.
 
+Grab the zip from the latest [release](../../releases/latest), unzip it and run `Vethida.exe` (it asks for admin). Windows SmartScreen will warn since it isn't signed: More info, then Run anyway.
+
 Early access tweaks are still off until you turn them on in Settings.
 
 ## Building

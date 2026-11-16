@@ -145,7 +145,7 @@ void appendDefsPower(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("power");
         t.subCategory = QStringLiteral("Modern standby");
         t.name = QStringLiteral("Disable Away Mode");
-        t.description = QStringLiteral("Disables Away Mode (AwayModeEnabled=0) which keeps the system awake with screen off.");
+        t.description = QStringLiteral("Turns off Away Mode, which keeps the PC awake with the screen off.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -210,7 +210,7 @@ void appendDefsPower(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("power");
         t.subCategory = QStringLiteral("Power plan");
         t.name = QStringLiteral("Unhide advanced power options");
-        t.description = QStringLiteral("Sets Attributes=0 on hidden power settings to expose all advanced processor, USB, display, PCI Express, and disk power options in the Power Options control panel.");
+        t.description = QStringLiteral("Shows every hidden advanced power option (processor, USB, display, PCI Express and disk) in Power Options.");
         t.iconName = QStringLiteral("zap");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -347,7 +347,7 @@ void appendDefsPower(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("C-States");
         t.name = QStringLiteral("Disable CPU idle states");
-        t.description = QStringLiteral("Sets IdleDisable=1 via powercfg to keep CPU always in C0 state, preventing all C-state transitions.");
+        t.description = QStringLiteral("Keeps the processor in its active state all the time, so it never enters a C-state.");
         t.iconName = QStringLiteral("zap");
         t.impact = Impact::Critical;
         t.requiresAdmin = true;
@@ -369,7 +369,7 @@ void appendDefsPower(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("C-States");
         t.name = QStringLiteral("Disable processor idle (PowerWriteACValueIndex)");
-        t.description = QStringLiteral("Uses PowerWriteACValueIndex with the processor idle disable GUID {5d76a2ca-e8c0-402f-a133-2158492d58ad} to prevent the CPU from entering idle states. This is the API-level equivalent of the powercfg IdleDisable setting.");
+        t.description = QStringLiteral("Stops the processor entering idle states through the Windows power API. The same setting as the processor idle disable option.");
         t.iconName = QStringLiteral("cpu");
         t.impact = Impact::Critical;
         t.requiresAdmin = true;
@@ -391,7 +391,7 @@ void appendDefsPower(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("Hibernation");
         t.name = QStringLiteral("Disable hibernation entirely");
-        t.description = QStringLiteral("Runs powercfg /h off to disable hibernation and delete hiberfil.sys (roughly the size of installed RAM), reclaiming disk space. This also disables Fast Startup.");
+        t.description = QStringLiteral("Turns hibernation off and deletes the hibernation file, which is about the size of your RAM. Also turns off fast startup.");
         t.iconName = QStringLiteral("moon");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -591,8 +591,8 @@ void appendDefsPower(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("pwr.plan.hibernate_off");
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("Hibernation");
-        t.name = QStringLiteral("Disable hibernation (powercfg)");
-        t.description = QStringLiteral("Runs 'powercfg -h off' to disable hibernation and delete hiberfil.sys, freeing disk space equal to RAM size.");
+        t.name = QStringLiteral("Disable hibernation and delete its file");
+        t.description = QStringLiteral("Turns hibernation off and deletes the hibernation file, freeing disk space about the size of your RAM.");
         t.iconName = QStringLiteral("zap");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -663,7 +663,7 @@ void appendDefsPower(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("Power plan");
         t.name = QStringLiteral("Import custom power plan (.pow)");
-        t.description = QStringLiteral("Imports a pre-configured opnaive.pow power plan from the app temp directory and sets it active (does nothing if the file is missing). It does not delete other power plans. Reverting runs powercfg -restoredefaultschemes, which resets all schemes to Windows defaults.");
+        t.description = QStringLiteral("Imports a prepared power plan from the app's temp folder and makes it active; does nothing if the file isn't there. Other plans are kept. Reverting resets every power plan to the Windows defaults.");
         t.iconName = QStringLiteral("zap");
         t.impact = Impact::High;
         t.requiresAdmin = true;

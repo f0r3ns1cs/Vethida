@@ -37,7 +37,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("gpu");
             t.subCategory = QStringLiteral("Frame pacing");
             t.name = QStringLiteral("Disable multi-plane overlay (MPO)");
-            t.description = QStringLiteral("Disables Multi-Plane Overlay (MPO), a common cause of multi-monitor and fullscreen flicker/stutter, forcing the classic composition path. Note: on Windows 11 24H2 and newer the OverlayTestMode=5 method is not always sufficient and may need an additional OverlayMinFPS=0 value, so it does not fully cover 24H2+ as-is. Only apply if you actually see stutter; it can slightly raise input latency on single-monitor competitive setups.");
+            t.description = QStringLiteral("Turns off Multi-Plane Overlay, a common cause of flicker and stutter with several monitors or in fullscreen. Only apply it if you see stutter: it can add a little input latency on a single monitor.");
             t.iconName = QStringLiteral("monitor");
             t.impact = Impact::Medium;
             t.requiresAdmin = true;

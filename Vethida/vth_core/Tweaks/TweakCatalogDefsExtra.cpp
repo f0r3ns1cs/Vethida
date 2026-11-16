@@ -12,7 +12,7 @@ void appendDefsExtra(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("general");
         t.subCategory = QStringLiteral("Mouse");
         t.name = QStringLiteral("Set linear 1:1 mouse curve");
-        t.description = QStringLiteral("Writes a linear SmoothMouseXCurve/SmoothMouseYCurve to HKCU\\Control Panel\\Mouse so the pointer-acceleration shaping curve is flat and cursor travel tracks distance moved. Note: the bytes are a fixed linear curve, not all-zeros, and this does not touch the 'Enhance pointer precision' checkbox (MouseSpeed/Threshold) itself.");
+        t.description = QStringLiteral("Sets a flat pointer acceleration curve, so cursor travel follows how far you move the mouse. Doesn't change the Enhance pointer precision checkbox.");
         t.iconName = QStringLiteral("mouse-pointer");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -33,7 +33,7 @@ void appendDefsExtra(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("storage");
         t.subCategory = QStringLiteral("Pagefile");
         t.name = QStringLiteral("Move pagefile to a secondary fast SSD");
-        t.description = QStringLiteral("Sets the pagefile to a system-managed file on D:. Only meaningful if D: is a real, fast, always-present drive; on a single-NVMe system the benefit is negligible, and hardcoding D: is fragile if D: is a slow, removable, or absent volume.");
+        t.description = QStringLiteral("Puts a system-managed page file on drive D:. Only use it if D: is a fast drive that's always connected.");
         t.iconName = QStringLiteral("database");
         t.impact = Impact::High;
         t.requiresAdmin = true;
@@ -412,7 +412,7 @@ void appendDefsExtra(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("DWM");
         t.name = QStringLiteral("Enlarge desktop heap (SharedSection)");
-        t.description = QStringLiteral("Writes a SharedSection desktop-heap triple to the DWM key. The value Windows actually reads is under Control\\Session Manager\\SubSystems\\Windows, so at this DWM location it most likely has no effect.");
+        t.description = QStringLiteral("Sets a desktop heap size in the DWM settings.");
         t.iconName = QStringLiteral("monitor");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -715,7 +715,7 @@ void appendDefsExtra(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("general");
         t.subCategory = QStringLiteral("Input responsiveness");
         t.name = QStringLiteral("Input responsiveness (SystemParametersInfo)");
-        t.description = QStringLiteral("Disables mouse vanish, UI effects, and font smoothing via SystemParametersInfoW; sets keyboard delay to 0 (shortest) and keyboard speed to 31 (fastest repeat rate). Also writes the corresponding registry values for persistence across reboots.");
+        t.description = QStringLiteral("Turns off hiding the pointer while typing, menu animations and font smoothing, and sets the shortest keyboard repeat delay and fastest repeat rate. Applies straight away and stays after a restart.");
         t.iconName = QStringLiteral("sliders-horizontal");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -1151,7 +1151,7 @@ void appendDefsExtra(QVector<TweakSpec>& c) {
         t.subCategory = QStringLiteral("TCP/IP");
         // Writes one value, NetbiosOptions.
         t.name = QStringLiteral("Disable NetBIOS over TCP/IP");
-        t.description = QStringLiteral("Sets NetbiosOptions=2 on every network interface, turning off legacy NetBIOS name resolution. Nothing else is changed: not flow control, interrupt moderation, Energy Efficient or Green Ethernet, adapter power saving, Nagle, TcpAckFrequency or UseZeroBroadcast.");
+        t.description = QStringLiteral("Turns off NetBIOS name resolution on every network interface. Nothing else changes.");
         t.iconName = QStringLiteral("sliders-horizontal");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -1372,7 +1372,7 @@ void appendDefsExtra(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("priv.telemetry.autologger_disable");
         t.category = QStringLiteral("privacy");
         t.name = QStringLiteral("Disable WMI autologger sessions");
-        t.description = QStringLiteral("Disables 35 WMI autologger sessions used for diagnostics, telemetry, and logging by setting Start=0 on each session under CurrentControlSet\\\\Control\\\\WMI\\\\Autologger.");
+        t.description = QStringLiteral("Turns off 35 diagnostic and telemetry logging sessions that start with Windows.");
         t.iconName = QStringLiteral("sliders-horizontal");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -1447,8 +1447,8 @@ void appendDefsExtra(QVector<TweakSpec>& c) {
         TweakSpec t;
         t.id = QStringLiteral("deb.startup.clear_run_keys");
         t.category = QStringLiteral("debloating");
-        t.name = QStringLiteral("Clear startup Run/RunOnce registry keys");
-        t.description = QStringLiteral("Deletes all entries from HKCU and HKLM Run, RunOnce, RunOnceEx, RunServices, RunServicesOnce keys, plus Wow6432Node Run/RunOnce variants to remove all auto-start programs.");
+        t.name = QStringLiteral("Clear all startup programs");
+        t.description = QStringLiteral("Deletes every startup entry Windows keeps for you and for the whole PC, 32 and 64-bit, so nothing listed there starts with Windows.");
         t.iconName = QStringLiteral("sliders-horizontal");
         t.impact = Impact::High;
         t.requiresAdmin = true;
@@ -1585,7 +1585,7 @@ void appendDefsExtra(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("deb.features.capabilities_remove");
         t.category = QStringLiteral("debloating");
         t.name = QStringLiteral("Remove unused Windows capabilities");
-        t.description = QStringLiteral("Removes Features on Demand (FoD) matching vendor drivers, Internet Explorer, Steps Recorder, Windows Media Player, wallpapers, printing, Math Recognizer, OpenSSH, PowerShell ISE, Quick Assist, OneSync, Ralink drivers, virtual device drivers, TCP features, and Windows Hello components.");
+        t.description = QStringLiteral("Removes optional Windows capabilities: vendor drivers, Internet Explorer, Steps Recorder, Windows Media Player, extra wallpapers, printing, Math Recognizer, OpenSSH, the ISE script editor, Quick Assist, OneSync, Ralink drivers, virtual device drivers, TCP features and Windows Hello components.");
         t.iconName = QStringLiteral("sliders-horizontal");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;

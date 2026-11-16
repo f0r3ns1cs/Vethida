@@ -34,7 +34,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("Background apps");
         t.name = QStringLiteral("Disable background access for Edge, settings, SecHealth and store");
-        t.description = QStringLiteral("Disables background access (Disabled=1, DisabledByUser=1) for Microsoft Edge, Settings (immersivecontrolpanel), Windows Security (SecHealthUI), and Microsoft Store.");
+        t.description = QStringLiteral("Stops Microsoft Edge, Settings, Windows Security and the Microsoft Store running in the background.");
         t.iconName = QStringLiteral("globe");
         t.impact = Impact::Low;
         t.warnings = {
@@ -217,7 +217,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("Context menu");
         t.name = QStringLiteral("Add run as administrator for MSI/PS1/VBS");
-        t.description = QStringLiteral("Adds Run as Administrator context menu option for MSI installer packages, PowerShell scripts (.ps1), and VBScript files (.vbs).");
+        t.description = QStringLiteral("Adds Run as administrator to the right-click menu of installer packages (.msi) and script files (.ps1 and .vbs).");
         t.iconName = QStringLiteral("menu");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -319,7 +319,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("Context menu");
         t.name = QStringLiteral("Add terminal in place context menu");
-        t.description = QStringLiteral("Replaces default terminal context menus with a unified 'Open terminal in place' submenu containing PowerShell 5 and CMD options. Available on drives, directories, and directory backgrounds. Blocks the default Windows Terminal UWP entry.");
+        t.description = QStringLiteral("Replaces the terminal entries in the right-click menu of drives and folders with one 'Open terminal in place' submenu holding the classic shells, and hides the Windows Terminal entry.");
         t.iconName = QStringLiteral("menu");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -613,7 +613,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("Notifications");
         t.name = QStringLiteral("Disable startup app notification toast");
-        t.description = QStringLiteral("Sets Enabled=0 for Windows.SystemToast.StartupApp to suppress the 'new startup app' notification toast.");
+        t.description = QStringLiteral("Stops the notification Windows shows when an app adds itself to startup.");
         t.iconName = QStringLiteral("activity");
         t.impact = Impact::Low;
         t.warnings = {
@@ -1131,7 +1131,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("debloating");
         t.subCategory = QStringLiteral("Sync");
         t.name = QStringLiteral("Disable setting sync across devices");
-        t.description = QStringLiteral("Disables all setting sync policies: DisableSettingSync=2, plus DisableApplicationSettingSync, DisableAppSyncSettingSync, DisableCredentialsSettingSync, DisableDesktopThemeSettingSync, DisablePersonalizationSettingSync, DisableWebBrowserSettingSync (all set to 2).");
+        t.description = QStringLiteral("Turns off every kind of settings sync by policy: apps, app settings, passwords, themes, personalization and browser settings.");
         t.iconName = QStringLiteral("palette");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -1286,7 +1286,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("power");
         t.subCategory = QStringLiteral("Core parking");
         t.name = QStringLiteral("Disable processor idle states and core parking");
-        t.description = QStringLiteral("Disables processor idle states (C-states) and core parking on the active power plan via powercfg. Sets IDLEDISABLE=1, minimum processor state to 100% (PROCTHROTTLEMIN=100), disables core parking (CPMINCORES=100), and disables processor performance boost mode (PERFBOOSTMODE=0). Applies to AC power only. Removes the wake-up delay before a parked core runs your game, and the frame drops that come with it, at a sustained power and heat cost.");
+        t.description = QStringLiteral("Keeps the processor out of idle states, stops cores parking, holds the minimum processor state at 100% and turns off processor boost on the active power plan, on mains power only. Removes the delay before a parked core can run your game, at a sustained power and heat cost.");
         t.iconName = QStringLiteral("zap");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -1329,8 +1329,8 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         TweakSpec t;
         t.id = QStringLiteral("deb.ctx.ps1_association");
         t.category = QStringLiteral("debloating");
-        t.name = QStringLiteral("PowerShell script file association");
-        t.description = QStringLiteral("Associates .ps1 files with a custom PowerShell handler that sets the execution policy to unrestricted and runs the script directly.");
+        t.name = QStringLiteral("Run .ps1 scripts on double-click");
+        t.description = QStringLiteral("Double-clicking a .ps1 script runs it directly, with the script execution policy bypassed.");
         t.iconName = QStringLiteral("menu");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -1351,7 +1351,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         // Persistent priority bias, opt-in only.
         t.concern = QStringLiteral("persistent per-process priority bias; opt-in only, never recommended.");
         t.name = QStringLiteral("CPU affinity presets for hybrid architectures");
-        t.description = QStringLiteral("Configures process affinity hints for Intel 12th gen+ hybrid CPUs (P-cores and E-cores). Sets Thread Director hints via registry: pins known high-priority processes (games, renderers) to P-core preferred scheduling, and background/telemetry processes to E-core preferred scheduling. Uses HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Image File Execution Options per-process PerfOptions to bias scheduling. Applies CpuPriorityClass=1 (background) to telemetry and update processes. Does not set hard affinity masks uses scheduling priority hints compatible with all CPU architectures.");
+        t.description = QStringLiteral("Scheduling hints for Intel 12th gen and newer hybrid processors: games and renderers lean toward performance cores, and telemetry and update processes run at background priority on efficiency cores. No hard affinity masks are set.");
         t.iconName = QStringLiteral("cpu");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -2112,7 +2112,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("deb.features.optional_disable");
         t.category = QStringLiteral("debloating");
         t.name = QStringLiteral("Disable unnecessary Windows features");
-        t.description = QStringLiteral("Disables optional Windows features including TFTP, TIFF filter, Containers, SMB Direct, printing services (XPS, PDF, Foundation), PowerShell v2, Telnet, Windows Search components, Remote Desktop Connection, and Defender default definitions. Re-enables DirectPlay and Legacy Components for older game compatibility.");
+        t.description = QStringLiteral("Turns off optional Windows features: TFTP, the TIFF filter, Containers, SMB Direct, XPS and PDF printing, the old version 2 script engine, Telnet, Windows Search components, Remote Desktop Connection and Defender's default definitions. Turns DirectPlay and Legacy Components on for older games.");
         t.iconName = QStringLiteral("trash-2");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -2314,7 +2314,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.name = QStringLiteral("Disable comprehensive Windows scheduled tasks");
         // The description names the task groups below without a count, so adding a
         // task doesn't make it wrong.
-        t.description = QStringLiteral("Disables the scheduled tasks behind Windows telemetry, maintenance, updates and settings sync, using schtasks /Change /DISABLE rather than deleting the task cache. Covers App-V publishing, Data Integrity Scan, scheduled defrag, Scheduled Diagnosis, SilentCleanup, Flighting, InstallService SmartRetry, MicrosoftEdge update tasks, NetTrace, PushToInstall, SettingSync, Speech, TaskScheduler maintenance, UpdateOrchestrator, WaaSMedic, Windows Defender scan and maintenance, and WindowsUpdate.");
+        t.description = QStringLiteral("Disables the scheduled tasks behind Windows telemetry, maintenance, updates and settings sync, without deleting them. Covers App-V publishing, Data Integrity Scan, scheduled defrag, Scheduled Diagnosis, SilentCleanup, Flighting, InstallService SmartRetry, Microsoft Edge update tasks, NetTrace, PushToInstall, SettingSync, Speech, Task Scheduler maintenance, UpdateOrchestrator, WaaSMedic, Windows Defender scan and maintenance, and Windows Update.");
         t.iconName = QStringLiteral("clock-off");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -2559,7 +2559,7 @@ void appendDefsDebloat(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("deb.tasks.infrastructure");
         t.category = QStringLiteral("debloating");
         t.name = QStringLiteral("Remove system infrastructure task cache");
-        t.description = QStringLiteral("Removes task cache entries for SoftwareProtectionPlatform, ReFsDedupSvc, capabilityaccessmanager, CloudRestore, Containers, StateRepository, LanguageComponentsInstaller, .NET Framework, Wininet, Chkdsk, Autochk, DirectX, Printing, RecoveryEnvironment, SpacePort, and Sustainability tasks.");
+        t.description = QStringLiteral("Removes the scheduled task entries for Software Protection, ReFS deduplication, capability access, CloudRestore, Containers, StateRepository, language components, .NET Framework, Wininet, disk checking, DirectX, printing, the recovery environment, Storage Spaces and Sustainability.");
         t.iconName = QStringLiteral("trash-2");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;

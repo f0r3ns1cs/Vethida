@@ -700,7 +700,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("gpu");
             t.subCategory = QStringLiteral("NVIDIA");
             t.name = QStringLiteral("Disable GPU hang recovery (TDR)");
-            t.description = QStringLiteral("Disables the Timeout Detection & Recovery watchdog (TdrLevel=0, TdrDelay=0) on the NVIDIA driver.");
+            t.description = QStringLiteral("Turns off Timeout Detection and Recovery for the NVIDIA driver, so Windows never resets a GPU that stops responding.");
             t.iconName = QStringLiteral("zap");
             t.impact = Impact::High;
             t.requiresAdmin = true;

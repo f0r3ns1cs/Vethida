@@ -229,7 +229,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         // Writes EnableWsd and fMinimizeConnections only. It doesn't change the
         // adapter's own power management setting.
         t.name = QStringLiteral("Disable web services discovery");
-        t.description = QStringLiteral("Disables Web Services Discovery (EnableWsd=0) and the minimize-connections policy, which turns off WSD-based auto-discovery of network printers and media devices. Wi-Fi adapter power settings are not affected.");
+        t.description = QStringLiteral("Turns off Web Services Discovery and the minimize-connections policy, so Windows stops finding network printers and media devices by itself. Wi-Fi adapter power settings aren't affected.");
         t.iconName = QStringLiteral("wifi");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -498,7 +498,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("networking");
         t.subCategory = QStringLiteral("Discovery");
         t.name = QStringLiteral("Disable new network window popup");
-        t.description = QStringLiteral("Suppresses the 'New network detected' popup window that appears when connecting to a new network by creating the NewNetworkWindowOff registry key.");
+        t.description = QStringLiteral("Stops the 'New network detected' prompt when you connect to a network for the first time.");
         t.iconName = QStringLiteral("wifi");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -517,7 +517,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("networking");
         t.subCategory = QStringLiteral("RSS");
         t.name = QStringLiteral("NDIS receive side scaling configuration");
-        t.description = QStringLiteral("Distributes network receive processing across CPUs (RssBaseCpu=1 avoids core 0), limits to 4 RSS CPUs, disables NBL owner tracking and NIC power saving.");
+        t.description = QStringLiteral("Spreads incoming network processing across up to 4 processor cores, skipping core 0, and turns off adapter power saving and NBL owner tracking.");
         t.iconName = QStringLiteral("cpu");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -727,7 +727,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("networking");
         t.subCategory = QStringLiteral("SMB");
         t.name = QStringLiteral("Disable SMB bandwidth throttling");
-        t.description = QStringLiteral("Removes SMB client bandwidth throttling (DisableBandwidthThrottling=1), enables large MTU, and increases LanmanServer IRP stack size for complex I/O.");
+        t.description = QStringLiteral("Removes the file sharing client's bandwidth throttle, allows large MTU, and gives the file server a deeper I/O stack.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -748,7 +748,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("networking");
         t.subCategory = QStringLiteral("TCP/IP");
         t.name = QStringLiteral("Disable TCP connection rate limiting");
-        t.description = QStringLiteral("Removes TCP connection rate cap (EnableConnectionRateLimiting=0) for faster connection establishment.");
+        t.description = QStringLiteral("Removes the cap on how fast Windows opens new TCP connections.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -886,7 +886,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         // Sets the BCD flag in its name and doesn't disable HPET or dynamic tick. The
         // id keeps its older spelling because saved tweak state is keyed on it.
         t.name = QStringLiteral("Force the platform tick source");
-        t.description = QStringLiteral("Runs 'bcdedit /set useplatformtick yes', forcing the platform tick source. It does not disable dynamic tick or HPET, which are separate BCD flags. Its latency benefit is debated and hardware-dependent.");
+        t.description = QStringLiteral("Forces the platform tick as the boot timer source. It doesn't disable dynamic tick or HPET, which are separate flags, and any latency benefit depends on the hardware.");
         t.iconName = QStringLiteral("clock");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -1164,7 +1164,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("net.qos.bandwidth_reserve");
         t.category = QStringLiteral("networking");
         t.name = QStringLiteral("Disable QoS bandwidth reserve");
-        t.description = QStringLiteral("Removes the reserved QoS bandwidth (NonBestEffortLimit=0), tightens the QoS timer, and disables NLA-based QoS classification.");
+        t.description = QStringLiteral("Removes the bandwidth Windows reserves for QoS, tightens the QoS timer and turns off QoS classification based on network location.");
         t.iconName = QStringLiteral("wifi");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -1221,7 +1221,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("net.dns.cache_tuning");
         t.category = QStringLiteral("networking");
         t.name = QStringLiteral("DNS cache and service optimization");
-        t.description = QStringLiteral("Tightens DNS cache TTLs (MaxCacheTtl=1), increases UDP packet size, disables parallel A/AAAA queries, and reduces SOA cache entry TTL for aggressive cache refresh.");
+        t.description = QStringLiteral("Keeps DNS answers cached for at most a second, raises the UDP packet size, turns off parallel A and AAAA queries and shortens how long SOA records stay cached.");
         t.iconName = QStringLiteral("zap");
         t.impact = Impact::High;
         t.requiresAdmin = true;
@@ -1382,7 +1382,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("net.tcp.extended_optimization");
         t.category = QStringLiteral("networking");
         t.name = QStringLiteral("Extended TCP/IP and server optimization");
-        t.description = QStringLiteral("Applies additional TCP/IP optimizations: LanmanWorkstation offline files policy, LanmanServer security/compression settings, SizReqBuf (~95KB), ThreadPriority=0, MSMQ TCP NoDelay, WinHTTP tracing disable, DNS query IP matching, UDP fast send, Winsock parameters, and extended Tcpip parameters.");
+        t.description = QStringLiteral("Applies further TCP/IP settings: the offline files policy, file server security and compression, a larger request buffer (about 95 KB), MSMQ without Nagle, WinHTTP tracing off, DNS answer address matching, fast UDP send, Winsock parameters and more TCP/IP parameters.");
         t.iconName = QStringLiteral("settings");
         t.impact = Impact::Medium;
         t.requiresAdmin = true;
@@ -1503,7 +1503,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("net.disable-nic-jumbo-packet");
         t.category = QStringLiteral("debloating");
         t.name = QStringLiteral("Set NIC MTU to standard 1514 (no jumbo frames)");
-        t.description = QStringLiteral("Sets *JumboPacket=1514 (standard Ethernet frame size). Disables jumbo-frame support.");
+        t.description = QStringLiteral("Sets the jumbo packet size to 1514 bytes, the standard Ethernet frame, which turns jumbo frames off.");
         t.iconName = QStringLiteral("router");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -1543,7 +1543,7 @@ void appendDefsNetwork(QVector<TweakSpec>& c) {
         t.id = QStringLiteral("net.ps.stack_tuning");
         t.category = QStringLiteral("networking");
         t.name = QStringLiteral("Advanced network stack settings");
-        t.description = QStringLiteral("Applies comprehensive TCP/IP stack optimizations via netsh and PowerShell: sets autotuning to experimental, disables scaling heuristics, sets CTCP congestion provider, disables packet coalescing and chimney offload, enables RSS while disabling RSC, enables TCP FastOpen and ECN, disables ISATAP tunnel, increases neighbor cache, and disables HyStart slow-start.");
+        t.description = QStringLiteral("Applies broad TCP/IP stack settings: experimental receive autotuning, scaling heuristics off, CTCP congestion control, packet coalescing and chimney offload off, RSS on and RSC off, TCP Fast Open and ECN on, the ISATAP tunnel off, a bigger neighbor cache and HyStart off.");
         t.iconName = QStringLiteral("activity");
         t.impact = Impact::High;
         t.requiresAdmin = true;

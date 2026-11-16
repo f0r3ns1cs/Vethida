@@ -29,7 +29,7 @@ void appendDefsPowerPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("power");
         t.subCategory = QStringLiteral("Power plan");
         t.name = QStringLiteral("Hide 'turn off hard disk after' from power options");
-        t.description = QStringLiteral("Marks the 'Turn off hard disk after' advanced power setting as hidden (Attributes=1) so it no longer appears in the Power Options control panel. Purely cosmetic - the underlying idle-disk-sleep timer and its current value are unaffected.");
+        t.description = QStringLiteral("Hides the 'Turn off hard disk after' setting in Power Options. Purely cosmetic: the disk sleep timer itself doesn't change.");
         t.iconName = QStringLiteral("eye-off");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -48,13 +48,10 @@ void appendDefsPowerPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("power");
         t.subCategory = QStringLiteral("Timer coalescing");
         t.name = QStringLiteral("Disable timer coalescing (all known locations)");
-        t.description = QStringLiteral("Writes CoalescingTimerInterval=0 under every Session Manager and Power-related key the reference tool targets, in an attempt to disable Windows timer coalescing (the batching of periodic timer wakeups to save power) system-wide.");
+        t.description = QStringLiteral("Turns timer coalescing off in every power-related place Windows might read it, to stop Windows batching timer wakeups to save power.");
         t.iconName = QStringLiteral("clock-off");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
-        t.warnings = {
-            QStringLiteral("CoalescingTimerInterval is not a Microsoft-documented setting under these keys; real-world effect is unverified"),
-        };
         t.concern = QStringLiteral("CoalescingTimerInterval is not a published Windows setting under Session Manager/Power and community reports disagree on its effect. Maintainer note only: this does not gate recommendation, which is decided on potential harm alone.");
         t.registryOps = {
             dwordOp(QStringLiteral("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power"), QStringLiteral("CoalescingTimerInterval"), 0u, std::nullopt),

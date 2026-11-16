@@ -66,7 +66,7 @@ namespace vth::tweaks::detail {
             t.category = QStringLiteral("power");
             t.subCategory = QStringLiteral("Modern Standby");
             t.name = QStringLiteral("Disable connected standby");
-            t.description = QStringLiteral("Disables Modern Standby (S0 low-power idle) on laptops that support it by writing PlatformAoAcOverride=0 (and the legacy CsEnabled=0, which newer builds ignore). This can reduce sleep battery drain, but only helps if the firmware also exposes classic S3 sleep; on desktops it does nothing.");
+            t.description = QStringLiteral("Turns off Modern Standby on laptops that have it, which can cut battery drain while asleep, but only if the firmware also offers classic sleep. Does nothing on desktops.");
             t.iconName = QStringLiteral("power");
             t.impact = Impact::Low;
             t.requiresAdmin = true;

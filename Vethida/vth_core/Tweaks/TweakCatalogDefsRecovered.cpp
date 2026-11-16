@@ -277,7 +277,7 @@ void appendDefsRecovered(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("appearance");
         t.subCategory = QStringLiteral("Explorer");
         t.name = QStringLiteral("Disable Quick Access and recent files");
-        t.description = QStringLiteral("Sets HubMode=1, ShowFrequent=0 and ShowRecent=0 so the Quick Access pane vanishes and Explorer stops recording the folders you open.");
+        t.description = QStringLiteral("Hides Quick Access and stops File Explorer recording the folders you open.");
         t.iconName = QStringLiteral("folder-minus");
         t.impact = Impact::Low;
         t.requiresAdmin = true;
@@ -327,7 +327,7 @@ void appendDefsRecovered(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("privacy");
         t.subCategory = QStringLiteral("Telemetry");
         t.name = QStringLiteral("Disable extended WDI diagnostic GUIDs");
-        t.description = QStringLiteral("Sets ScenarioExecutionEnabled=0 and EnabledScenarioExecutionLevel=0 for six additional Windows Diagnostic Infrastructure scenario GUIDs so those diagnostic scenarios do not run.");
+        t.description = QStringLiteral("Stops six more Windows Diagnostic Infrastructure scenarios running.");
         t.iconName = QStringLiteral("shield-off");
         t.impact = Impact::Low;
         t.requiresAdmin = true;

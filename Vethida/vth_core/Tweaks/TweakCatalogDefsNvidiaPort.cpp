@@ -9,7 +9,7 @@ void appendDefsNvidiaPort(QVector<TweakSpec>& c) {
         t.category = QStringLiteral("gpu");
         t.subCategory = QStringLiteral("GPU scheduling");
         t.name = QStringLiteral("Disable WDDM GPU scheduler preemption");
-        t.description = QStringLiteral("Sets EnablePreemption=0 under the WDDM GraphicsDrivers scheduler key, stopping the OS GPU scheduler from preempting running GPU work to service other tasks.");
+        t.description = QStringLiteral("Stops the Windows GPU scheduler interrupting running GPU work to serve other tasks.");
         t.iconName = QStringLiteral("cpu-off");
         t.impact = Impact::High;
         t.requiresAdmin = true;
