@@ -54,7 +54,7 @@ const body = md
   .map((line) =>
     line
       .replace(/^#{1,6}\s+(.*)$/, (_, h) => h.toUpperCase())
-      // same as proseParagraph() in check-integrity.mjs
+      // links keep their text
       .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
       .replace(/\*\*/g, ""),
   )

@@ -124,6 +124,19 @@ namespace vth::win::nvram::presets
             // Offset 0 is the factory default, throttling at the processor's own limit.
             { "Tcc Activation Offset",                               "0",                   nullptr, kRisk },
 
+            // Dangerous: thermal protection
+            { "PECI",                                                "Disabled",            nullptr, kRisk },
+            { "Bi-directional PROCHOT#",                             "Disabled",            nullptr, kRisk },
+            { "Disable PROCHOT# Output",                             "Enabled",             nullptr, kRisk },
+            { "PROCHOT Response",                                    "Disabled",            nullptr, kRisk },
+            { "PROCHOT Lock",                                        "Disabled",            nullptr, kRisk },
+            { "ACPI T-States",                                       "0",                   nullptr, kRisk },
+            { "PCH Cross Throttling",                                "Disabled",            nullptr, kRisk },
+            { "Thermal Throttling Level",                            "Manual",              nullptr, kRisk },
+            { "T0 Level",                                            "0",                   nullptr, kRisk },
+            { "T1 Level",                                            "0",                   nullptr, kRisk },
+            { "T2 Level",                                            "0",                   nullptr, kRisk },
+
             // Dangerous: voltage, ratios, memory power
             { "BCLK Aware Adaptive Voltage",                         "Disabled",            nullptr, kRisk },
             { "TVB Ratio Clipping",                                  "Disabled",            nullptr, kRisk },
@@ -219,6 +232,31 @@ namespace vth::win::nvram::presets
             { "DRAM map inversion",                                  "Enabled",    "01", kRisk },
             { "SPD Read Optimization",                               "Enabled",    "01", kRisk },
             { "PSP error injection support",                         "False",      "00", kRisk },
+
+            // Dangerous: memory error correction and RAS
+            { "DRAM scrub time",                                     "Disabled",   "00", kRisk },
+            { "Poison scrubber control",                             "Disabled",   "00", kRisk },
+            { "Redirect scrubber control",                           "Disabled",   "00", kRisk },
+            { "Data Poisoning",                                      "Disabled",   "00", kRisk },
+            { "RCD Parity",                                          "Disabled",   "00", kRisk },
+            { "DRAM Address Command Parity Retry",                   "Disabled",   "00", kRisk },
+            { "Write CRC Enable",                                    "Disabled",   "00", kRisk },
+            { "DRAM Write CRC Enable and Retry Limit",               "Disabled",   "00", kRisk },
+            { "DRAM ECC Enable",                                     "Disabled",   "00", kRisk },
+            { "DRAM UECC Retry",                                     "Disabled",   "00", kRisk },
+            { "Disable DF to external downstream IP SyncFloodPropagation", "Sync flood disabled", "01", kRisk },
+            { "Disable DF sync flood propagation",                   "Sync flood disabled", "01", kRisk },
+            { "Freeze DF module queues on error",                    "Disabled",   "00", kRisk },
+            { "NBIO SyncFlood Generation",                           "Disabled",   "00", kRisk },
+            { "NBIO SyncFlood Reporting",                            "Disabled",   "00", kRisk },
+            { "NBIO Poison Consumption",                             "Disabled",   "02", kRisk },
+            { "NBIO RAS Global Control",                             "Manual",     "01", kRisk },
+            { "NBIO RAS Control",                                    "Disabled",   "00", kRisk },
+            { "Log Poison Data from SLINK",                          "Disabled",   "00", kRisk },
+            { "Edpc Control",                                        "Disabled",   "00", kRisk },
+            { "ALink RAS Support",                                   "Disabled",   "00", kRisk },
+            { "Sata RAS Support",                                    "Disabled",   "00", kRisk },
+            { "Enable AER Cap",                                      "Disabled",   "00", kRisk },
 
             // Dangerous: security, encryption, virtualization
             { "Indirect Branch Prediction Speculation",              "Disabled",   "00", kRisk },
@@ -393,4 +431,4 @@ namespace vth::win::nvram::presets
         return plan;
     }
 }
-
+

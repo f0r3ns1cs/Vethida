@@ -95,3 +95,7 @@ CLAUDE.md
 AGENTS.md
 /DECISIONS.md
 /DIRECTION.txt
+
+# Private: keys and the legal source documents.
+/ssh/
+/legal/

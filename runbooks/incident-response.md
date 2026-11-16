@@ -1,135 +1,69 @@
 # Incident response
 
-One person operates this. That is the constraint everything below is written
-around: there is no rota to escalate to, so the plan has to be short enough to
-follow alone and specific enough not to need thinking about.
+## Severity
 
-## Severity, and what it changes
-
-| | Definition | First action |
+| | What | First |
 |---|---|---|
-| **S1** | Money or credentials. Checkout broken, licenses wrongly revoked, a key leaked, unauthorized access. | Stop the bleeding now, diagnose after. |
-| **S2** | A customer-facing surface is down but nothing is being lost. Site or portal unreachable, activation failing. | Restore service, then find out why. |
-| **S3** | Degraded or cosmetic. One page broken, the bot offline, a slow query. | Normal work. Do not wake up for it. |
+| **S1** | Money or credentials: checkout broken, licenses wrongly revoked, leaked key, unauthorized access | Contain first, investigate after. |
+| **S2** | A public site or activation is down, nothing being lost | Restore service, then find the cause. |
+| **S3** | Degraded or cosmetic | Normal work. |
 
-The only distinction that matters at 3am is S1 versus everything else. S1 means
-act before you understand; anything else means understand first.
-
----
-
-## First five minutes
+## First checks
 
 ```bash
-# Is it us or is it the internet?
 for h in vethida.com my.vethida.com api.vethida.com; do
-  curl -fsS -o /dev/null -w "$h %{http_code} %{time_total}s\n" "https://$h/" || echo "$h UNREACHABLE"
+  curl -fsS -o /dev/null -w "$h %{http_code}\n" "https://$h/" || echo "$h UNREACHABLE"
 done
-
-# Which layer?
-curl -fsS http://127.0.0.1:3001/health   # process alive
-curl -fsS http://127.0.0.1:3001/ready    # can reach Postgres
+curl -fsS http://127.0.0.1:3001/health
+curl -fsS http://127.0.0.1:3001/ready
 systemctl status api.vethida.com my.vethida.com vethida.com --no-pager
 journalctl -u api.vethida.com -n 100 --no-pager
 ```
 
-`/health` up and `/ready` down is Postgres. Both up and the public host down is
-nginx or Cloudflare. Both down is the unit: read the journal; a missing
-environment variable throws at boot and names every missing variable at once.
+- `/health` up, `/ready` down: Postgres.
+- Both up, public URL down: nginx or Cloudflare.
+- Both down: the unit. Read the journal.
 
----
+## S1: leaked key
 
-## S1: a key or credential leaked
+Revoke first, investigate after.
 
-Order matters. Revoke before you investigate.
+1. Find which key it is in [key-rotation.md](key-rotation.md).
+2. Sign everyone out: `DELETE FROM auth_session;`
+3. Invalidate desktop tokens: bump `token_generation` on the affected licenses.
+4. Database: rotate the app role's password, update `DATABASE_URL`, restart.
+5. Save the journal (`journalctl --since ... > file`) before restarting anything else.
 
-1. **Which key?** [key-rotation.md](key-rotation.md) has the shape of each. The
-   license-signing and update-manifest keys cannot be rotated instantly; the rest
-   can.
-2. **Sessions:** `DELETE FROM auth_session;` signs everyone out
-   immediately. No deploy, no restart.
-3. **Desktop tokens:** bump `token_generation` on the affected licenses. Every
-   outstanding signed token for that license stops verifying.
-4. **Database:** rotate the application role's password at the provider, update
-   `DATABASE_URL`, restart. The app role is least-privilege
-   (`packages/db/roles.sql`), so this is containment and not a full compromise.
-5. **Only then** work out how it leaked. Preserve the journal first
-   (`journalctl --since` to a file), because restarts roll it.
+## S1: wrong license outcome
 
-## S1: wrong licensing outcome
+- Don't edit the database first. Check the order with the payment provider, then fix the license to match it.
+- Check `/admin/flags`. Supersede and double-billing problems are listed there with the fix.
+- Webhooks are deduplicated by delivery id in `webhook_event`. To reprocess one, delete its row, then replay it from the provider's dashboard.
 
-A customer charged and not licensed, or licensed and not charged, or revoked
-without cause.
-
-- **Do not fix it by editing the database first.** Polar is the system of record
-  for the payment. Read the order there, then reconcile the license to it. The
-  reverse produces a customer whose invoice and whose entitlement disagree, which
-  is the one failure that cannot be sorted out without a human on both sides.
-- Check `/admin/flags` before anything else. The webhook dispatcher raises
-  `supersede_failed`, `supersede_not_honoured` and `superseded_renewal_charged`
-  there, all `critical`, and each carries the exact remediation in its details.
-  If the incident is double billing, the answer is probably already sitting in
-  that list.
-- Webhook deliveries are deduplicated on Polar's delivery id in `webhook_event`.
-  To force a redelivery to be processed, delete that row and replay from Polar's
-  dashboard. Do not replay without deleting; it will be acked and ignored.
-
-## S2: a service is down
+## S2: service down
 
 ```bash
 sudo systemctl restart <unit>
 journalctl -u <unit> -n 100 --no-pager
 ```
 
-If it restarts and stays up, the incident is over and the investigation is not.
-If it restart-loops, read the reason before restarting again. `Restart=on-failure`
-with `RestartSec=5` will happily loop forever and bury the original error.
-
-Rolling back is in [deploy.md](deploy.md). Remember that a code rollback does not
-roll back a migration.
+If it keeps restarting, read the error before restarting again. Rolling back is in [deploy.md](deploy.md).
 
 ## S2: database unreachable
 
-`/ready` returns 503 with the reason. Check the provider's status page and the
-connection count:
+`/ready` returns 503 with the reason. Check the provider's status page and connection count ([database.md](database.md)).
 
-```sql
-SELECT count(*), state FROM pg_stat_activity GROUP BY state;
-```
+## Communication
 
-Exhaustion presents as customers unable to sign in while every process reports
-healthy. See [database.md](database.md).
+- Post on Discord within an hour for S1 or S2, even if all you can say is that you're on it. Email users for anything involving accounts or money.
+- Don't describe a security incident's scope until you know it.
 
----
+## Personal data
 
-## Telling people
+If personal data may have been exposed, the GDPR deadline is 72 hours from becoming aware to notify the supervisory authority, and affected people without undue delay if the risk to them is high.
 
-Vethida has no status page (see [ADR-0006](../adr/0006-no-status-page-at-v1.md)),
-so the channels are the Discord server and, for anything touching accounts or
-money, email.
-
-**Say something within the hour for S1 or S2**, even with nothing to report.
-"We know, we are on it, next update at X" is worth more than an accurate
-explanation two hours later.
-
-**Do not describe a security incident before you understand it.** A wrong scope
-statement is worse than silence, and correcting it publicly costs more trust than
-the incident did.
-
-## Notification obligations
-
-If personal data was or may have been exposed, the GDPR clock is **72 hours from
-becoming aware** to notify the supervisory authority, and affected individuals
-without undue delay if the risk to them is high. That clock starts at awareness,
-not at confirmation, and "we were still investigating" is not an extension.
-
-What Vethida holds: email addresses, license entitlements, device fingerprints,
-and a payment relationship held by the payment provider as merchant of record. Card data is never on this side of the boundary.
-
----
+Vethida holds email addresses, license entitlements and device fingerprints. Payment details stay with the payment provider.
 
 ## Afterwards
 
-Write it down the same day, in `docs/incidents/YYYY-MM-DD-<slug>.md`: what
-happened, what the customer saw, the timeline, what actually caused it, and what
-would have caught it earlier. The last one is the only part that matters. If the
-answer is "a test", write the test that week, while it still feels urgent.
+Write up what happened the same day: timeline, cause, what users saw, and what would have caught it sooner. Then add that check.

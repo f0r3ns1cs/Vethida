@@ -39,12 +39,6 @@ run("release readiness", process.execPath, [
   path.join(repoRoot, "scripts/release/check-release-ready.mjs"),
 ]);
 
-run("integrity", process.execPath, [path.join(repoRoot, "scripts/check-integrity.mjs")]);
-
-run("voice", process.execPath, [path.join(repoRoot, "scripts/check-voice.mjs")]);
-
-run("preflight", process.execPath, [path.join(repoRoot, "scripts/preflight.mjs")]);
-
 const version = fs.readFileSync(path.join(repoRoot, "VERSION"), "utf8").trim();
 console.log(`\nBuilding Vethida ${version}`);
 

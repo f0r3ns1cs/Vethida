@@ -97,7 +97,7 @@ export const intervals: ReadonlyArray<{
   { value: "lifetime", label: "Lifetime" },
 ];
 
-// has to match legal/eula.md and legal/terms.md (check-integrity checks it)
+// has to match legal/eula.md and legal/terms.md word for word
 export const lifetimeScope =
   "A lifetime license covers every update to the tier you bought, including new major versions, at no further charge.";
 

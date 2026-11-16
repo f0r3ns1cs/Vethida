@@ -19,7 +19,7 @@ const LABELS: Record<Tier, string> = {
   ultimate: "Ultimate",
 };
 
-// vethida.com has its own copy in lib/pricing.ts (check-integrity compares them)
+// vethida.com has its own copy in lib/pricing.ts; keep the two in step
 const BLURBS: Record<Tier, string> = {
   free: "The basics, with no account and no expiry.",
   pro: "Everything in Free, plus the processor, memory, storage, graphics and network settings, and the debloating.",
@@ -43,7 +43,7 @@ export function tierIncludes(tier: string): string {
   return INCLUDES[tier as Tier] ?? "";
 }
 
-// Must match the EULA and the pricing page word for word (check-integrity checks it).
+// Must match the EULA and the pricing page word for word.
 export const LIFETIME_SCOPE =
   "A lifetime license covers every update to the tier you bought, including new major versions, at no further charge.";
 

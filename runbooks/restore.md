@@ -1,45 +1,36 @@
 # Restore
 
-Dumps are `pg_dump -Fc`. `pg_restore` refuses a truncated custom-format file
-outright, which a truncated `.sql` does not.
+Dumps are custom format (`pg_dump -Fc`).
 
-## Prove the backups work
+## Test the backups
 
-Run this after any change to the schema, the backup cron or the database
-version. A dump nobody has restored is a file.
+After any schema, backup or Postgres version change:
 
-```
-pnpm db:verify-restore
+```bash
+node scripts/db/verify-restore.mjs
 ```
 
-It dumps, restores into a throwaway database, compares table lists, compares row
-counts table by table, checks constraints and indexes came back, and drops the
-throwaway. Non-zero exit means the backups are not backups.
+It restores into a throwaway database and compares tables, row counts, constraints and indexes. A non-zero exit means the backups don't work.
 
-## Take one now
+## Take a backup now
 
+```bash
+DATABASE_URL=... node scripts/db/backup.mjs --out ./backups --keep 14
 ```
-DATABASE_URL=... pnpm db:backup
-```
-
-Writes to `./backups`, keeps 14, and verifies the file it wrote.
 
 ## Restore production
 
-1. Stop what writes: `systemctl stop api.vethida.com my.vethida.com vethida-discord-bot`
-2. Take a dump of the current state first, whatever state it is in. You cannot
-   get it back afterwards.
-3. Restore into a **new** database, never over the live one:
-   `createdb vethida_restored && pg_restore -d vethida_restored --no-owner <dump>`
-4. Check it: row counts on `auth_user`, `license`, `auth_session`; the newest
-   `created_at` in each.
-5. Repoint `DATABASE_URL` at the restored database.
-6. `pnpm db:migrate`. The dump may predate the current schema.
-7. Start the units one at a time, `systemctl status` after each.
-8. Keep the old database until the next verified backup has been taken.
+1. Stop writers: `sudo systemctl stop api.vethida.com my.vethida.com vethida-discord-bot`
+2. Dump the current state first.
+3. Restore into a new database, never over the live one:
+   ```bash
+   createdb -T template0 vethida_restored
+   pg_restore -d vethida_restored --no-owner --no-privileges <dump>
+   psql -d vethida_restored -f packages/db/roles.sql
+   ```
+4. Check row counts and the newest `created_at` in `auth_user`, `license` and `auth_session`.
+5. Point `DATABASE_URL` at `vethida_restored` and run `pnpm -C packages/db migrate`.
+6. Start the units one at a time and check `systemctl status` after each.
+7. Keep the old database until the next backup is verified.
 
-## Point in time
-
-There is none. Recovery granularity is the cron interval in
-`server/backup/pg_dump.cron`. Anything written after the last dump is gone, and
-that is the number to quote to anyone asking how much data was lost.
+There's no point-in-time recovery. Anything written after the last dump is lost.
